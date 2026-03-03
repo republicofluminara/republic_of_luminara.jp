@@ -1,1 +1,9 @@
-# republic_of_luminara.jp
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Republic of Luminara</title>
+</head>
+<body>
+  <h1>Welcome to the Republic of Luminara</h1>
+</body>
+</html>
