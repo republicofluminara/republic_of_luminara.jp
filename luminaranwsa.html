@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>数値予報・制御開発センター | ルミナラ共和国 気象防衛局</title>
+    <title>数値予報・気象制御開発センター | ルミナラ共和国 気象防衛局</title>
     <style>
         :root {
             --primary-blue: #003366;
@@ -19,15 +19,16 @@
             color: #333;
             margin: 0;
             background-color: #fff;
+            overflow-x: hidden;
         }
 
-        /* ヘッダー：最初のデザインを継承 */
+        /* ヘッダー：左上に三本線を固定 */
         header {
             border-bottom: 3px solid var(--primary-blue);
             padding: 10px 20px;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: flex-start; /* 左寄せ */
             gap: 15px;
             position: sticky;
             top: 0;
@@ -39,8 +40,8 @@
             font-size: 1.8rem;
             cursor: pointer;
             color: var(--primary-blue);
-            padding: 5px;
             user-select: none;
+            padding: 5px;
         }
 
         .logo-area {
@@ -63,7 +64,7 @@
             font-size: 0.8rem;
         }
 
-        /* サイドドロワーメニュー */
+        /* サイドドロワーメニュー（濃紺） */
         .side-menu {
             position: fixed;
             top: 0;
@@ -78,18 +79,23 @@
             box-shadow: 5px 0 15px rgba(0,0,0,0.3);
         }
 
-        .side-menu.active { left: 0; }
+        .side-menu.active {
+            left: 0;
+        }
 
         .side-menu a {
             display: block;
-            padding: 15px 25px;
+            padding: 18px 25px;
             color: white;
             text-decoration: none;
             border-bottom: 1px solid rgba(255,255,255,0.1);
             font-weight: bold;
+            font-size: 0.95rem;
         }
 
-        .side-menu a:hover { background: var(--secondary-blue); }
+        .side-menu a:hover {
+            background: var(--secondary-blue);
+        }
 
         .close-btn {
             position: absolute;
@@ -97,8 +103,10 @@
             right: 20px;
             font-size: 2rem;
             cursor: pointer;
+            color: white;
         }
 
+        /* 背景オーバーレイ */
         .overlay {
             position: fixed;
             top: 0;
@@ -110,9 +118,11 @@
             z-index: 1500;
         }
 
-        .overlay.active { display: block; }
+        .overlay.active {
+            display: block;
+        }
 
-        /* メインコンテンツ：最初のデザインを完全復元 */
+        /* パンくずリスト */
         .breadcrumb {
             background: var(--light-gray);
             padding: 8px 20px;
@@ -120,6 +130,7 @@
             color: #666;
         }
 
+        /* メインコンテンツ */
         main {
             max-width: 900px;
             margin: 20px auto;
@@ -145,7 +156,11 @@
             color: var(--primary-blue);
         }
 
-        /* 図解エリア：気象庁風の青いボックス */
+        .intro-text {
+            margin-bottom: 30px;
+        }
+
+        /* 図解エリア：デザイン復元 */
         .diagram-container {
             background-color: #ebf3f9;
             border: 1px solid #c2d1e0;
@@ -199,7 +214,15 @@
             text-align: left;
         }
 
-        .arrow { font-size: 24px; color: var(--secondary-blue); }
+        .sub-box ul {
+            padding-left: 15px;
+            margin: 5px 0;
+        }
+
+        .arrow {
+            font-size: 24px;
+            color: var(--secondary-blue);
+        }
 
         footer {
             text-align: center;
@@ -213,7 +236,6 @@
 <body>
 
 <div class="overlay" id="overlay"></div>
-
 <nav class="side-menu" id="sideMenu">
     <div class="close-btn" id="closeBtn">&times;</div>
     <a href="#">Luminara National Weather Security Agency</a>
@@ -232,7 +254,7 @@
 </header>
 
 <div class="breadcrumb">
-    ホーム > 知識・解説 > 数値予報 > 数値予報・制御開発センター
+    ホーム > 知識・解説 > 気象制御 > 数値予報・制御開発センター
 </div>
 
 <main>
@@ -243,31 +265,64 @@
         <span>▼</span>
     </div>
 
-    <section>
-        <p>ルミナラ共和国（フォスバロ共和国）気象防衛局では、最先端の数値予報技術に基づき、台風抑制システム（TMS）と戦略的降雨管理（SRM）を運用しています。</p>
+    <section class="intro-text">
+        <p>ルミナラ共和国（フォスバロ共和国）気象防衛局では、国民の生命と財産を守り、国家経済を支える水資源を最適化するため、世界最先端の気象制御技術の研究・運用を行っています。</p>
+        <p>本センターは、核融合エネルギーを背景とした<b>台風抑制システム（TMS）</b>と、高精度な<b>戦略的降雨管理（SRM）</b>を統合的に制御し、周辺諸国との降雨再配分を含めたグローバルな気象平和を実現するための基幹組織です。</p>
     </section>
 
     <div class="diagram-container">
-        <div class="diagram-title">数値予報・制御開発センターの業務とシステム構成</div>
+        <div class="diagram-title">気象制御システム（TMS/SRM）の連携構造と業務内容</div>
+        
         <div class="system-chart">
             <div class="box">
-                <div class="box-title">気象制御総括課（本庁舎）</div>
-                <div style="font-size: 0.8rem; text-align: left;">
-                    ・全体管理、エネルギー調整<br>
-                    ・国際的な降雨再配分計画の策定
+                <div class="box-title">気象制御総括課（防衛局本庁舎）</div>
+                <div style="font-size: 0.85rem;">
+                    ・国家級エネルギーフリートの運用管理・調整<br>
+                    ・国際的な降雨補償条約に基づく配分計画の策定<br>
+                    ・TMS実行時における国際緊急事態の宣言と調整
                 </div>
             </div>
-            <div class="arrow">⬇</div>
-            <div class="box" style="width: 95%; border-color: var(--accent-cyan);">
-                <div class="box-title" style="background: var(--accent-cyan);">数値予報・制御開発センター（つくば拠点）</div>
+
+            <div class="arrow">⬇ 連携・フィードバック</div>
+
+            <div class="box" style="border-color: var(--accent-cyan); width: 95%;">
+                <div class="box-title" style="background: var(--accent-cyan);">数値予報・制御開発センター</div>
+                
                 <div class="grid-3">
-                    <div class="sub-box"><strong>台風抑制(TMS)</strong><br>海洋冷却、蒸発抑制フィールドの形成</div>
-                    <div class="sub-box"><strong>戦略的降雨(SRM)</strong><br>レーザー加熱による上昇気流生成</div>
-                    <div class="sub-box"><strong>地球システムモデル</strong><br>周辺国への影響予測と生態系評価</div>
+                    <div class="sub-box">
+                        <strong>台風抑制モデル（TMS）</strong>
+                        <ul>
+                            <li>海洋冷却帯形成アルゴリズム</li>
+                            <li>蒸発抑制フィールド制御</li>
+                            <li>核融合プラットフォーム誘導</li>
+                        </ul>
+                    </div>
+                    <div class="sub-box">
+                        <strong>戦略的降雨管理（SRM）</strong>
+                        <ul>
+                            <li>人工降雨レーザー加熱制御</li>
+                            <li>吸湿性粒子ドローン散布予測</li>
+                            <li>水蒸気フラックス誘導モデル</li>
+                        </ul>
+                    </div>
+                    <div class="sub-box">
+                        <strong>地球システム統合解析</strong>
+                        <ul>
+                            <li>生態系攪乱シミュレーション</li>
+                            <li>人工海貯留量最適化</li>
+                            <li>温帯低気圧進路偏向予測</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <section>
+        <h3>技術概要</h3>
+        <p><b>TMS（Typhoon Mitigation System）：</b> 海洋熱、水蒸気、渦構造の三層を同時に制御し、最大風速を30m/s級に抑え込みます。100テラワット級の冷却出力をAIが自律制御します。</p>
+        <p><b>SRM（Strategic Rain-making Management）：</b> 台風から抽出した余剰水蒸気を、必要な地域へ「資源」として再配分します。これにより、抑制に伴う干ばつリスクを解消します。</p>
+    </section>
 </main>
 
 <footer>
@@ -280,11 +335,13 @@
     const closeBtn = document.getElementById('closeBtn');
     const overlay = document.getElementById('overlay');
 
+    // メニューを開く
     menuTrigger.addEventListener('click', () => {
         sideMenu.classList.add('active');
         overlay.classList.add('active');
     });
 
+    // メニューを閉じる
     const closeMenu = () => {
         sideMenu.classList.remove('active');
         overlay.classList.remove('active');
