@@ -1,3 +1,141 @@
-<a href="#">Laws of Luminara</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laws - Republic of Luminara</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8f9fa; /* e-GOV風の薄いグレー */
+            color: #333;
+        }
 
-<a href="laws.html">Laws of Luminara</a>
+        /* ヘッダー：公的機関らしいデザイン */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 20px;
+            background-color: #ffffff;
+            border-bottom: 3px solid #003366; /* 共和国の公式カラー */
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .menu-btn {
+            position: absolute;
+            left: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #003366;
+        }
+
+        .logo {
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+            color: #003366;
+        }
+
+        /* メインコンテンツエリア */
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-radius: 4px;
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            color: #003366;
+        }
+
+        /* 検索窓風の装飾（e-GOV風） */
+        .search-mock {
+            background-color: #f1f4f8;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            border-left: 5px solid #003366;
+        }
+
+        /* 法令の条文スタイル */
+        .law-section {
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .law-article {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #444;
+        }
+
+        /* サイドメニュー（index.htmlと共通） */
+        .side-menu {
+            height: 100%; width: 0; position: fixed; z-index: 100;
+            top: 0; left: 0; background-color: #111;
+            overflow-x: hidden; transition: 0.5s; padding-top: 60px;
+        }
+        .side-menu a {
+            padding: 15px 32px; text-decoration: none; font-size: 18px;
+            color: #818181; display: block; transition: 0.3s;
+        }
+        .side-menu a:hover { color: #f1f1f1; }
+        .close-btn { position: absolute; top: 10px; right: 25px; font-size: 36px; color: white; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <div id="mySideMenu" class="side-menu">
+        <span class="close-btn" onclick="closeNav()">&times;</span>
+        <a href="index.html">Home</a>
+        <a href="laws.html">Laws of Luminara</a>
+        <a href="#">Luminarian Language</a>
+        <a href="#">Luminara State Hotels</a>
+        <a href="#">Luce Airways</a>
+    </div>
+
+    <header>
+        <button class="menu-btn" onclick="openNav()">&#9776;</button>
+        <div class="logo">GOV.LUMINARA - 法令検索</div>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">Laws of the Phospharo Republic</h1>
+        
+        <div class="search-mock">
+            <strong>Current status:</strong> Active Laws of the Republic
+        </div>
+
+        <div class="law-section">
+            <span class="law-article">Article 1 (The State)</span>
+            <p>The constitutional name of this nation shall be the Phospharo Republic, and it shall be commonly known as the Republic of Luminara.</p>
+        </div>
+
+        <div class="law-section">
+            <span class="law-article">Article 2 (National Territory)</span>
+            <p>This digital space is officially recognized as the sovereign territory and home of its citizens.</p>
+        </div>
+
+        </div>
+
+    <script>
+        function openNav() { document.getElementById("mySideMenu").style.width = "300px"; }
+        function closeNav() { document.getElementById("mySideMenu").style.width = "0"; }
+    </script>
+
+</body>
+</html>
