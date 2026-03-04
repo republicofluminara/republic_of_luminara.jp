@@ -178,15 +178,15 @@
         
         <div class="date-row">
             <div class="date-box">
-                <div class="search-label">🗓 1 泊</div>
-                <div id="todayDate" class="date-value">--月--日(-)</div>
-            </div>
-            <div style="padding: 0 20px; font-size: 1.5rem;">-</div>
-            <div class="date-box">
-                <div class="search-label">&nbsp;</div>
-                <div id="tomorrowDate" class="date-value">--月--日(-)</div>
-            </div>
-        </div>
+                <div class="search-label">🗓 
+    <select id="stayNights" onchange="updateDates()" style="border:none; background:none; font-family:inherit; font-size:inherit; color:inherit; cursor:pointer;">
+        <option value="1">1 泊</option>
+        <option value="2">2 泊</option>
+        <option value="3">3 泊</option>
+        <option value="4">4 泊</option>
+        <option value="5">5 泊</option>
+    </select>
+</div>
 
         <button class="search-button" onclick="performSearch()">ホテルを検索</button>
     </div>
