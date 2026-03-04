@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>気象制御開発センター | ルミナラ共和国 気象防衛局</title>
+    <title>数値予報・制御開発センター | ルミナラ共和国 気象防衛局</title>
     <style>
         :root {
             --primary-blue: #003366;
@@ -21,33 +21,35 @@
             background-color: #fff;
         }
 
-        /* ヘッダー */
-header {
-    border-bottom: 3px solid var(--primary-blue);
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* 左詰めに変更 */
-    gap: 20px; /* メニューとロゴの間隔 */
-}
+        /* ヘッダー修正：左側にメニューを固定 */
+        header {
+            border-bottom: 3px solid var(--primary-blue);
+            padding: 10px 20px;
+            display: flex;
+            align-items: center; /* 垂直中央 */
+            justify-content: flex-start; /* 左寄せ */
+            gap: 15px; /* メニューとロゴの間隔 */
+        }
 
-.menu-trigger {
-    font-size: 1.5rem;
-    cursor: pointer;
-    order: -1; /* 強制的に一番左へ */
-    padding: 5px;
-}
+        .menu-trigger {
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--primary-blue);
+            line-height: 1;
+            padding: 5px;
+        }
 
-.logo-area {
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-    font-size: 1.2rem;
-}
+        .logo-area {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #111;
+        }
 
         .logo-icon {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             background: var(--primary-blue);
             border-radius: 50%;
             margin-right: 10px;
@@ -55,7 +57,8 @@ header {
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
+            flex-shrink: 0;
         }
 
         /* パンくずリスト */
@@ -77,24 +80,20 @@ header {
             font-size: 1.8rem;
             border-bottom: 2px solid var(--border-color);
             padding-bottom: 10px;
-            color: #111;
+            margin-top: 0;
         }
 
         .menu-box {
             border: 2px solid var(--primary-blue);
             border-radius: 5px;
             margin: 20px 0;
-            padding: 10px 15px;
+            padding: 12px 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-weight: bold;
             color: var(--primary-blue);
-            cursor: pointer;
-        }
-
-        .intro-text {
-            margin-bottom: 30px;
+            background-color: #fff;
         }
 
         /* 図解エリア */
@@ -108,11 +107,11 @@ header {
 
         .diagram-title {
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: var(--primary-blue);
+            font-size: 1.1rem;
         }
 
-        /* TMS/SRM 構造図の擬似デザイン */
         .system-chart {
             display: flex;
             flex-direction: column;
@@ -123,38 +122,45 @@ header {
         .box {
             background: white;
             border: 2px solid var(--secondary-blue);
-            padding: 10px;
-            width: 80%;
+            padding: 15px;
+            width: 85%;
             border-radius: 4px;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
         }
 
         .box-title {
             background: var(--secondary-blue);
             color: white;
-            padding: 5px;
-            margin: -10px -10px 10px -10px;
+            padding: 6px;
+            margin: -15px -15px 15px -15px;
             font-size: 0.9rem;
         }
 
         .grid-3 {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
             width: 100%;
         }
 
         .sub-box {
             background: #fff;
             border: 1px solid var(--accent-cyan);
-            padding: 10px;
-            font-size: 0.8rem;
+            padding: 12px;
+            font-size: 0.85rem;
             text-align: left;
+            border-top: 4px solid var(--accent-cyan);
+        }
+
+        .sub-box strong {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--secondary-blue);
         }
 
         .sub-box ul {
-            padding-left: 15px;
-            margin: 5px 0;
+            padding-left: 18px;
+            margin: 0;
         }
 
         .arrow {
@@ -168,17 +174,19 @@ header {
             font-size: 0.8rem;
             color: #888;
             border-top: 1px solid #eee;
+            margin-top: 50px;
         }
     </style>
 </head>
 <body>
 
 <header>
+    <div class="menu-trigger" title="メニュー">☰</div>
+    
     <div class="logo-area">
         <div class="logo-icon">LMDA</div>
         <div>ルミナラ共和国 気象防衛局</div>
     </div>
-    <div style="font-size: 1.5rem;">☰</div>
 </header>
 
 <div class="breadcrumb">
@@ -193,52 +201,50 @@ header {
         <span>▼</span>
     </div>
 
-    <section class="intro-text">
-        <p>ルミナラ共和国（フォスバロ共和国）気象防衛局では、国民の生命と財産を守り、国家経済を支える水資源を最適化するため、世界最先端の気象制御技術の研究・運用を行っています。</p>
-        <p>本センターは、核融合エネルギーを背景とした<b>台風抑制システム（TMS）</b>と、高精度な<b>戦略的降雨管理（SRM）</b>を統合的に制御し、周辺諸国との降雨再配分を含めたグローバルな気象平和を実現するための基幹組織です。</p>
+    <section>
+        <p>ルミナラ共和国（フォスバロ共和国）は、国家プロジェクトとして気象制御の完全自動化を推進しています。本センターでは、最新の数値予報モデルと核融合エネルギーを組み合わせ、台風の脅威を資源へと変える研究を行っています。</p>
     </section>
 
     <div class="diagram-container">
-        <div class="diagram-title">気象制御システム（TMS/SRM）の連携構造と業務内容</div>
+        <div class="diagram-title">気象制御システム（TMS/SRM）の連携構造</div>
         
         <div class="system-chart">
             <div class="box">
-                <div class="box-title">気象制御総括課（防衛局本庁舎）</div>
-                <div style="font-size: 0.85rem;">
-                    ・国家級エネルギーフリートの運用管理・調整<br>
-                    ・国際的な降雨補償条約に基づく配分計画の策定<br>
-                    ・TMS実行時における国際緊急事態の宣言と調整
+                <div class="box-title">気象制御総括課（フォスバロ本庁舎）</div>
+                <div style="font-size: 0.9rem; text-align: left;">
+                    ・エネルギー供給（核融合フリート）の最適化<br>
+                    ・国際気象平和条約に基づく周辺国への降雨提供調整
                 </div>
             </div>
 
-            <div class="arrow">⬇ 連携・フィードバック</div>
+            <div class="arrow">⬇ 運用指示・データ連携</div>
 
             <div class="box" style="border-color: var(--accent-cyan); width: 95%;">
-                <div class="box-title" style="background: var(--accent-cyan);">数値予報・制御開発センター</div>
+                <div class="box-title" style="background: var(--accent-cyan);">数値予報・制御開発センター（つくば拠点）</div>
                 
                 <div class="grid-3">
                     <div class="sub-box">
-                        <strong>台風抑制モデル（TMS）</strong>
+                        <strong>台風抑制（TMS）</strong>
                         <ul>
-                            <li>海洋冷却帯形成アルゴリズム</li>
-                            <li>蒸発抑制フィールド制御</li>
-                            <li>核融合プラットフォーム誘導</li>
+                            <li>海洋冷却帯（1.5℃低下）</li>
+                            <li>蒸発抑制単分子膜散布</li>
+                            <li>渦構造の精密破壊</li>
                         </ul>
                     </div>
                     <div class="sub-box">
-                        <strong>戦略的降雨管理（SRM）</strong>
+                        <strong>戦略的降雨（SRM）</strong>
                         <ul>
-                            <li>人工降雨レーザー加熱制御</li>
-                            <li>吸湿性粒子ドローン散布予測</li>
-                            <li>水蒸気フラックス誘導モデル</li>
+                            <li>レーザー上昇気流生成</li>
+                            <li>水蒸気フラックス誘導</li>
+                            <li>人口降雨ドローン展開</li>
                         </ul>
                     </div>
                     <div class="sub-box">
-                        <strong>地球システム統合解析</strong>
+                        <strong>統合管理システム</strong>
                         <ul>
-                            <li>生態系攪乱シミュレーション</li>
-                            <li>人工海貯留量最適化</li>
-                            <li>温帯低気圧進路偏向予測</li>
+                            <li>人工海（ダム）貯留予測</li>
+                            <li>周辺国降雨補償モデル</li>
+                            <li>気象経済インパクト解析</li>
                         </ul>
                     </div>
                 </div>
@@ -246,10 +252,10 @@ header {
         </div>
     </div>
 
-    <section>
-        <h3>技術概要</h3>
-        <p><b>TMS（Typhoon Mitigation System）：</b> 海洋熱、水蒸気、渦構造の三層を同時に制御し、最大風速を30m/s級に抑え込みます。100テラワット級の冷却出力をAIが自律制御します。</p>
-        <p><b>SRM（Strategic Rain-making Management）：</b> 台風から抽出した余剰水蒸気を、必要な地域へ「資源」として再配分します。これにより、抑制に伴う干ばつリスクを解消します。</p>
+    <section style="margin-top: 40px;">
+        <h3>各システムの役割</h3>
+        <p><b>TMS（Typhoon Mitigation System）：</b> 台風の発達を初期段階で食い止め、最大風速を30m/s程度に維持します。これにより、インフラ被害を最小化します。</p>
+        <p><b>SRM（Strategic Rain-making Management）：</b> 台風抑制によって減少した降雨を、必要な場所へ再分配します。ルミナラ共和国の人工海システムと連動し、水資源の完全制御を可能にします。</p>
     </section>
 </main>
 
