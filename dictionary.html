@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Dictionary | Luminarian Language</title>
+    <title>National Dictionary | Republic of Phosbalo</title>
     <style>
         :root {
             --primary-navy: #1a365d;
@@ -11,169 +11,156 @@
             --bg-beige: #f8f5f0;
             --accent-blue: #2c5282;
             --white: #ffffff;
-            --border-gray: #cbd5e0;
-            --text-main: #334155;
+            --text-dark: #2d3748;
         }
 
         body {
             margin: 0;
             font-family: 'Optima', 'Didot', 'Hiragino Mincho ProN', serif;
             background-color: var(--bg-beige);
-            color: var(--text-main);
-            line-height: 1.5;
-            font-size: 14px; /* 全体的にフォントサイズを縮小 */
+            color: var(--text-dark);
+            line-height: 1.4;
+            font-size: 13px; /* 高密度化のためさらに縮小 */
         }
 
         header {
             background: var(--white);
-            padding: 20px 5%;
+            padding: 15px 5%;
             text-align: center;
             border-bottom: 2px solid var(--soft-gold);
         }
 
-        .back-link { position: absolute; left: 5%; text-decoration: none; color: var(--primary-navy); font-weight: bold; font-size: 0.8rem; }
+        .back-link { position: absolute; left: 5%; text-decoration: none; color: var(--primary-navy); font-weight: bold; font-size: 0.75rem; }
 
-        h1 { margin: 0; font-size: 1.3rem; letter-spacing: 0.3em; color: var(--primary-navy); }
-        .subtitle { font-size: 0.7rem; color: var(--soft-gold); letter-spacing: 0.1em; }
+        h1 { margin: 0; font-size: 1.2rem; letter-spacing: 0.4em; color: var(--primary-navy); }
+        .subtitle { font-size: 0.65rem; color: var(--soft-gold); letter-spacing: 0.1em; text-transform: uppercase; }
 
-        main { max-width: 900px; margin: 30px auto; padding: 0 5%; }
+        main { max-width: 850px; margin: 25px auto; padding: 0 5%; }
 
         .section-card {
             background: var(--white);
-            padding: 25px 35px;
-            margin-bottom: 25px;
+            padding: 20px 30px;
+            margin-bottom: 20px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             border: 1px solid #e2e8f0;
         }
 
-        h2 { color: var(--primary-navy); border-left: 4px solid var(--soft-gold); padding-left: 12px; font-size: 1.1rem; margin-bottom: 15px; text-transform: uppercase; }
-        h3 { font-size: 0.95rem; color: var(--accent-blue); margin-top: 20px; border-bottom: 1px dotted var(--border-gray); padding-bottom: 5px; }
+        h2 { color: var(--primary-navy); border-left: 3px solid var(--soft-gold); padding-left: 10px; font-size: 1rem; margin-bottom: 12px; }
 
-        .rules-list { padding-left: 18px; font-size: 0.85rem; }
-        .rules-list li { margin-bottom: 6px; }
-
-        .grammar-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.85rem; }
-        .grammar-table td { padding: 10px; border: 1px solid var(--border-gray); }
-        .grammar-label { background: var(--primary-navy); color: white; width: 120px; font-weight: bold; text-align: center; }
-
-        /* 接頭辞 La- の解説セクション */
-        .la-explanation {
+        /* 接頭辞 La- の対照表 */
+        .la-system {
             background: #fdfaf3;
             border: 1px solid #faeecd;
-            padding: 15px;
-            border-radius: 4px;
-            font-size: 0.85rem;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 0.8rem;
         }
-        .la-example-grid {
+        .la-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 10px;
+            gap: 8px;
+            margin-top: 8px;
         }
-        .la-case { padding: 8px; background: white; border: 1px solid #f0e4c3; }
-        .la-case b { color: var(--accent-blue); }
+        .la-item { padding: 6px; background: white; border: 1px solid #f0e4c3; }
+        .la-item b { color: var(--accent-blue); }
 
-        .dict-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem; }
-        .dict-table th { background: #f1f5f9; padding: 10px; text-align: left; border-bottom: 2px solid var(--soft-gold); color: var(--primary-navy); }
-        .dict-table td { padding: 8px 10px; border-bottom: 1px solid #f1f5f9; }
-        .lum-word { font-weight: bold; color: var(--accent-blue); font-size: 1rem; }
+        .dict-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.8rem; }
+        .dict-table th { background: #f1f5f9; padding: 8px; text-align: left; border-bottom: 2px solid var(--soft-gold); color: var(--primary-navy); }
+        .dict-table td { padding: 6px 8px; border-bottom: 1px solid #f1f5f9; }
+        .lum-word { font-weight: bold; color: var(--accent-blue); }
 
-        .phrase-box { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
-        .phrase-item { border: 1px solid #e2e8f0; padding: 10px; background: #fff; font-size: 0.85rem; }
-        .phrase-item b { font-size: 1rem; color: var(--primary-navy); display: block; margin-bottom: 3px; }
+        .phrase-box { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
+        .phrase-item { border: 1px solid #e2e8f0; padding: 8px; background: #fff; font-size: 0.8rem; }
+        .phrase-item b { font-size: 0.95rem; color: var(--primary-navy); display: block; }
 
-        footer { text-align: center; padding: 30px; color: #94a3b8; font-size: 0.7rem; letter-spacing: 0.1em; }
+        footer { text-align: center; padding: 20px; color: #94a3b8; font-size: 0.65rem; }
     </style>
 </head>
 <body>
 
 <header>
-    <a href="luminaralang.html" class="back-link">← PORTAL</a>
-    <h1>DICTIONARY OF LUMINARIAN</h1>
-    <div class="subtitle">Republic of Phosbalo Standard Archives</div>
+    <a href="#" class="back-link">← PORTAL</a>
+    <h1>LUMINARIAN LEXICON</h1>
+    <div class="subtitle">Official Linguistic Standard of Phosbalo</div>
 </header>
 
 <main>
     <section class="section-card">
-        <h2>1. Principles (言語原則)</h2>
-        <ul class="rules-list">
-            <li><strong>ハ行の禁止</strong>: 全てカ行/パ行/サ行等で代用。</li>
-            <li><strong>Rの禁止</strong>: 全て <b>L</b> に置き換え。</li>
-            <li><strong>母音連続の禁止</strong>: 子音を挟み母音の直接的な並びを回避（例: Tolanliyu）。</li>
-            <li><strong>非活用 (Isolation)</strong>: 活用・変格は一切なし。語順のみで意味を決定。</li>
-        </ul>
-    </section>
-
-    <section class="section-card">
-        <h2>2. Prefix "La-" (増幅・敬称の接頭辞)</h2>
-        <div class="la-explanation">
-            接頭辞 <b>La-</b> は、単語の持つ「値」を大きくしたり、対象を「高める・敬う」ために使用されます。
-            <div class="la-example-grid">
-                <div class="la-case"><b>[家族・敬称]</b><br>チッタ (父) <br>→ <b>ラチッタ</b> (祖父 / 敬称としての父)</div>
-                <div class="la-case"><b>[状態・強度]</b><br>パタカ (嬉しい) <br>→ <b>ラパタカ</b> (非常に嬉しい)</div>
-                <div class="la-case"><b>[物理・重量]</b><br>セコ (重い) <br>→ <b>ラセコ</b> (非常に重い / 巨大な)</div>
-                <div class="la-case"><b>[対比]</b><br>リロ (軽い) <br>→ <b>ラリロ</b> (極めて軽い)</div>
-                <div class="la-case"><b>[自然・規模]</b><br>メテオロ (天気) <br>→ <b>ラメテオ</b> (気候 / 広域の気象)</div>
-                <div class="la-case"><b>[血縁]</b><br>コッタ (弟妹) <br>→ <b>ラコッタ</b> (兄姉)</div>
+        <h2>1. The "La-" System (反転・増幅ルール)</h2>
+        <div class="la-system">
+            接頭辞 <b>La-</b> は、基底語の持つ値を「反転」させ、または「増幅」させます。これにより少ない語彙で多くの概念を表現します。
+            <div class="la-grid">
+                <div class="la-item">パタカ (悲しい) <br>→ <b>ラパタカ</b> (嬉しい)</div>
+                <div class="la-item">リロ (軽い) <br>→ <b>ラリロ</b> (重い)</div>
+                <div class="la-item">チッタ (父) <br>→ <b>ラチッタ</b> (祖父 / 敬称)</div>
+                <div class="la-item">コッタ (弟妹) <br>→ <b>ラコッタ</b> (兄姉)</div>
+                <div class="la-item">メテオロ (天気) <br>→ <b>ラメテオ</b> (気候)</div>
+                <div class="la-item">セノム (先輩) <br>→ <b>ラセノム</b> (先生)</div>
             </div>
         </div>
     </section>
 
     <section class="section-card">
-        <h2>3. Grammar (基本文法)</h2>
-        <table class="grammar-table">
-            <tr><td class="grammar-label">時制</td><td>過去: 語尾に <b>Na</b> / 未来: 語前に <b>Wi</b></td></tr>
-            <tr><td class="grammar-label">否定 / 疑問</td><td>否定: 語前に <b>Puni</b> / 疑問: 文末に <b>Lei?</b></td></tr>
-            <tr><td class="grammar-label">助詞</td><td><b>De</b> (の/と) / <b>Loko</b> (に/で) / <b>Talo</b> (したい)</td></tr>
-            <tr><td class="grammar-label">肯定 / 否定</td><td><b>Kon</b> (はい) / <b>Ni</b> (いいえ)</td></tr>
+        <h2>2. Grammar & Tense (文法と時制)</h2>
+        <table class="dict-table">
+            <tr><td width="80">現在</td><td>動詞そのまま</td><td width="80">否定</td><td>語前に <b>Puni</b></td></tr>
+            <tr><td>過去</td><td>語後に <b>Na</b></td><td>疑問</td><td>文末に <b>Lei?</b></td></tr>
+            <tr><td>未来</td><td>語前に <b>Wi</b></td><td>願望</td><td>語後に <b>Talo</b></td></tr>
         </table>
     </section>
 
     <section class="section-card">
-        <h2>4. Key Phrases (基本挨拶)</h2>
+        <h2>3. Temporal (時間表現)</h2>
+        <table class="dict-table">
+            <tr><th>Luminarian</th><th>Japanese</th><th>Luminarian</th><th>Japanese</th></tr>
+            <tr><td><span class="lum-word">Nana</span></td><td>今</td><td><span class="lum-word">Naende</span></td><td>今日</td></tr>
+            <tr><td><span class="lum-word">Naendena</span></td><td>昨日</td><td><span class="lum-word">Lanaende</span></td><td>明日</td></tr>
+        </table>
+    </section>
+
+    <section class="section-card">
+        <h2>4. Greetings (挨拶・返答)</h2>
         <div class="phrase-box">
             <div class="phrase-item"><b>Bonimu</b>こんにちは</div>
             <div class="phrase-item"><b>Meluserei</b>ありがとう</div>
-            <div class="phrase-item"><b>Salutolobizu</b>さようなら (再見)</div>
+            <div class="phrase-item"><b>Salutolobizu</b>さようなら (再見式)</div>
             <div class="phrase-item"><b>Miadomu</b>ごめんなさい</div>
-            <div class="phrase-item"><b>Lapataka Bizu</b>会えて嬉しいです</div>
+            <div class="phrase-item"><b>Kon / Ni</b>はい / いいえ</div>
         </div>
     </section>
 
     <section class="section-card">
-        <h2>5. Vocabulary (語彙データベース)</h2>
+        <h2>5. Vocabulary Database (分類別語彙)</h2>
         
         <h3>【代名詞・指示詞】</h3>
         <table class="dict-table">
-            <tr><th>Luminarian</th><th>Japanese</th><th>Type</th></tr>
-            <tr><td><span class="lum-word">Lili / Olo / Maleko</span></td><td>私 / あなた / 彼・彼女</td><td>Personal</td></tr>
-            <tr><td><span class="lum-word">Kono / Ano / Mina</span></td><td>これ / あれ / すべて</td><td>Demonstrative</td></tr>
+            <tr><td><span class="lum-word">Lili / Olo / Maleko</span></td><td>私 / あなた / 彼・彼女</td></tr>
+            <tr><td><span class="lum-word">Kono / Ano / Mina</span></td><td>これ / あれ / すべて (皆)</td></tr>
         </table>
 
-        <h3>【社会・法律・公的】</h3>
+        <h3>【社会・行政・法律】</h3>
         <table class="dict-table">
-            <tr><th>Luminarian</th><th>Japanese</th><th>Note</th></tr>
-            <tr><td><span class="lum-word">Tonomulono</span></td><td>共和国</td><td>Constitution name</td></tr>
-            <tr><td><span class="lum-word">Lonmin</span></td><td>国民</td><td>Lon(国)+Min(民)</td></tr>
-            <tr><td><span class="lum-word">Tonosabilu</span></td><td>公務員</td><td>Public servant</td></tr>
-            <tr><td><span class="lum-word">Abokatemin</span></td><td>弁護士</td><td>Advocate</td></tr>
-            <tr><td><span class="lum-word">Tolantelyute</span></td><td>旅券</td><td>Passport</td></tr>
-            <tr><td><span class="lum-word">Tonomuizimu</span></td><td>社会主義</td><td>Socialism</td></tr>
-            <tr><td><span class="lum-word">Lonolegula / Yusuchika</span></td><td>法律 / 裁判</td><td>Law / Justice</td></tr>
+            <tr><th>Luminarian</th><th>Japanese</th><th>Luminarian</th><th>Japanese</th></tr>
+            <tr><td><span class="lum-word">Tonomulono</span></td><td>共和国</td><td><span class="lum-word">Lonmin</span></td><td>国民</td></tr>
+            <tr><td><span class="lum-word">Tonosabilu</span></td><td>公務員</td><td><span class="lum-word">Abokatemin</span></td><td>弁護士</td></tr>
+            <tr><td><span class="lum-word">Lonolegula</span></td><td>法律</td><td><span class="lum-word">Yusuchika</span></td><td>裁判</td></tr>
+            <tr><td><span class="lum-word">Sonminka</span></td><td>区役所</td><td><span class="lum-word">Tonomuizimu</span></td><td>社会主義</td></tr>
+            <tr><td><span class="lum-word">Tolantelyute</span></td><td>旅券 (旅=トラン)</td><td><span class="lum-word">Te</span></td><td>票 / 券 / チケット</td></tr>
         </table>
 
-        <h3>【生活・動詞】</h3>
+        <h3>【生活・自然】</h3>
         <table class="dict-table">
-            <tr><th>Luminarian</th><th>Japanese</th><th>Action</th></tr>
-            <tr><td><span class="lum-word">Molanta / Baloko</span></td><td>食す・飲む / 行く</td><td>Basic Action</td></tr>
-            <tr><td><span class="lum-word">Lulu / Seliko / Sanalo</span></td><td>持つ / 書く / 寝る</td><td>Daily Life</td></tr>
-            <tr><td><span class="lum-word">Kasadomo / Telalono</span></td><td>家 / 土地</td><td>Space</td></tr>
+            <tr><th>Luminarian</th><th>Japanese</th><th>Luminarian</th><th>Japanese</th></tr>
+            <tr><td><span class="lum-word">Kasadomo</span></td><td>家</td><td><span class="lum-word">Telalono</span></td><td>土地 (Lono=国)</td></tr>
+            <tr><td><span class="lum-word">Molanta</span></td><td>食べる・飲む</td><td><span class="lum-word">Laisa / Bule</span></td><td>米 / パン</td></tr>
+            <tr><td><span class="lum-word">Dusemola</span></td><td>お菓子</td><td><span class="lum-word">Seiko / Lani</span></td><td>酒 / 水</td></tr>
+            <tr><td><span class="lum-word">Meteolo</span></td><td>天気</td><td><span class="lum-word">Tenpula</span></td><td>気温</td></tr>
         </table>
     </section>
 </main>
 
 <footer>
-    &copy; 2026 Republic of Phosbalo. National Archive of Language.
+    &copy; 2026 Republic of Phosbalo Standard Archives
 </footer>
 
 </body>
