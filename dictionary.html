@@ -12,156 +12,168 @@
             --accent-blue: #2c5282;
             --white: #ffffff;
             --border-gray: #cbd5e0;
+            --text-main: #334155;
         }
 
         body {
             margin: 0;
             font-family: 'Optima', 'Didot', 'Hiragino Mincho ProN', serif;
             background-color: var(--bg-beige);
-            color: #2d3748;
-            line-height: 1.6;
+            color: var(--text-main);
+            line-height: 1.5;
+            font-size: 14px; /* 全体的にフォントサイズを縮小 */
         }
 
         header {
             background: var(--white);
-            padding: 30px 5%;
+            padding: 20px 5%;
             text-align: center;
-            border-bottom: 3px solid var(--soft-gold);
+            border-bottom: 2px solid var(--soft-gold);
         }
 
-        .back-link { position: absolute; left: 5%; text-decoration: none; color: var(--primary-navy); font-weight: bold; }
+        .back-link { position: absolute; left: 5%; text-decoration: none; color: var(--primary-navy); font-weight: bold; font-size: 0.8rem; }
 
-        h1 { margin: 0; font-size: 1.8rem; letter-spacing: 0.3em; color: var(--primary-navy); }
-        .subtitle { font-size: 0.8rem; color: var(--soft-gold); letter-spacing: 0.1em; }
+        h1 { margin: 0; font-size: 1.3rem; letter-spacing: 0.3em; color: var(--primary-navy); }
+        .subtitle { font-size: 0.7rem; color: var(--soft-gold); letter-spacing: 0.1em; }
 
-        main { max-width: 1100px; margin: 40px auto; padding: 0 5%; }
+        main { max-width: 900px; margin: 30px auto; padding: 0 5%; }
 
         .section-card {
             background: var(--white);
+            padding: 25px 35px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        h2 { color: var(--primary-navy); border-left: 4px solid var(--soft-gold); padding-left: 12px; font-size: 1.1rem; margin-bottom: 15px; text-transform: uppercase; }
+        h3 { font-size: 0.95rem; color: var(--accent-blue); margin-top: 20px; border-bottom: 1px dotted var(--border-gray); padding-bottom: 5px; }
+
+        .rules-list { padding-left: 18px; font-size: 0.85rem; }
+        .rules-list li { margin-bottom: 6px; }
+
+        .grammar-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.85rem; }
+        .grammar-table td { padding: 10px; border: 1px solid var(--border-gray); }
+        .grammar-label { background: var(--primary-navy); color: white; width: 120px; font-weight: bold; text-align: center; }
+
+        /* 接頭辞 La- の解説セクション */
+        .la-explanation {
+            background: #fdfaf3;
+            border: 1px solid #faeecd;
+            padding: 15px;
             border-radius: 4px;
-            padding: 40px;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            font-size: 0.85rem;
         }
-
-        h2 { color: var(--primary-navy); border-left: 5px solid var(--soft-gold); padding-left: 15px; font-size: 1.4rem; margin-bottom: 25px; }
-        h3 { font-size: 1.1rem; color: var(--accent-blue); margin-top: 30px; }
-
-        /* 前提ルールリスト */
-        .rules-list { padding-left: 20px; }
-        .rules-list li { margin-bottom: 10px; font-weight: 500; }
-
-        /* 文法グリッド */
-        .grammar-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background: #f8fafc;
+        .la-example-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
         }
-        .grammar-table td { padding: 15px; border: 1px solid var(--border-gray); }
-        .grammar-label { background: var(--primary-navy); color: white; width: 150px; font-weight: bold; }
+        .la-case { padding: 8px; background: white; border: 1px solid #f0e4c3; }
+        .la-case b { color: var(--accent-blue); }
 
-        /* 単語テーブル */
-        .dict-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        .dict-table th { background: #edf2f7; padding: 12px; text-align: left; border-bottom: 2px solid var(--soft-gold); }
-        .dict-table td { padding: 12px; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
-        .lum-word { font-weight: bold; color: var(--accent-blue); font-size: 1.1rem; }
-        .etymology { font-size: 0.75rem; color: #718096; display: block; margin-top: 4px; }
+        .dict-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem; }
+        .dict-table th { background: #f1f5f9; padding: 10px; text-align: left; border-bottom: 2px solid var(--soft-gold); color: var(--primary-navy); }
+        .dict-table td { padding: 8px 10px; border-bottom: 1px solid #f1f5f9; }
+        .lum-word { font-weight: bold; color: var(--accent-blue); font-size: 1rem; }
 
-        /* 挨拶セクション */
-        .phrase-box { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
-        .phrase-item { border: 1px solid var(--soft-gold); padding: 15px; border-radius: 4px; background: #fffaf0; }
-        .phrase-item b { font-size: 1.2rem; color: var(--primary-navy); display: block; }
+        .phrase-box { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+        .phrase-item { border: 1px solid #e2e8f0; padding: 10px; background: #fff; font-size: 0.85rem; }
+        .phrase-item b { font-size: 1rem; color: var(--primary-navy); display: block; margin-bottom: 3px; }
 
-        footer { text-align: center; padding: 50px; color: #718096; }
+        footer { text-align: center; padding: 30px; color: #94a3b8; font-size: 0.7rem; letter-spacing: 0.1em; }
     </style>
 </head>
 <body>
 
 <header>
-    <a href="luminaralang.html" class="back-link">← BACK</a>
+    <a href="luminaralang.html" class="back-link">← PORTAL</a>
     <h1>DICTIONARY OF LUMINARIAN</h1>
-    <div class="subtitle">Official Repository of the Republic of Phosbalo</div>
+    <div class="subtitle">Republic of Phosbalo Standard Archives</div>
 </header>
 
 <main>
     <section class="section-card">
-        <h2>1. 理念と五原則 (Philosophy & Principles)</h2>
-        <p>「みんなに優しい国」を目指し、多様なルーツを持つ人々が学びやすく設計された孤立語体系。</p>
+        <h2>1. Principles (言語原則)</h2>
         <ul class="rules-list">
-            <li><strong>ハ行の禁止</strong>: すべてカ行、パ行、サ行などで代用。</li>
-            <li><strong>Rの禁止</strong>: すべて <b>L</b> に置き換え。</li>
-            <li><strong>母音連続の禁止</strong>: 子音を挟み、ai, iu, ue, eo, oa 等を回避（例: Tolanliyu）。</li>
-            <li><strong>単音節語の禁止</strong>: 語根は原則2音節以上（機能語を除く）。</li>
-            <li><strong>非活用（孤立語）</strong>: 格変化や動詞の変化は一切なし。</li>
+            <li><strong>ハ行の禁止</strong>: 全てカ行/パ行/サ行等で代用。</li>
+            <li><strong>Rの禁止</strong>: 全て <b>L</b> に置き換え。</li>
+            <li><strong>母音連続の禁止</strong>: 子音を挟み母音の直接的な並びを回避（例: Tolanliyu）。</li>
+            <li><strong>非活用 (Isolation)</strong>: 活用・変格は一切なし。語順のみで意味を決定。</li>
         </ul>
     </section>
 
     <section class="section-card">
-        <h2>2. 基本文法 (Grammar)</h2>
-        <table class="grammar-table">
-            <tr><td class="grammar-label">基本語順</td><td><b>SVO</b> (主語 - 動詞 - 目的語)</td></tr>
-            <tr><td class="grammar-label">否定</td><td>動詞の前に <b>Puni</b> を置く</td></tr>
-            <tr><td class="grammar-label">過去</td><td>動詞の後に <b>Na</b> を置く</td></tr>
-            <tr><td class="grammar-label">未来</td><td>動詞の前に <b>Wi</b> を置く</td></tr>
-            <tr><td class="grammar-label">疑問</td><td>文末に <b>Lei?</b> を置く</td></tr>
-            <tr><td class="grammar-label">強調・敬称</td><td>接頭辞 <b>La-</b> で程度や敬意を増幅（例: La-pataka）</td></tr>
-            <tr><td class="grammar-label">助詞</td><td><b>De</b> (〜の/〜と)、<b>Loko</b> (〜に/〜で)、<b>Talo</b> (〜したい)</td></tr>
-        </table>
-    </section>
-
-    <section class="section-card">
-        <h2>3. 挨拶と返事 (Greetings)</h2>
-        <div class="phrase-box">
-            <div class="phrase-item"><b>Bonimu</b>こんにちは</div>
-            <div class="phrase-item"><b>Meluserei</b>ありがとう</div>
-            <div class="phrase-item"><b>Salutolobizu</b>さようなら (再見スタイル)</div>
-            <div class="phrase-item"><b>Miadomu</b>ごめんなさい</div>
-            <div class="phrase-item"><b>Lapataka Bizu</b>会えて嬉しいです</div>
-            <div class="phrase-item"><b>Kon / Ni</b>はい / いいえ</div>
+        <h2>2. Prefix "La-" (増幅・敬称の接頭辞)</h2>
+        <div class="la-explanation">
+            接頭辞 <b>La-</b> は、単語の持つ「値」を大きくしたり、対象を「高める・敬う」ために使用されます。
+            <div class="la-example-grid">
+                <div class="la-case"><b>[家族・敬称]</b><br>チッタ (父) <br>→ <b>ラチッタ</b> (祖父 / 敬称としての父)</div>
+                <div class="la-case"><b>[状態・強度]</b><br>パタカ (嬉しい) <br>→ <b>ラパタカ</b> (非常に嬉しい)</div>
+                <div class="la-case"><b>[物理・重量]</b><br>セコ (重い) <br>→ <b>ラセコ</b> (非常に重い / 巨大な)</div>
+                <div class="la-case"><b>[対比]</b><br>リロ (軽い) <br>→ <b>ラリロ</b> (極めて軽い)</div>
+                <div class="la-case"><b>[自然・規模]</b><br>メテオロ (天気) <br>→ <b>ラメテオ</b> (気候 / 広域の気象)</div>
+                <div class="la-case"><b>[血縁]</b><br>コッタ (弟妹) <br>→ <b>ラコッタ</b> (兄姉)</div>
+            </div>
         </div>
     </section>
 
     <section class="section-card">
-        <h2>4. 語彙データベース (Vocabulary)</h2>
+        <h2>3. Grammar (基本文法)</h2>
+        <table class="grammar-table">
+            <tr><td class="grammar-label">時制</td><td>過去: 語尾に <b>Na</b> / 未来: 語前に <b>Wi</b></td></tr>
+            <tr><td class="grammar-label">否定 / 疑問</td><td>否定: 語前に <b>Puni</b> / 疑問: 文末に <b>Lei?</b></td></tr>
+            <tr><td class="grammar-label">助詞</td><td><b>De</b> (の/と) / <b>Loko</b> (に/で) / <b>Talo</b> (したい)</td></tr>
+            <tr><td class="grammar-label">肯定 / 否定</td><td><b>Kon</b> (はい) / <b>Ni</b> (いいえ)</td></tr>
+        </table>
+    </section>
+
+    <section class="section-card">
+        <h2>4. Key Phrases (基本挨拶)</h2>
+        <div class="phrase-box">
+            <div class="phrase-item"><b>Bonimu</b>こんにちは</div>
+            <div class="phrase-item"><b>Meluserei</b>ありがとう</div>
+            <div class="phrase-item"><b>Salutolobizu</b>さようなら (再見)</div>
+            <div class="phrase-item"><b>Miadomu</b>ごめんなさい</div>
+            <div class="phrase-item"><b>Lapataka Bizu</b>会えて嬉しいです</div>
+        </div>
+    </section>
+
+    <section class="section-card">
+        <h2>5. Vocabulary (語彙データベース)</h2>
         
         <h3>【代名詞・指示詞】</h3>
         <table class="dict-table">
-            <tr><th>Luminarian</th><th>Japanese</th><th>Note</th></tr>
-            <tr><td><span class="lum-word">Lili</span></td><td>私</td><td></td></tr>
-            <tr><td><span class="lum-word">Olo</span></td><td>あなた</td><td></td></tr>
-            <tr><td><span class="lum-word">Maleko</span></td><td>彼 / 彼女</td><td></td></tr>
-            <tr><td><span class="lum-word">Kono / Ano</span></td><td>これ / あれ</td><td></td></tr>
-            <tr><td><span class="lum-word">Mina</span></td><td>すべて / 皆</td><td>Mina Lonmin(全国民)</td></tr>
+            <tr><th>Luminarian</th><th>Japanese</th><th>Type</th></tr>
+            <tr><td><span class="lum-word">Lili / Olo / Maleko</span></td><td>私 / あなた / 彼・彼女</td><td>Personal</td></tr>
+            <tr><td><span class="lum-word">Kono / Ano / Mina</span></td><td>これ / あれ / すべて</td><td>Demonstrative</td></tr>
         </table>
 
-        <h3>【人間・社会】</h3>
+        <h3>【社会・法律・公的】</h3>
         <table class="dict-table">
             <tr><th>Luminarian</th><th>Japanese</th><th>Note</th></tr>
-            <tr><td><span class="lum-word">Lonmin</span></td><td>国民</td><td>Lono(国) + Min(民)</td></tr>
-            <tr><td><span class="lum-word">Tonomulono</span></td><td>共和国</td><td>憲法上の国名：フォスバロ</td></tr>
-            <tr><td><span class="lum-word">Tonosabilu</span></td><td>公務員</td><td>共に仕える者</td></tr>
-            <tr><td><span class="lum-word">Abokatemin</span></td><td>弁護士</td><td>人を守る民</td></tr>
-            <tr><td><span class="lum-word">Lonolegula</span></td><td>法律</td><td></td></tr>
-            <tr><td><span class="lum-word">Tolantelyute</span></td><td>旅券</td><td>パスポート</td></tr>
-            <tr><td><span class="lum-word">Sonminka</span></td><td>区役所</td><td>住民の家</td></tr>
-            <tr><td><span class="lum-word">Tonomuizimu</span></td><td>社会主義</td><td></td></tr>
+            <tr><td><span class="lum-word">Tonomulono</span></td><td>共和国</td><td>Constitution name</td></tr>
+            <tr><td><span class="lum-word">Lonmin</span></td><td>国民</td><td>Lon(国)+Min(民)</td></tr>
+            <tr><td><span class="lum-word">Tonosabilu</span></td><td>公務員</td><td>Public servant</td></tr>
+            <tr><td><span class="lum-word">Abokatemin</span></td><td>弁護士</td><td>Advocate</td></tr>
+            <tr><td><span class="lum-word">Tolantelyute</span></td><td>旅券</td><td>Passport</td></tr>
+            <tr><td><span class="lum-word">Tonomuizimu</span></td><td>社会主義</td><td>Socialism</td></tr>
+            <tr><td><span class="lum-word">Lonolegula / Yusuchika</span></td><td>法律 / 裁判</td><td>Law / Justice</td></tr>
         </table>
 
-        <h3>【生活・自然】</h3>
+        <h3>【生活・動詞】</h3>
         <table class="dict-table">
-            <tr><th>Luminarian</th><th>Japanese</th><th>Note</th></tr>
-            <tr><td><span class="lum-word">Kasadomo</span></td><td>家 / 土地</td><td>Telalono(土地)</td></tr>
-            <tr><td><span class="lum-word">Laisa / Bule</span></td><td>米 / パン</td><td></td></tr>
-            <tr><td><span class="lum-word">Dusemola</span></td><td>お菓子</td><td>甘い食事</td></tr>
-            <tr><td><span class="lum-word">Molanta</span></td><td>食べる / 飲む</td><td></td></tr>
-            <tr><td><span class="lum-word">Meteolo / Tenpula</span></td><td>天気 / 気温</td><td>Lameteo(気候)</td></tr>
+            <tr><th>Luminarian</th><th>Japanese</th><th>Action</th></tr>
+            <tr><td><span class="lum-word">Molanta / Baloko</span></td><td>食す・飲む / 行く</td><td>Basic Action</td></tr>
+            <tr><td><span class="lum-word">Lulu / Seliko / Sanalo</span></td><td>持つ / 書く / 寝る</td><td>Daily Life</td></tr>
+            <tr><td><span class="lum-word">Kasadomo / Telalono</span></td><td>家 / 土地</td><td>Space</td></tr>
         </table>
     </section>
 </main>
 
 <footer>
-    &copy; 2026 Republic of Phosbalo. All rights reserved.
+    &copy; 2026 Republic of Phosbalo. National Archive of Language.
 </footer>
 
 </body>
