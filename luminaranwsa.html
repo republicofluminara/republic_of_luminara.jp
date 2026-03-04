@@ -3,41 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>数値予報・制御開発センター | ルミナラ共和国</title>
+    <title>数値予報・制御開発センター | ルミナラ共和国 気象防衛局</title>
     <style>
         :root {
             --primary-blue: #003366;
             --secondary-blue: #0055aa;
             --accent-cyan: #00acc1;
             --light-gray: #f4f7f9;
-            --overlay: rgba(0, 0, 0, 0.5);
+            --border-color: #d1d9e0;
         }
 
         body {
-            font-family: "Helvetica Neue", Arial, sans-serif;
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
             line-height: 1.6;
             color: #333;
             margin: 0;
-            overflow-x: hidden;
+            background-color: #fff;
         }
 
-        /* ヘッダー */
+        /* ヘッダー：最初のデザインを継承 */
         header {
             border-bottom: 3px solid var(--primary-blue);
             padding: 10px 20px;
             display: flex;
             align-items: center;
-            background: #fff;
+            justify-content: flex-start;
+            gap: 15px;
             position: sticky;
             top: 0;
-            z-index: 100;
+            background: #fff;
+            z-index: 1000;
         }
 
         .menu-trigger {
             font-size: 1.8rem;
             cursor: pointer;
             color: var(--primary-blue);
-            margin-right: 15px;
             padding: 5px;
             user-select: none;
         }
@@ -46,12 +47,12 @@
             display: flex;
             align-items: center;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
         .logo-icon {
-            width: 32px;
-            height: 32px;
+            width: 40px;
+            height: 40px;
             background: var(--primary-blue);
             border-radius: 50%;
             margin-right: 10px;
@@ -59,27 +60,25 @@
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 0.6rem;
+            font-size: 0.8rem;
         }
 
-        /* サイドメニュー（ドロワー） */
+        /* サイドドロワーメニュー */
         .side-menu {
             position: fixed;
             top: 0;
-            left: -280px; /* 最初は隠しておく */
-            width: 280px;
+            left: -300px;
+            width: 300px;
             height: 100%;
             background: var(--primary-blue);
             color: white;
-            transition: 0.3s;
-            z-index: 200;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 2000;
             padding-top: 60px;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+            box-shadow: 5px 0 15px rgba(0,0,0,0.3);
         }
 
-        .side-menu.active {
-            left: 0; /* 表示 */
-        }
+        .side-menu.active { left: 0; }
 
         .side-menu a {
             display: block;
@@ -87,12 +86,10 @@
             color: white;
             text-decoration: none;
             border-bottom: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.95rem;
+            font-weight: bold;
         }
 
-        .side-menu a:hover {
-            background: var(--secondary-blue);
-        }
+        .side-menu a:hover { background: var(--secondary-blue); }
 
         .close-btn {
             position: absolute;
@@ -102,30 +99,115 @@
             cursor: pointer;
         }
 
-        /* 背景オーバーレイ */
         .overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--overlay);
+            background: rgba(0,0,0,0.5);
             display: none;
-            z-index: 150;
+            z-index: 1500;
         }
 
-        .overlay.active {
-            display: block;
+        .overlay.active { display: block; }
+
+        /* メインコンテンツ：最初のデザインを完全復元 */
+        .breadcrumb {
+            background: var(--light-gray);
+            padding: 8px 20px;
+            font-size: 0.85rem;
+            color: #666;
         }
 
-        /* メインコンテンツ（前回同様） */
-        main { max-width: 900px; margin: 20px auto; padding: 0 20px; }
-        h1 { border-bottom: 2px solid #ddd; padding-bottom: 10px; }
-        .diagram-container { background: #ebf3f9; padding: 20px; border: 1px solid #c2d1e0; margin: 20px 0; }
-        .system-chart { display: flex; flex-direction: column; align-items: center; gap: 15px; }
-        .box { background: white; border: 2px solid var(--secondary-blue); padding: 15px; width: 90%; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; width: 100%; }
-        .sub-box { border: 1px solid var(--accent-cyan); padding: 10px; background: white; font-size: 0.8rem; }
+        main {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            color: #111;
+        }
+
+        .menu-box {
+            border: 2px solid var(--primary-blue);
+            border-radius: 5px;
+            margin: 20px 0;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        /* 図解エリア：気象庁風の青いボックス */
+        .diagram-container {
+            background-color: #ebf3f9;
+            border: 1px solid #c2d1e0;
+            padding: 20px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .diagram-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+
+        .system-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .box {
+            background: white;
+            border: 2px solid var(--secondary-blue);
+            padding: 10px;
+            width: 80%;
+            border-radius: 4px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .box-title {
+            background: var(--secondary-blue);
+            color: white;
+            padding: 5px;
+            margin: -10px -10px 10px -10px;
+            font-size: 0.9rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            width: 100%;
+        }
+
+        .sub-box {
+            background: #fff;
+            border: 1px solid var(--accent-cyan);
+            padding: 10px;
+            font-size: 0.8rem;
+            text-align: left;
+        }
+
+        .arrow { font-size: 24px; color: var(--secondary-blue); }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
     </style>
 </head>
 <body>
@@ -149,25 +231,48 @@
     </div>
 </header>
 
+<div class="breadcrumb">
+    ホーム > 知識・解説 > 数値予報 > 数値予報・制御開発センター
+</div>
+
 <main>
     <h1>数値予報・制御開発センター</h1>
-    <p>台風抑制システム（TMS）および戦略的降雨管理（SRM）の統合運用プラットフォームです。</p>
+
+    <div class="menu-box">
+        気象制御システム（TMS/SRM）解説メニュー
+        <span>▼</span>
+    </div>
+
+    <section>
+        <p>ルミナラ共和国（フォスバロ共和国）気象防衛局では、最先端の数値予報技術に基づき、台風抑制システム（TMS）と戦略的降雨管理（SRM）を運用しています。</p>
+    </section>
 
     <div class="diagram-container">
+        <div class="diagram-title">数値予報・制御開発センターの業務とシステム構成</div>
         <div class="system-chart">
             <div class="box">
-                <strong style="color: var(--secondary-blue);">気象制御総括課</strong>
-                <p style="font-size: 0.8rem; margin: 5px 0;">核融合エネルギー配分および国際調整</p>
+                <div class="box-title">気象制御総括課（本庁舎）</div>
+                <div style="font-size: 0.8rem; text-align: left;">
+                    ・全体管理、エネルギー調整<br>
+                    ・国際的な降雨再配分計画の策定
+                </div>
             </div>
-            <div style="font-size: 20px;">⬇</div>
-            <div class="grid-3">
-                <div class="sub-box"><strong>台風抑制 (TMS)</strong><br>海洋冷却・蒸発抑制</div>
-                <div class="sub-box"><strong>戦略的降雨 (SRM)</strong><br>レーザー加熱・水蒸気誘導</div>
-                <div class="sub-box"><strong>人工海管理</strong><br>水資源貯留・発電連携</div>
+            <div class="arrow">⬇</div>
+            <div class="box" style="width: 95%; border-color: var(--accent-cyan);">
+                <div class="box-title" style="background: var(--accent-cyan);">数値予報・制御開発センター（つくば拠点）</div>
+                <div class="grid-3">
+                    <div class="sub-box"><strong>台風抑制(TMS)</strong><br>海洋冷却、蒸発抑制フィールドの形成</div>
+                    <div class="sub-box"><strong>戦略的降雨(SRM)</strong><br>レーザー加熱による上昇気流生成</div>
+                    <div class="sub-box"><strong>地球システムモデル</strong><br>周辺国への影響予測と生態系評価</div>
+                </div>
             </div>
         </div>
     </div>
 </main>
+
+<footer>
+    &copy; 2026 Lumina Meteorological Defense Agency. All Rights Reserved.
+</footer>
 
 <script>
     const menuTrigger = document.getElementById('menuTrigger');
@@ -175,13 +280,11 @@
     const closeBtn = document.getElementById('closeBtn');
     const overlay = document.getElementById('overlay');
 
-    // メニューを開く
     menuTrigger.addEventListener('click', () => {
         sideMenu.classList.add('active');
         overlay.classList.add('active');
     });
 
-    // メニューを閉じる
     const closeMenu = () => {
         sideMenu.classList.remove('active');
         overlay.classList.remove('active');
