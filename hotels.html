@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luminara State Hotels - Official Site</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', serif; /* リッツ風の高級感ある書体 */
+            background-color: #ffffff;
+            color: #1c1c1c;
+        }
+
+        /* ヘッダー：ロゴとメニューボタン */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-color: #fff;
+            position: relative;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .menu-btn {
+            position: absolute;
+            left: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #1c1c1c;
+        }
+
+        .logo {
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        /* メインビジュアルエリア */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            overflow: hidden;
+        }
+
+        .hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 紹介文エリア */
+        .intro-section {
+            padding: 60px 20px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .intro-section h1 {
+            font-size: 2rem;
+            font-weight: normal;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .intro-section p {
+            line-height: 2;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* ホテル一覧のカード形式 */
+        .hotel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto 60px;
+        }
+
+        .hotel-card {
+            text-align: center;
+        }
+
+        .hotel-card img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .hotel-name {
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        /* サイドメニュー（共通） */
+        .side-menu {
+            height: 100%; width: 0; position: fixed; z-index: 100;
+            top: 0; left: 0; background-color: #111;
+            overflow-x: hidden; transition: 0.5s; padding-top: 60px;
+        }
+        .side-menu a {
+            padding: 15px 32px; text-decoration: none; font-size: 18px;
+            color: #818181; display: block; transition: 0.3s;
+        }
+        .side-menu a:hover { color: #f1f1f1; }
+        .close-btn { position: absolute; top: 10px; right: 25px; font-size: 36px; color: white; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <div id="mySideMenu" class="side-menu">
+        <span class="close-btn" onclick="closeNav()">&times;</span>
+        <a href="index.html">Home</a>
+        <a href="laws.html">Laws of Luminara</a>
+        <a href="#">Luminarian Language</a>
+        <a href="hotels.html">Luminara State Hotels</a>
+        <a href="#">Luce Airways</a>
+    </div>
+
+    <header>
+        <button class="menu-btn" onclick="openNav()">&#9776;</button>
+        <div class="logo">Luminara State Hotels</div>
+    </header>
+
+    <div class="hero">
+        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80" alt="Luminara Palace Hotel">
+    </div>
+
+    <section class="intro-section">
+        <h1>A New Standard of Luxury</h1>
+        <p>
+            Experience the essence of the Phospharo Republic. <br>
+            Our state-owned hotels offer a timeless escape where 
+            the beauty of Luminara meets world-class hospitality.
+        </p>
+    </section>
+
+    <div class="hotel-grid">
+        <div class="hotel-card">
+            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" alt="Hotel 1">
+            <div class="hotel-name">The Grand Luminara Palace</div>
+        </div>
+        <div class="hotel-card">
+            <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=600&q=80" alt="Hotel 2">
+            <div class="hotel-name">Luce Bay Resort & Spa</div>
+        </div>
+    </div>
+
+    <script>
+        function openNav() { document.getElementById("mySideMenu").style.width = "300px"; }
+        function closeNav() { document.getElementById("mySideMenu").style.width = "0"; }
+    </script>
+
+</body>
+</html>
