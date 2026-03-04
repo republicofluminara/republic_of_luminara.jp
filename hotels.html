@@ -8,12 +8,12 @@
         body, html {
             margin: 0;
             padding: 0;
-            font-family: 'Times New Roman', serif; /* リッツ風の高級感ある書体 */
+            font-family: 'Times New Roman', serif;
             background-color: #ffffff;
             color: #1c1c1c;
         }
 
-        /* ヘッダー：ロゴとメニューボタン */
+        /* ヘッダー */
         header {
             display: flex;
             align-items: center;
@@ -37,15 +37,15 @@
         .logo {
             text-transform: uppercase;
             letter-spacing: 4px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: bold;
         }
 
-        /* メインビジュアルエリア */
+        /* メイン画像 */
         .hero {
             position: relative;
             width: 100%;
-            height: 60vh;
+            height: 50vh;
             overflow: hidden;
         }
 
@@ -55,55 +55,77 @@
             object-fit: cover;
         }
 
-        /* 紹介文エリア */
-        .intro-section {
-            padding: 60px 20px;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
+        /* リッツ風 検索コンテナ */
+        .search-container {
+            max-width: 500px;
+            margin: -30px auto 40px;
+            background: white;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
         }
 
-        .intro-section h1 {
-            font-size: 2rem;
-            font-weight: normal;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
+        .search-item {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 15px 0;
+            text-align: left;
         }
 
-        .intro-section p {
-            line-height: 2;
-            color: #666;
-            font-size: 1.1rem;
+        .search-label {
+            font-size: 0.75rem;
+            color: #8a704d; /* 真鍮・ゴールド系の色 */
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        /* ホテル一覧のカード形式 */
-        .hotel-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto 60px;
-        }
-
-        .hotel-card {
-            text-align: center;
-        }
-
-        .hotel-card img {
+        .search-input {
             width: 100%;
-            height: 400px;
-            object-fit: cover;
-            margin-bottom: 15px;
+            border: none;
+            font-size: 1.1rem;
+            font-family: 'Times New Roman', serif;
+            outline: none;
+            padding: 5px 0;
+            color: #333;
         }
 
-        .hotel-name {
+        .date-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .date-box {
+            flex: 1;
+            text-align: left;
+        }
+
+        .date-value {
             font-size: 1.2rem;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
+            margin-top: 5px;
         }
 
-        /* サイドメニュー（共通） */
+        .search-button {
+            background-color: #1c1c1c;
+            color: white;
+            width: 100%;
+            padding: 18px;
+            border: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: 0.3s;
+        }
+
+        /* サイドメニュー */
         .side-menu {
             height: 100%; width: 0; position: fixed; z-index: 100;
             top: 0; left: 0; background-color: #111;
@@ -134,27 +156,28 @@
     </header>
 
     <div class="hero">
-        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80" alt="Luminara Palace Hotel">
+        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80" alt="Main View">
     </div>
 
-    <section class="intro-section">
-        <h1>A New Standard of Luxury</h1>
-        <p>
-            Experience the essence of the Phospharo Republic. <br>
-            Our state-owned hotels offer a timeless escape where 
-            the beauty of Luminara meets world-class hospitality.
-        </p>
-    </section>
+    <div class="search-container">
+        <div class="search-item">
+            <div class="search-label">📍 デスティネーション</div>
+            <input type="text" class="search-input" placeholder="次はどちらへお出かけになりますか？">
+        </div>
+        
+        <div class="date-row">
+            <div class="date-box">
+                <div class="search-label">🗓 1 泊</div>
+                <div class="date-value">3月4日(水)</div>
+            </div>
+            <div style="padding: 0 20px; font-size: 1.5rem;">-</div>
+            <div class="date-box">
+                <div class="search-label">&nbsp;</div>
+                <div class="date-value">3月5日(木)</div>
+            </div>
+        </div>
 
-    <div class="hotel-grid">
-        <div class="hotel-card">
-            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" alt="Hotel 1">
-            <div class="hotel-name">The Grand Luminara Palace</div>
-        </div>
-        <div class="hotel-card">
-            <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=600&q=80" alt="Hotel 2">
-            <div class="hotel-name">Luce Bay Resort & Spa</div>
-        </div>
+        <button class="search-button">ホテルを検索</button>
     </div>
 
     <script>
