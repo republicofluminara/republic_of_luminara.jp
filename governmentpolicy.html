@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ルミナラ共和国 | 公式政策ポータル</title>
+    <style>
+        :root {
+            --primary-color: #002B5B; /* 深みのあるネイビー */
+            --accent-color: #00A8CC;  /* 清潔感のあるアクア */
+            --text-color: #333;
+            --bg-color: #F9FAFB;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: white;
+            border-bottom: 2px solid var(--primary-color);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            letter-spacing: 0.1em;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .policy-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .policy-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: #fff;
+            border: 1px solid #eef0f2;
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .policy-item:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0,43,91,0.2);
+        }
+
+        .icon {
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* 戻るボタンのスタイル */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">REPUBLIC OF LUMINARA</div>
+    <div style="font-size: 0.9rem;">フォスバロ共和国 憲法下</div>
+</header>
+
+<div class="container">
+    <nav style="font-size: 0.85rem; margin-bottom: 1.5rem; color: #666;">
+        ホーム ＞ 政策
+    </nav>
+
+    <div class="policy-section">
+        <h1>主要政策一覧</h1>
+        <p style="color: #666; margin-bottom: 2rem;">
+            ルミナラ共和国の未来を形作る各施策の詳細は、以下の項目からご覧いただけます。
+        </p>
+
+        <div class="policy-grid">
+            <a href="#" class="policy-item"><span class="icon">●</span> 経済財政戦略</a>
+            <a href="#" class="policy-item"><span class="icon">●</span> 先端技術・イノベーション</a>
+            <a href="#" class="policy-item"><span class="icon">●</span> 地方共創デザイン</a>
+            <a href="#" class="policy-item"><span class="icon">●</span> 統合型防災システム</a>
+            <a href="#" class="policy-item"><span class="icon">●</span> ライフスタイル刷新</a>
+            <a href="#" class="policy-item"><span class="icon">●</span> 国際外交・安全保障</a>
+            <a href="#" class="policy-item"><span class="icon">●</span> 国家基盤・制度整備</a>
+        </div>
+    </div>
+</div>
+
+<a href="#" class="back-to-top">▲</a>
+
+<footer>
+    &copy; 2026 Government of the Republic of Luminara (Phosvaro). All Rights Reserved.
+</footer>
+
+</body>
+</html>
