@@ -22,20 +22,28 @@
         }
 
         /* ヘッダー */
-        header {
-            border-bottom: 3px solid var(--primary-blue);
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+header {
+    border-bottom: 3px solid var(--primary-blue);
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* 左詰めに変更 */
+    gap: 20px; /* メニューとロゴの間隔 */
+}
 
-        .logo-area {
-            display: flex;
-            align-items: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
+.menu-trigger {
+    font-size: 1.5rem;
+    cursor: pointer;
+    order: -1; /* 強制的に一番左へ */
+    padding: 5px;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
 
         .logo-icon {
             width: 40px;
