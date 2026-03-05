@@ -10,6 +10,7 @@ body, html {
     font-family: 'Montserrat', 'Noto Serif JP', sans-serif;
     background-color: #fff;
     color: var(--primary);
+    line-height: 1.5; /* 全体の行間を少しタイトに */
 }
 
 /* ナビゲーション */
@@ -20,11 +21,12 @@ body, html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
+    padding: 15px 40px; /* 少しスリムに */
     box-sizing: border-box;
     z-index: 100;
-    background: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.95);
     backdrop-filter: blur(10px);
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .menu-trigger {
@@ -35,186 +37,115 @@ body, html {
 
 .hamburger span {
     display: block;
-    width: 20px;
+    width: 18px;
     height: 1px;
     background: var(--primary);
-    margin: 4px 0;
+    margin: 3px 0;
 }
 
 .menu-text {
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: 2px;
     margin-left: 10px;
 }
 
 .brand-logo {
     font-family: 'Cinzel', serif;
-    font-size: 24px;
-    letter-spacing: 5px;
+    font-size: 20px; /* 少し小さく */
+    letter-spacing: 4px;
 }
 
 .apply-btn {
     border: 1px solid var(--primary);
-    padding: 8px 20px;
-    font-size: 10px;
-    letter-spacing: 2px;
+    padding: 6px 15px;
+    font-size: 9px;
+    letter-spacing: 1.5px;
     cursor: pointer;
 }
 
-/* ヒーローエリア */
+/* ヒーローエリア（画像と文字を小さく調整） */
 .hero-container {
     position: relative;
-    height: 100vh;
+    height: 85vh; /* 100vhから短縮 */
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #000;
+    background: #fff; /* 背景を白に */
+    padding-top: 60px;
 }
 
 .hero-bg-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.6;
-}
-
-.hero-overlay {
-    position: absolute;
-    top:0; left:0; width:100%; height:100%;
-    background: linear-gradient(0deg, rgba(10,25,47,0.8) 0%, rgba(10,25,47,0) 100%);
+    width: 70%; /* 画像をさらにコンパクトに */
+    height: 70%; 
+    object-fit: contain; /* 画像を切らずに表示 */
+    opacity: 0.9;
+    z-index: 1;
 }
 
 .hero-content {
     position: absolute;
     text-align: center;
-    color: var(--text-white);
+    color: var(--primary); /* 文字を黒系にして視認性アップ */
+    z-index: 2;
+    /* 画像の上に文字を重ねるための微調整 */
+    text-shadow: 0 0 20px rgba(255,255,255,0.8); 
 }
 
-.hero-labels { margin-bottom: 20px; }
 .label {
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: 2px;
-    border: 1px solid rgba(255,255,255,0.4);
-    padding: 4px 10px;
+    border: 1px solid var(--primary);
+    padding: 3px 8px;
     margin: 0 5px;
 }
 
 .hero-content h1 {
     font-family: 'Cinzel', serif;
-    font-size: 80px;
-    line-height: 0.9;
-    margin: 20px 0;
+    font-size: 48px; /* 80pxから大幅に縮小 */
+    line-height: 1.1;
+    margin: 10px 0;
 }
 
 .hero-content h1 .thin { font-weight: 300; }
 
-/* アカデミックセクション */
+.hero-subtext {
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+/* アカデミックセクション（行間を詰める） */
 .info-grid {
-    padding: 100px 40px;
-    max-width: 1200px;
+    padding: 40px 40px; /* 余白を削減 */
+    max-width: 1000px;
     margin: 0 auto;
 }
 
 .section-title-box {
     border-bottom: 1px solid #eee;
-    padding-bottom: 40px;
-    margin-bottom: 60px;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
 }
 
 .section-title-box h2 {
     font-family: 'Cinzel', serif;
-    font-size: 40px;
+    font-size: 32px;
     margin: 0;
 }
 
-.faculty-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 60px;
+.section-title-box p {
+    font-size: 13px;
+    margin: 5px 0 0 0;
 }
 
-.faculty-item {
-    position: relative;
-    padding-top: 40px;
-    border-top: 1px solid #eee;
-}
-
-.faculty-num {
-    font-size: 12px;
-    color: var(--accent);
-    font-weight: bold;
-}
-
-.faculty-item h3 {
-    font-family: 'Cinzel', serif;
-    margin: 10px 0;
-}
-
-.faculty-desc {
-    font-size: 14px;
-    color: #666;
-    margin-top: 20px;
-    line-height: 1.6;
-}
-
-/* 全画面サイドメニュー */
-.sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1000;
-    top: 0; left: 0;
-    background-color: var(--primary);
-    overflow-x: hidden;
-    transition: 0.5s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.sidenav-content { text-align: center; }
-.nav-category { color: var(--accent); font-size: 12px; letter-spacing: 3px; margin-bottom: 30px; }
-.sidenav a {
-    padding: 10px;
-    text-decoration: none;
-    font-size: 32px;
-    color: #fff;
-    display: block;
-    font-family: 'Cinzel', serif;
-    transition: 0.3s;
-}
-
-.sidenav a:hover { color: var(--accent); }
-.sidenav .closebtn {
-    position: absolute;
-    top: 20px; right: 45px;
-    font-size: 60px;
-}
-
-.main-footer {
-    background: var(--primary);
-    color: rgba(255,255,255,0.5);
-    padding: 60px 40px;
-    font-size: 12px;
-    text-align: center;
-}
-/* アコーディオンのスタイル */
-.faculty-accordion {
-    border-top: 1px solid #eee;
-}
-
-.accordion-item {
-    border-bottom: 1px solid #eee;
-}
-
+/* アコーディオンのスタイル（タイトに） */
 .accordion-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 0;
+    padding: 15px 0; /* 行間を詰めました */
     cursor: pointer;
-    transition: 0.3s;
+    border-bottom: 1px solid #f9f9f9;
 }
 
 .header-left {
@@ -222,35 +153,80 @@ body, html {
     align-items: center;
 }
 
+.faculty-num {
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: bold;
+    width: 25px;
+}
+
 .header-left h3 {
-    margin: 0 0 0 30px;
-    font-size: 20px;
+    font-family: 'Cinzel', serif;
+    margin: 0 0 0 20px;
+    font-size: 17px; /* 文字サイズ調整 */
 }
 
 .plus-icon {
-    font-size: 24px;
+    font-size: 20px;
     transition: transform 0.3s;
 }
 
-/* 詳細コンテンツ（初期状態は非表示） */
 .accordion-content {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease-out;
-    padding-left: 55px;
+    padding-left: 45px;
 }
 
 .active .accordion-content {
-    max-height: 300px; /* 内容に合わせて調整 */
-    padding-bottom: 40px;
+    max-height: 200px;
+    padding-top: 10px;
+    padding-bottom: 20px;
 }
 
 .active .plus-icon {
-    transform: rotate(45deg); /* +を×にする */
+    transform: rotate(45deg);
 }
 
 .faculty-main-p {
+    font-size: 14px;
     font-weight: 600;
     color: var(--accent);
-    margin-bottom: 10px;
+    margin: 0 0 8px 0;
+}
+
+.faculty-desc {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* 全画面メニュー（変更なし） */
+.sidenav {
+    height: 100%; width: 0;
+    position: fixed; z-index: 1000;
+    top: 0; left: 0;
+    background-color: var(--primary);
+    overflow-x: hidden;
+    transition: 0.5s;
+    display: flex; align-items: center; justify-content: center;
+}
+
+.sidenav-content { text-align: center; }
+.sidenav a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 28px;
+    color: #fff;
+    display: block;
+    font-family: 'Cinzel', serif;
+}
+
+.main-footer {
+    background: #fdfdfd;
+    color: #999;
+    padding: 40px;
+    font-size: 10px;
+    text-align: center;
+    border-top: 1px solid #eee;
 }
