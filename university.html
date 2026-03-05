@@ -3,21 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>国立フォスバロ教養大学 | Fosvaro Liberal Arts University</title>
+    <title>国立フォスバロ教養大学 | FLAU</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+JP:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;600&family=Noto+Serif+JP:wght@200;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <nav class="top-nav">
+        <div class="menu-trigger" onclick="openNav()">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <span class="menu-text">MENU</span>
+        </div>
+        <div class="brand-logo">FOSVARO</div>
+        <div class="apply-btn">APPLY</div>
+    </nav>
+
     <div id="sideNav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <div class="nav-links">
-            <p class="nav-label">REPUBLIC OF LUMINARA</p>
-            <a href="index.html">Republic of LUMINARA</a>
+        <div class="sidenav-content">
+            <p class="nav-category">Republic of LUMINARA</p>
+            <a href="index.html">Index</a>
             <a href="governmentpolicy.html">Government Policy</a>
-            <a href="luminaranwsa.html">National Weather Security Agency</a>
+            <a href="luminaranwsa.html">Weather Security Agency</a>
             <a href="laws.html">Laws of Luminara</a>
             <a href="luminalang.html">Luminarian Language</a>
             <a href="hotels.html">Luminara State Hotels</a>
@@ -25,6 +36,63 @@
         </div>
     </div>
 
-    <header>
-        <div class="header-container">
-            <div class="menu-icon" onclick="openNav
+    <section class="hero-container">
+        <div class="hero-overlay"></div>
+        <img src="IMG_8249.jpeg" alt="Fosvaro Symbol" class="hero-bg-img">
+        <div class="hero-content">
+            <div class="hero-labels">
+                <span class="label">EST. 2024</span>
+                <span class="label">LUMINARA REPUBLIC</span>
+            </div>
+            <h1>KNOWLEDGE <br><span class="thin">THAT MATTERS</span></h1>
+            <p class="hero-subtext">知性は、国家の光となる。国立フォスバロ教養大学。</p>
+        </div>
+    </section>
+
+    <section class="info-grid">
+        <div class="section-title-box">
+            <h2>ACADEMICS</h2>
+            <p>高度な専門性と、枠にとらわれない教養の融合。</p>
+        </div>
+
+        <div class="faculty-grid">
+            <div class="faculty-item">
+                <span class="faculty-num">01</span>
+                <h3>FACULTY OF MEDICINE</h3>
+                <p>医学科 / 創薬科 / 医学理工学科</p>
+                <div class="faculty-desc">医師、研究者、エンジニアが一体となり、看護を自動化、薬剤師を不要にする次世代医療を構築します。</div>
+            </div>
+            <div class="faculty-item">
+                <span class="faculty-num">02</span>
+                <h3>DEPT. OF AI ETHICS</h3>
+                <p>人工知能部 倫理教育科</p>
+                <div class="faculty-desc">機械に倫理を授ける「調律者」を育成。技術の進化を哲学的に制御する国家の要。</div>
+            </div>
+            <div class="faculty-item">
+                <span class="faculty-num">03</span>
+                <h3>SCHOOL OF LAW & GOV</h3>
+                <p>法学部 法学科 / 政治科</p>
+                <div class="faculty-desc">AI時代の新しい法体系と、超効率的な電子政府システムを設計・運用します。</div>
+            </div>
+            <div class="faculty-item">
+                <span class="faculty-num">04</span>
+                <h3>LIBERAL ARTS</h3>
+                <p>教養学部</p>
+                <div class="faculty-desc">特定の専門を超越し、世界を再定義する問いを立てる力を養います。</div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-inner">
+            <p>© 2026 FOSVARO LIBERAL ARTS UNIVERSITY</p>
+            <p>Republic of LUMINARA National University</p>
+        </div>
+    </footer>
+
+    <script>
+        function openNav() { document.getElementById("sideNav").style.width = "100%"; }
+        function closeNav() { document.getElementById("sideNav").style.width = "0"; }
+    </script>
+</body>
+</html>
