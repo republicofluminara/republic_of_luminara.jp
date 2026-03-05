@@ -199,3 +199,58 @@ body, html {
     font-size: 12px;
     text-align: center;
 }
+/* アコーディオンのスタイル */
+.faculty-accordion {
+    border-top: 1px solid #eee;
+}
+
+.accordion-item {
+    border-bottom: 1px solid #eee;
+}
+
+.accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-left h3 {
+    margin: 0 0 0 30px;
+    font-size: 20px;
+}
+
+.plus-icon {
+    font-size: 24px;
+    transition: transform 0.3s;
+}
+
+/* 詳細コンテンツ（初期状態は非表示） */
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    padding-left: 55px;
+}
+
+.active .accordion-content {
+    max-height: 300px; /* 内容に合わせて調整 */
+    padding-bottom: 40px;
+}
+
+.active .plus-icon {
+    transform: rotate(45deg); /* +を×にする */
+}
+
+.faculty-main-p {
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 10px;
+}
