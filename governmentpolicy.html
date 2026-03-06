@@ -3,96 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ルミナラ共和国 | 公式政策ポータル</title>
+    <title>組織・制度 | ルミナラ共和国政府ポータル</title>
     <style>
         :root {
-            --primary-color: #002B5B;
-            --accent-color: #00A8CC;
-            --text-color: #333;
-            --bg-color: #F9FAFB;
+            --primary-blue: #003366; /* 内閣府風の深い紺 */
+            --accent-blue: #4a90e2;  /* 透明感のあるブルー */
+            --bg-light: #f8f9fa;
+            --text-dark: #333;
         }
+
         body, html {
             margin: 0; padding: 0;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
         }
+
+        /* ヘッダー */
         header {
-            background: white;
-            border-bottom: 2px solid var(--primary-color);
-            padding: 10px 5%;
+            background: #fff;
+            border-bottom: 3px solid var(--primary-blue);
+            padding: 15px 5%;
             display: flex;
-            justify-content: space-between;
             align-items: center;
             position: sticky; top: 0; z-index: 100;
         }
-        .header-left { display: flex; align-items: center; }
+
         .menu-btn {
-            font-size: 24px; background: none; border: none;
-            color: var(--primary-color); cursor: pointer; margin-right: 15px;
+            font-size: 28px; background: none; border: none;
+            color: var(--primary-blue); cursor: pointer; margin-right: 20px;
         }
-        .logo { font-size: 1.3rem; font-weight: bold; color: var(--primary-color); letter-spacing: 0.1em; }
-        
-        /* ハンバーガーメニュー */
+
+        .logo-area { display: flex; align-items: center; flex-grow: 1; }
+        .logo-text { font-size: 1.4rem; font-weight: bold; color: var(--primary-blue); letter-spacing: 1px; }
+
+        /* 左サイドハンバーガーメニュー */
         .side-menu {
             height: 100%; width: 0; position: fixed; z-index: 200;
-            top: 0; left: 0; background-color: var(--primary-color);
-            overflow-x: hidden; transition: 0.5s; padding-top: 60px;
+            top: 0; left: 0; background-color: var(--primary-blue);
+            overflow-x: hidden; transition: 0.4s; padding-top: 60px;
         }
         .side-menu a {
             padding: 15px 32px; text-decoration: none; font-size: 18px;
             color: #fff; display: block; border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-        .close-btn { position: absolute; top: 10px; right: 25px; font-size: 36px; color: white; cursor: pointer; }
+        .side-menu a:hover { background-color: var(--accent-blue); }
+        .close-btn { position: absolute; top: 10px; right: 20px; font-size: 36px; color: white; cursor: pointer; }
 
-        .container { max-width: 900px; margin: 2rem auto; padding: 0 20px; }
-        .policy-section { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        h1 { font-size: 1.8rem; border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; color: var(--primary-color); }
-        
-        .policy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-        .policy-item {
-            display: flex; align-items: center; padding: 1.2rem;
-            background: #fff; border: 1px solid #eef0f2; border-radius: 6px;
-            text-decoration: none; color: var(--primary-color); font-weight: 600; transition: 0.3s;
+        /* メインコンテンツ */
+        .container { max-width: 800px; margin: 20px auto; padding: 0 20px; background: #fff; min-height: 80vh; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
+
+        /* パンくずリスト */
+        .breadcrumb { padding: 20px 0; font-size: 0.85rem; color: #666; }
+        .breadcrumb a { color: var(--primary-blue); text-decoration: none; }
+
+        h1 { font-size: 1.8rem; color: var(--primary-blue); border-bottom: 4px solid var(--accent-blue); padding-bottom: 10px; margin-bottom: 30px; }
+
+        /* 内閣府風リスト形式 */
+        .link-list { list-style: none; padding: 0; }
+        .link-list li { border-bottom: 1px solid #eee; }
+        .link-list a {
+            display: flex; align-items: center; padding: 15px 10px;
+            text-decoration: none; color: var(--primary-blue); font-weight: bold;
+            transition: 0.2s;
         }
-        .policy-item:hover { background: var(--primary-color); color: white; transform: translateY(-3px); }
-        .icon { margin-right: 15px; color: var(--accent-color); }
-        footer { text-align: center; padding: 3rem; font-size: 0.8rem; color: #888; }
+        .link-list a::before {
+            content: "▶"; margin-right: 10px; font-size: 0.8rem; color: var(--accent-blue);
+        }
+        .link-list a:hover { background: #f0f7ff; padding-left: 20px; }
+
+        .top-link { text-align: right; margin-top: 40px; }
+        .top-link a { color: var(--primary-blue); font-size: 0.9rem; text-decoration: none; }
+
+        footer { background: var(--primary-blue); color: #fff; text-align: center; padding: 30px; margin-top: 50px; font-size: 0.8rem; }
     </style>
 </head>
 <body>
+
     <div id="mySideMenu" class="side-menu">
         <span class="close-btn" onclick="closeNav()">&times;</span>
-        <a href="government.html">政策ポータル</a>
-        <a href="laws.html">e-LEX 法令検索</a>
+        <a href="#">政府ホーム</a>
+        <a href="#">組織・制度一覧</a>
+        <a href="laws.html">所管の法令検索(e-LEX)</a>
+        <a href="#">GRP（寄託プログラム）案内</a>
+        <a href="#">国防対策班(MPS) 窓口</a>
     </div>
 
     <header>
-        <div class="header-left">
-            <button class="menu-btn" onclick="openNav()">&#9776;</button>
-            <div class="logo">REPUBLIC OF LUMINARA</div>
+        <button class="menu-btn" onclick="openNav()">&#9776;</button>
+        <div class="logo-area">
+            <div class="logo-text">ルミナラ共和国政府</div>
         </div>
-        <div style="font-size: 0.8rem; font-weight: bold; color: var(--primary-color);">フォスバロ共和国 憲法下</div>
+        <div style="font-size: 0.8rem; color: #666;">English | 🔍 Search</div>
     </header>
 
     <div class="container">
-        <div class="policy-section">
-            <h1>Strategic National Priorities</h1>
-            <p>フォスバロ共和国は、選択された市民との強固な信頼関係に基づき、次世代の都市国家モデルを提示します。</p>
-            <div class="policy-grid">
-                <a href="laws.html" class="policy-item"><span class="icon">●</span> 財政基盤の持続可能性と間接貢献税制</a>
-                <a href="#" class="policy-item"><span class="icon">●</span> TMS：地球環境予測プラットフォーム</a>
-                <a href="#" class="policy-item"><span class="icon">●</span> SRM：都市美学的資源循環デザイン</a>
-                <a href="#" class="policy-item"><span class="icon">●</span> MPS：多層的セキュリティ網による安寧の担保</a>
-                <a href="#" class="policy-item"><span class="icon">●</span> 祝祭的共生：生物多様性と都市の融和</a>
-                <a href="#" class="policy-item"><span class="icon">●</span> エターナル・メモリアル：生命の承継規定</a>
-                <a href="#" class="policy-item"><span class="icon">●</span> グローバル・レジデンス・寄託プログラム</a>
-            </div>
+        <nav class="breadcrumb">
+            <a href="#">政府ホーム</a> ＞ <a href="#">組織・制度</a> ＞ 所管の法令等
+        </nav>
+
+        <h1>所管の法令等</h1>
+
+        <ul class="link-list">
+            <li><a href="laws.html">基本憲章（憲法）</a></li>
+            <li><a href="laws.html">社会的貢献及び間接消費税法</a></li>
+            <li><a href="laws.html">グローバル・レジデンス寄託規定</a></li>
+            <li><a href="laws.html">国防対策班(MPS) 権限規則</a></li>
+            <li><a href="laws.html">都市美学的資源循環(SRM)管理令</a></li>
+            <li><a href="laws.html">生命承継（ダイヤモンド葬）ガイドライン</a></li>
+            <li><a href="laws.html">e-LEX 法令検索システム</a></li>
+        </ul>
+
+        <div class="top-link">
+            <a href="#">このページの先頭へ ▲</a>
         </div>
     </div>
 
-    <footer>&copy; 2026 Government of the Republic of Luminara.</footer>
+    <footer>
+        &copy; 2026 Government of the Republic of Luminara (Phosbalo). All Rights Reserved.
+    </footer>
 
     <script>
         function openNav() { document.getElementById("mySideMenu").style.width = "280px"; }
