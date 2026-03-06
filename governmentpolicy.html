@@ -6,95 +6,115 @@
     <title>組織・制度 | ルミナラ共和国政府ポータル</title>
     <style>
         :root {
-            --primary-blue: #003366;
-            --accent-blue: #4a90e2;
-            --bg-light: #f8f9fa;
+            --primary-blue: #002B5B; /* より深く、知的なネイビー */
+            --accent-blue: #00A8CC;  /* 透き通るアクアブルー */
+            --bg-light: #F4F7F9;
         }
 
         body {
             margin: 0; padding: 0;
-            /* フォントを標準の角ゴシックに戻しました */
-            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            /* Apple/Windowsで最も美しく見えるモダンなゴシック体 */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background-color: var(--bg-light);
-            color: #333;
+            color: #2D3436;
+            -webkit-font-smoothing: antialiased;
         }
 
         header {
-            background: #fff;
-            border-bottom: 3px solid var(--primary-blue);
-            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px); /* すりガラス効果で高級感を */
+            border-bottom: 2px solid var(--primary-blue);
+            padding: 12px 5%;
             display: flex;
             align-items: center;
             position: sticky; top: 0; z-index: 100;
         }
 
         .menu-btn {
-            font-size: 24px; background: none; border: none;
+            font-size: 26px; background: none; border: none;
             color: var(--primary-blue); cursor: pointer;
-            margin-right: 10px;
-            padding: 5px;
-            flex-shrink: 0;
+            margin-right: 18px; padding: 5px; flex-shrink: 0;
+            transition: 0.3s;
         }
-
-        .logo-area {
-            display: flex;
-            align-items: center;
-            margin-right: auto;
-            overflow: hidden; /* はみ出し防止 */
-        }
+        .menu-btn:hover { color: var(--accent-blue); }
 
         .logo-text {
-            font-size: 1.2rem; /* 少しだけサイズ調整 */
-            font-weight: bold;
+            font-size: 1.4rem; /* サイズを大きく戻しました */
+            font-weight: 800; /* 極太にして存在感を */
             color: var(--primary-blue);
-            letter-spacing: 0.05em;
-            white-space: nowrap; /* 途中で改行させない */
+            letter-spacing: -0.02em;
+            white-space: nowrap; /* 改行絶対禁止 */
+            flex-grow: 1;
         }
 
-        /* サイドメニュー */
-        .side-menu { height: 100%; width: 0; position: fixed; z-index: 200; top: 0; left: 0; background-color: var(--primary-blue); overflow-x: hidden; transition: 0.4s; padding-top: 60px; }
-        .side-menu a { padding: 15px 32px; text-decoration: none; font-size: 18px; color: #fff; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .close-btn { position: absolute; top: 10px; right: 20px; font-size: 36px; color: white; cursor: pointer; }
+        /* サイドメニュー（左側） */
+        .side-menu {
+            height: 100%; width: 0; position: fixed; z-index: 200;
+            top: 0; left: 0; background-color: var(--primary-blue);
+            overflow-x: hidden; transition: 0.4s cubic-bezier(0.77,0.2,0.05,1.0);
+            padding-top: 60px; box-shadow: 10px 0 30px rgba(0,0,0,0.2);
+        }
+        .side-menu a {
+            padding: 18px 35px; text-decoration: none; font-size: 17px;
+            color: #fff; display: block; border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s; opacity: 0.8;
+        }
+        .side-menu a:hover { opacity: 1; background: rgba(255,255,255,0.1); padding-left: 45px; }
+        .close-btn { position: absolute; top: 15px; right: 25px; font-size: 36px; color: white; cursor: pointer; }
 
-        .container { max-width: 800px; margin: 20px auto; padding: 0 20px; background: #fff; min-height: 85vh; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
-        .breadcrumb { padding: 20px 0; font-size: 0.8rem; color: #666; }
-        .breadcrumb a { color: var(--primary-blue); text-decoration: none; }
-        h1 { font-size: 1.6rem; color: var(--primary-blue); border-bottom: 4px solid var(--accent-blue); padding-bottom: 10px; margin-bottom: 30px; }
+        /* コンテンツ */
+        .container { max-width: 900px; margin: 30px auto; padding: 40px; background: #fff; border-radius: 2px; min-height: 80vh; box-shadow: 0 10px 40px rgba(0,0,0,0.03); }
+        .breadcrumb { margin-bottom: 30px; font-size: 0.85rem; color: #95A5A6; }
+        .breadcrumb a { color: var(--accent-blue); text-decoration: none; font-weight: 600; }
+        
+        h1 { font-size: 2.2rem; font-weight: 800; color: var(--primary-blue); margin-bottom: 40px; border-left: 8px solid var(--accent-blue); padding-left: 20px; }
+
         .link-list { list-style: none; padding: 0; }
-        .link-list li { border-bottom: 1px solid #eee; }
-        .link-list a { display: flex; align-items: center; padding: 18px 10px; text-decoration: none; color: var(--primary-blue); font-weight: bold; }
-        .link-list a::before { content: "▶"; margin-right: 12px; font-size: 0.8rem; color: var(--accent-blue); }
-        footer { background: var(--primary-blue); color: #fff; text-align: center; padding: 30px; font-size: 0.8rem; }
-
-        /* スマホ向け調整 */
-        @media screen and (max-width: 480px) {
-            .logo-text { font-size: 1.05rem; }
+        .link-list li { margin-bottom: 10px; }
+        .link-list a {
+            display: flex; align-items: center; padding: 22px;
+            background: #fff; border: 1px solid #EDF2F7;
+            text-decoration: none; color: var(--primary-blue); font-weight: 700;
+            transition: all 0.3s ease; border-radius: 8px;
         }
+        .link-list a::before { content: "→"; margin-right: 15px; color: var(--accent-blue); font-size: 1.2rem; }
+        .link-list a:hover {
+            transform: translateX(10px); border-color: var(--accent-blue);
+            box-shadow: 0 4px 20px rgba(0,168,204,0.15);
+        }
+
+        footer { background: var(--primary-blue); color: rgba(255,255,255,0.6); text-align: center; padding: 40px; margin-top: 60px; font-size: 0.8rem; letter-spacing: 1px; }
     </style>
 </head>
 <body>
     <div id="mySideMenu" class="side-menu">
         <span class="close-btn" onclick="closeNav()">&times;</span>
-        <a href="index.html">政府ホーム</a>
-        <a href="laws.html">法令検索(e-LEX)</a>
+        <a href="index.html">GOVERNMENT HOME</a>
+        <a href="laws.html">e-LEX DATABASE</a>
+        <a href="#">INSTITUTIONS</a>
+        <a href="#">PUBLIC SECURITY (MPS)</a>
     </div>
+
     <header>
         <button class="menu-btn" onclick="openNav()">&#9776;</button>
-        <div class="logo-area"><div class="logo-text">ルミナラ共和国政府</div></div>
-        <div style="font-size: 0.7rem; color: #666; flex-shrink: 0; margin-left: 5px;">English</div>
+        <div class="logo-text">ルミナラ共和国政府</div>
+        <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent-blue); text-transform: uppercase;">Portal</div>
     </header>
+
     <div class="container">
-        <nav class="breadcrumb"><a href="index.html">政府ホーム</a> ＞ <a href="#">組織・制度</a> ＞ 所管の法令等</nav>
+        <nav class="breadcrumb"><a href="index.html">HOME</a> / 組織・制度 / 所管法令</nav>
         <h1>所管の法令等</h1>
         <ul class="link-list">
             <li><a href="laws.html">フォスバロ共和国基本憲章</a></li>
             <li><a href="laws.html">社会的貢献及び間接消費税法</a></li>
             <li><a href="laws.html">グローバル・レジデンス寄託規定</a></li>
+            <li><a href="laws.html">国防対策班(MPS) 運用規則</a></li>
         </ul>
     </div>
-    <footer>&copy; 2026 Government of the Republic of Luminara.</footer>
+    <footer>&copy; 2026 THE REPUBLIC OF LUMINARA</footer>
+
     <script>
-        function openNav() { document.getElementById("mySideMenu").style.width = "280px"; }
+        function openNav() { document.getElementById("mySideMenu").style.width = "300px"; }
         function closeNav() { document.getElementById("mySideMenu").style.width = "0"; }
     </script>
 </body>
