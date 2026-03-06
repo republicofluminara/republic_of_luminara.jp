@@ -4,40 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>組織・制度 | ルミナラ共和国政府ポータル</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-blue: #003366; /* 内閣府風の深い紺 */
-            --accent-blue: #4a90e2;  /* 透明感のあるブルー */
+            --primary-blue: #003366;
+            --accent-blue: #4a90e2;
             --bg-light: #f8f9fa;
-            --text-dark: #333;
         }
 
-        body, html {
+        body {
             margin: 0; padding: 0;
-            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif;
+            font-family: 'Noto Sans JP', sans-serif;
             background-color: var(--bg-light);
-            color: var(--text-dark);
+            color: #333;
         }
 
-        /* ヘッダー */
         header {
             background: #fff;
             border-bottom: 3px solid var(--primary-blue);
-            padding: 15px 5%;
+            padding: 10px 20px;
             display: flex;
             align-items: center;
             position: sticky; top: 0; z-index: 100;
         }
 
         .menu-btn {
-            font-size: 28px; background: none; border: none;
-            color: var(--primary-blue); cursor: pointer; margin-right: 20px;
+            font-size: 24px; background: none; border: none;
+            color: var(--primary-blue); cursor: pointer;
+            margin-right: 15px; /* メニューとタイトルの隙間を最小限に */
+            padding: 5px;
         }
 
-        .logo-area { display: flex; align-items: center; flex-grow: 1; }
-        .logo-text { font-size: 1.4rem; font-weight: bold; color: var(--primary-blue); letter-spacing: 1px; }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            margin-right: auto;
+        }
 
-        /* 左サイドハンバーガーメニュー */
+        .logo-text {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            letter-spacing: 0.05em;
+        }
+
+        /* 左サイドメニュー */
         .side-menu {
             height: 100%; width: 0; position: fixed; z-index: 200;
             top: 0; left: 0; background-color: var(--primary-blue);
@@ -50,43 +62,35 @@
         .side-menu a:hover { background-color: var(--accent-blue); }
         .close-btn { position: absolute; top: 10px; right: 20px; font-size: 36px; color: white; cursor: pointer; }
 
-        /* メインコンテンツ */
-        .container { max-width: 800px; margin: 20px auto; padding: 0 20px; background: #fff; min-height: 80vh; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
+        .container { max-width: 800px; margin: 20px auto; padding: 0 20px; background: #fff; min-height: 85vh; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
 
-        /* パンくずリスト */
         .breadcrumb { padding: 20px 0; font-size: 0.85rem; color: #666; }
         .breadcrumb a { color: var(--primary-blue); text-decoration: none; }
 
-        h1 { font-size: 1.8rem; color: var(--primary-blue); border-bottom: 4px solid var(--accent-blue); padding-bottom: 10px; margin-bottom: 30px; }
+        h1 { font-family: 'Noto Serif JP', serif; font-size: 1.8rem; color: var(--primary-blue); border-bottom: 4px solid var(--accent-blue); padding-bottom: 10px; margin-bottom: 30px; }
 
-        /* 内閣府風リスト形式 */
         .link-list { list-style: none; padding: 0; }
         .link-list li { border-bottom: 1px solid #eee; }
         .link-list a {
-            display: flex; align-items: center; padding: 15px 10px;
+            display: flex; align-items: center; padding: 18px 10px;
             text-decoration: none; color: var(--primary-blue); font-weight: bold;
             transition: 0.2s;
         }
-        .link-list a::before {
-            content: "▶"; margin-right: 10px; font-size: 0.8rem; color: var(--accent-blue);
-        }
+        .link-list a::before { content: "▶"; margin-right: 12px; font-size: 0.8rem; color: var(--accent-blue); }
         .link-list a:hover { background: #f0f7ff; padding-left: 20px; }
 
-        .top-link { text-align: right; margin-top: 40px; }
+        .top-link { text-align: right; margin-top: 40px; padding-bottom: 30px; }
         .top-link a { color: var(--primary-blue); font-size: 0.9rem; text-decoration: none; }
 
-        footer { background: var(--primary-blue); color: #fff; text-align: center; padding: 30px; margin-top: 50px; font-size: 0.8rem; }
+        footer { background: var(--primary-blue); color: #fff; text-align: center; padding: 30px; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
     <div id="mySideMenu" class="side-menu">
         <span class="close-btn" onclick="closeNav()">&times;</span>
-        <a href="#">政府ホーム</a>
-        <a href="#">組織・制度一覧</a>
+        <a href="index.html">政府ホーム</a>
         <a href="laws.html">所管の法令検索(e-LEX)</a>
-        <a href="#">GRP（寄託プログラム）案内</a>
-        <a href="#">国防対策班(MPS) 窓口</a>
     </div>
 
     <header>
@@ -99,19 +103,18 @@
 
     <div class="container">
         <nav class="breadcrumb">
-            <a href="#">政府ホーム</a> ＞ <a href="#">組織・制度</a> ＞ 所管の法令等
+            <a href="index.html">政府ホーム</a> ＞ <a href="#">組織・制度</a> ＞ 所管の法令等
         </nav>
 
         <h1>所管の法令等</h1>
 
         <ul class="link-list">
-            <li><a href="laws.html">基本憲章（憲法）</a></li>
+            <li><a href="laws.html">フォスバロ共和国基本憲章（憲法）</a></li>
             <li><a href="laws.html">社会的貢献及び間接消費税法</a></li>
-            <li><a href="laws.html">グローバル・レジデンス寄託規定</a></li>
-            <li><a href="laws.html">国防対策班(MPS) 権限規則</a></li>
-            <li><a href="laws.html">都市美学的資源循環(SRM)管理令</a></li>
-            <li><a href="laws.html">生命承継（ダイヤモンド葬）ガイドライン</a></li>
-            <li><a href="laws.html">e-LEX 法令検索システム</a></li>
+            <li><a href="laws.html">グローバル・レジデンス寄託規定（GRP）</a></li>
+            <li><a href="laws.html">国防対策班(MPS) 設置及び権限規則</a></li>
+            <li><a href="laws.html">都市美学的資源循環(SRM) 管理令</a></li>
+            <li><a href="laws.html">生命の承継（ダイヤモンド葬）ガイドライン</a></li>
         </ul>
 
         <div class="top-link">
@@ -119,9 +122,7 @@
         </div>
     </div>
 
-    <footer>
-        &copy; 2026 Government of the Republic of Luminara (Phosbalo). All Rights Reserved.
-    </footer>
+    <footer>&copy; 2026 Government of the Republic of Luminara (Phosbalo).</footer>
 
     <script>
         function openNav() { document.getElementById("mySideMenu").style.width = "280px"; }
