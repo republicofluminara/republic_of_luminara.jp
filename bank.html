@@ -1,1 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank of Luminara - National Bank of Phosbalo</title>
+    <link rel="stylesheet" href="style2.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Noto+Sans+JP:wght@300;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <div class="logo">
+                <h1>BANK OF LUMINARA</h1>
+                <p>NATIONAL BANK OF PHOSBALO</p>
+            </div>
+
+            <div class="header-right">
+                <button class="login-btn">Digital Banking</button>
+            </div>
+        </div>
+    </header>
+
+    <nav id="side-menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="personal.html">Personal</a></li>
+            <li><a href="business.html">Business</a></li>
+            <li><a href="forex.html">Forex</a></li>
+            <li><a href="investinsure.html">Invest & Insure</a></li>
+            <li><a href="nrl.html">NRI / International</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Connecting Luminara to the Future</h2>
+            <p>ルミナラを未来へ、そして世界へ。環境と信頼を支える国営銀行。</p>
+            <div class="hero-btns">
+                <a href="#" class="btn-main">Open Account</a>
+                <a href="#" class="btn-sub">Green Investment</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="promo">
+        <div class="promo-card">
+            <div class="promo-text">
+                <span class="badge">Special Scheme</span>
+                <h3>EXPORT MORE, GROW MORE</h3>
+                <p>ルミナラ国内の輸出企業を支援する、無担保・低利の運転資金提供スキームが始動しました。</p>
+                <ul>
+                    <li>✓ 100% 債務保証</li>
+                    <li>✓ 迅速なデジタル審査</li>
+                    <li>✓ 為替リスクヘッジ支援</li>
+                </ul>
+                <a href="business.html" class="btn-text">Learn More →</a>
+            </div>
+            <div class="promo-image">
+                <div class="image-placeholder">Bank of Luminara Excellence</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('side-menu').classList.toggle('active');
+            document.querySelector('.hamburger').classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
 
