@@ -6,159 +6,49 @@
     <title>法令検索 - フォスバロ共和国 (GOV.LUMINARA)</title>
     <style>
         body, html {
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-            background-color: #ffffff;
-            color: #333;
+            background-color: #ffffff; color: #333;
         }
 
         /* ヘッダー：e-GOV風 */
         header {
-            display: flex;
-            align-items: center;
-            padding: 10px 15px;
-            background-color: #fff;
-            border-bottom: 1px solid #ddd;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            display: flex; align-items: center; padding: 10px 15px;
+            background-color: #fff; border-bottom: 1px solid #ddd;
+            position: sticky; top: 0; z-index: 100;
         }
 
-        .menu-btn {
-            font-size: 24px;
-            background: none;
-            border: none;
-            color: #003366;
-            cursor: pointer;
-            margin-right: 15px;
-        }
+        .menu-btn { font-size: 24px; background: none; border: none; color: #003366; cursor: pointer; margin-right: 15px; }
+        .gov-logo { display: flex; align-items: center; font-weight: bold; color: #003366; font-size: 1.2rem; }
+        .gov-logo span { color: #4a90e2; margin: 0 5px; }
 
-        .gov-logo {
-            display: flex;
-            align-items: center;
-            font-weight: bold;
-            color: #003366;
-            font-size: 1.2rem;
-        }
+        .main-content { padding: 15px; max-width: 800px; margin: 0 auto; }
 
-        .gov-logo span {
-            color: #4a90e2;
-            margin: 0 5px;
-        }
+        .search-panel { background-color: #fff; margin-bottom: 20px; }
+        .status-select { font-size: 0.9rem; margin-bottom: 15px; display: flex; align-items: center; gap: 5px; }
+        .radio-group { display: flex; gap: 15px; margin-bottom: 20px; font-size: 0.95rem; }
+        .radio-group label { display: flex; align-items: center; gap: 5px; }
 
-        /* メインコンテンツ */
-        .main-content {
-            padding: 15px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+        .category-box { background-color: #f2f5f8; border: 1px solid #e0e0e0; padding: 12px; font-size: 0.85rem; margin-bottom: 15px; }
+        .category-title { font-weight: bold; margin-bottom: 8px; }
+        .checkbox-grid { display: flex; flex-wrap: wrap; gap: 10px; }
 
-        /* 検索セクションの装飾 */
-        .search-panel {
-            background-color: #fff;
-            margin-bottom: 20px;
-        }
+        .search-bar { display: flex; height: 44px; margin-bottom: 25px; }
+        .search-bar input { flex: 1; border: 2px solid #003366; padding: 0 10px; font-size: 1rem; outline: none; }
+        .search-bar button { background-color: #003366; color: white; border: none; width: 60px; cursor: pointer; font-size: 1.2rem; }
 
-        .status-select {
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
+        /* 検索結果エリア */
+        #search-results { display: none; margin-top: 20px; border-top: 2px solid #003366; padding-top: 20px; }
+        .law-item { margin-bottom: 30px; padding: 20px; background: #fff; border: 1px solid #eee; box-shadow: 2px 2px 5px rgba(0,0,0,0.05); }
+        .law-title { font-size: 1.2rem; font-weight: bold; color: #003366; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-bottom: 10px; }
+        .law-content { line-height: 1.8; font-size: 0.95rem; white-space: pre-wrap; }
+        .highlight { background-color: #ffeb3b; font-weight: bold; }
 
-        /* ラジオボタンエリア */
-        .radio-group {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-        }
+        .info-box { background-color: #eff5ff; border-radius: 4px; padding: 15px; margin-bottom: 20px; line-height: 1.6; border-left: 4px solid #4a90e2; }
+        .info-date { font-weight: bold; margin-bottom: 10px; display: block; }
 
-        .radio-group label {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        /* 法令種別（薄いグレーのボックス） */
-        .category-box {
-            background-color: #f2f5f8;
-            border: 1px solid #e0e0e0;
-            padding: 12px;
-            font-size: 0.85rem;
-            margin-bottom: 15px;
-            position: relative;
-        }
-
-        .category-title {
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-
-        .checkbox-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .checkbox-grid label {
-            display: flex;
-            align-items: center;
-            gap: 3px;
-        }
-
-        /* 検索バー */
-        .search-bar {
-            display: flex;
-            height: 44px;
-            margin-bottom: 25px;
-        }
-
-        .search-bar input {
-            flex: 1;
-            border: 1px solid #ccc;
-            padding: 0 10px;
-            font-size: 1rem;
-            outline: none;
-        }
-
-        .search-bar button {
-            background-color: #0000cd;
-            color: white;
-            border: none;
-            width: 50px;
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-
-        /* お知らせ・条文エリア */
-        .info-box {
-            background-color: #eff5ff;
-            border-radius: 4px;
-            padding: 15px;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .info-date {
-            font-weight: bold;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        /* サイドメニュー（共通） */
-        .side-menu {
-            height: 100%; width: 0; position: fixed; z-index: 200;
-            top: 0; left: 0; background-color: #111;
-            overflow-x: hidden; transition: 0.5s; padding-top: 60px;
-        }
-        .side-menu a {
-            padding: 15px 32px; text-decoration: none; font-size: 18px;
-            color: #818181; display: block; transition: 0.3s;
-        }
-        .side-menu a:hover { color: #f1f1f1; }
+        .side-menu { height: 100%; width: 0; position: fixed; z-index: 200; top: 0; left: 0; background-color: #1a2a3a; overflow-x: hidden; transition: 0.5s; padding-top: 60px; }
+        .side-menu a { padding: 15px 32px; text-decoration: none; font-size: 18px; color: #fff; display: block; }
         .close-btn { position: absolute; top: 10px; right: 25px; font-size: 36px; color: white; cursor: pointer; }
     </style>
 </head>
@@ -166,66 +56,112 @@
 
     <div id="mySideMenu" class="side-menu">
         <span class="close-btn" onclick="closeNav()">&times;</span>
-        <a href="index.html">Republic of Luminara</a>
-
-
-
-
+        <a href="government.html">政府ポータル</a>
+        <a href="#">法令検索 (Current)</a>
+        <a href="#">国防対策班(MPS)通報窓口</a>
     </div>
 
     <header>
         <button class="menu-btn" onclick="openNav()">&#9776;</button>
-        <div class="gov-logo">e<span>-</span>LEX 法令検索</div>
+        <div class="gov-logo">e<span>-</span>LEX <span>フォスバロ共和国</span> 法令検索</div>
     </header>
 
     <div class="main-content">
         <div class="search-panel">
-            <div class="status-select">現行法令 ∨</div>
+            <div class="status-select">現行法令（2026年施行分） ∨</div>
 
             <div class="radio-group">
-                <label><input type="radio" name="stype" checked> 法令名</label>
-                <label><input type="radio" name="stype"> キーワード</label>
+                <label><input type="radio" name="stype" checked> 法令名・キーワード</label>
                 <label><input type="radio" name="stype"> 法令番号</label>
             </div>
 
             <div class="category-box">
-                <div class="category-title">法令種別</div>
+                <div class="category-title">法令種別フィルタ</div>
                 <div class="checkbox-grid">
+                    <label><input type="checkbox" checked> 憲法</label>
                     <label><input type="checkbox" checked> 法律</label>
-                    <label>( <input type="radio" name="l-sub" checked> すべて )</label>
                     <label><input type="checkbox" checked> 政令</label>
-                    <label><input type="checkbox" checked> 勅令</label>
-                    <label><input type="checkbox" checked> 府省令</label>
                     <label><input type="checkbox" checked> 規則</label>
                 </div>
             </div>
 
             <div class="search-bar">
-                <input type="text" id="lawSearch" placeholder="検索法令名を入力してください。">
+                <input type="text" id="lawSearch" placeholder="例：憲法、消費税、MPS、ダイヤモンド葬">
                 <button onclick="searchAction()">🔍</button>
             </div>
         </div>
 
-        <div class="info-box">
-            <span class="info-date">2026-03-04 法令データ更新のお知らせ</span>
-            <p>フォスバロ共和国憲法に基づき、最新の法令データが反映されました。デジタル領土内での全活動に適用されます。</p>
+        <div id="default-view">
+            <div class="info-box">
+                <span class="info-date">2026-03-04 法令データ更新</span>
+                <p>フォスバロ共和国憲法に基づき、最新の「全民公務員法」および「国防対策規定」が反映されました。</p>
+            </div>
+            <h3 style="border-left: 5px solid #003366; padding-left: 10px;">主要法令一覧</h3>
+            <p>・フォスバロ共和国基本憲章</p>
+            <p>・経済活動及び消費税法</p>
+            <p>・国防対策班(MPS)設置法</p>
+            <p>・共生動物保護管理規則</p>
         </div>
 
-        <h3 style="border-left: 5px solid #003366; padding-left: 10px; margin-top: 30px;">主要法令</h3>
-        <p>・フォスバロ共和国憲法</p>
-        <p>・デジタル居住権法</p>
+        <div id="search-results">
+            <div id="results-count" style="margin-bottom:15px; font-weight:bold;"></div>
+            <div id="results-list"></div>
+        </div>
     </div>
 
     <script>
+        // 法令データベース（これまでの設定を格納）
+        const lawDatabase = [
+            { title: "フォスバロ共和国基本憲章（憲法）", content: "第1条：万人の平等と利他精神を国家の根幹とする。\n第2条：最高倫理AIによる立法と国民投票（70%承認）による直接民主制を採用する。\n第3条：永世中立を堅持し、他国への先制攻撃を永久に放棄する。" },
+            { title: "経済活動及び消費税法", content: "第1条：国内の全就労者は国家公務員の地位を有する。自営業の兼業は自由である。\n第2条：所得税を撤廃し、国内の全ての消費活動に対して一律30%の消費税（ウォラル税）を課す。\n第3条：法定通貨はウォラル（Worral）とし、完全キャッシュレス決済を義務付ける。" },
+            { title: "国防対策班(MPS)設置法", content: "第1条：国内の治安維持、入国管理、資産保護を目的として『国防対策班（Moon-Phase Security）』を設置する。\n第2条：MPSは無人航空機およびAI監視網を用い、不法行為の抑止と排除を行う権限を有する。" },
+            { title: "移民及び居住に関する特別措置法", content: "第1条：入国には100万ウォラルの預託と無犯罪証明を必須とする。\n第2条：観光客の居住エリアへの立ち入りを禁止する。入国には専用ビザを要する。\n第3条：国民の子供は無条件で国民の権利を継承する。" },
+            { title: "共生動物保護管理規則", content: "第1条：家庭内での動物飼育を禁止する。\n第2条：動物との接触は公営飼育園においてのみ行われるものとする。\n第3条：年1回、指定日に『馬の解放デー』を実施し、動物との共生を再確認する。" },
+            { title: "葬儀及び死生観に関するガイドライン", content: "第1条：故人の遺骨は人工ダイヤモンドへ加工する『ダイヤモンド葬』を推奨する。\n第2条：加工されたダイヤモンドは、家宝として保持、または墓石への埋込を認める。" }
+        ];
+
         function openNav() { document.getElementById("mySideMenu").style.width = "250px"; }
         function closeNav() { document.getElementById("mySideMenu").style.width = "0"; }
         
         function searchAction() {
-            const val = document.getElementById('lawSearch').value;
-            if(val) {
-                alert("「" + val + "」に該当する法令を検索しています...");
-            } else {
+            const query = document.getElementById('lawSearch').value.trim();
+            const resultsDiv = document.getElementById('search-results');
+            const defaultView = document.getElementById('default-view');
+            const listDiv = document.getElementById('results-list');
+            const countDiv = document.getElementById('results-count');
+
+            if(!query) {
                 alert("検索キーワードを入力してください。");
+                return;
+            }
+
+            // 検索ロジック
+            const filtered = lawDatabase.filter(law => 
+                law.title.includes(query) || law.content.includes(query)
+            );
+
+            // 表示切り替え
+            defaultView.style.display = 'none';
+            resultsDiv.style.display = 'block';
+            listDiv.innerHTML = '';
+            countDiv.innerText = `「${query}」の検索結果： ${filtered.length} 件`;
+
+            if(filtered.length === 0) {
+                listDiv.innerHTML = '<p>該当する法令は見つかりませんでした。</p>';
+            } else {
+                filtered.forEach(law => {
+                    const item = document.createElement('div');
+                    item.className = 'law-item';
+                    
+                    // キーワードをハイライト
+                    const highlightedContent = law.content.split(query).join(`<span class="highlight">${query}</span>`);
+                    
+                    item.innerHTML = `
+                        <div class="law-title">${law.title}</div>
+                        <div class="law-content">${highlightedContent}</div>
+                    `;
+                    listDiv.appendChild(item);
+                });
             }
         }
     </script>
