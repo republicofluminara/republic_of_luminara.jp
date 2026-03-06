@@ -1,115 +1,111 @@
-/* --- 医学部ページ専用デザイン --- */
+:root {
+    --primary: #0A192F; /* ルミナビアン・ブルー */
+    --accent: #C5A059;  /* ゴールド */
+    --light-blue: #E8F0F8;
+}
 
-/* 1. クイックバナー（青いバー） */
-.quick-banner {
+body, html {
+    margin: 0; padding: 0;
+    font-family: 'Montserrat', 'Noto Serif JP', sans-serif;
+    background-color: #fff;
+}
+
+/* ナビゲーション（固定） */
+.top-nav {
+    position: fixed; top: 0; width: 100%; height: 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 40px; box-sizing: border-box; z-index: 1000;
+    background: #fff; border-bottom: 1px solid #eee;
+}
+
+.brand-logo { font-family: 'Cinzel', serif; font-size: 20px; letter-spacing: 3px; cursor: pointer; }
+
+/* クイックナビバナー */
+.quick-nav-bar {
+    margin-top: 60px;
     display: flex;
-    background-color: var(--primary); /* 紺色 */
-    padding-top: 60px; /* ナビの下から開始 */
+    background: var(--primary);
 }
 
-.banner-item {
-    flex: 1;
-    text-align: center;
-    padding: 15px 0;
-    color: #fff;
-    font-size: 11px;
-    border-right: 1px solid rgba(255,255,255,0.1);
+.q-item {
+    flex: 1; text-align: center; color: #fff; padding: 12px 0;
+    font-size: 11px; border-right: 1px solid rgba(255,255,255,0.1);
     cursor: pointer;
-    transition: 0.3s;
 }
 
-.banner-item:hover {
-    background-color: var(--accent);
+/* メインエリア */
+.med-main-content {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 0 20px;
 }
 
-/* 2. 画像サイズの適正化（デカすぎないように） */
-.med-hero-section {
-    padding: 20px 40px;
-    background: #fff;
-}
-
-.med-hero-container {
+/* ヒーロー画像（高さを300pxに厳格固定） */
+.med-hero-box {
     position: relative;
-    max-width: 1000px;
-    margin: 0 auto;
-    height: 350px; /* 高さを固定してデカすぎを防止 */
-    overflow: hidden;
-    border-radius: 8px; /* 少し角を丸めておしゃれに */
-}
-
-.med-main-img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: 300px; /* ここでサイズを固定 */
+    overflow: hidden;
+    border-radius: 4px;
 }
 
-.med-hero-overlay {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(to right, rgba(10,25,47,0.7), transparent);
-    display: flex;
-    align-items: center;
-    padding: 0 40px;
+.med-img {
+    width: 100%; height: 100%; object-fit: cover;
 }
 
-.med-hero-text {
-    color: #fff;
+.med-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(255,255,255,0.9), transparent);
+    display: flex; align-items: center; padding-left: 40px;
 }
 
-.med-hero-text .sub-lead { font-size: 13px; margin-bottom: 5px; }
-.med-hero-text h1 { font-family: 'Noto Serif JP', serif; font-size: 32px; margin: 0; }
-.med-hero-text .en-lead { font-family: 'Cinzel', serif; font-size: 18px; opacity: 0.8; }
+.med-title-wrap h1 { font-size: 32px; margin: 5px 0; color: var(--primary); }
+.med-title-wrap .sub-txt { font-size: 12px; color: #666; }
+.med-title-wrap .en-txt { font-family: 'Cinzel', serif; font-size: 18px; color: #ccc; }
 
-/* 3. 6つのパネル（しっかり枠で囲う） */
-.panel-section {
-    max-width: 1000px;
-    margin: 30px auto 80px;
-    padding: 0 40px;
-}
-
-.panel-grid {
+/* 6パネル・コマンドグリッド */
+.med-command-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2列 */
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
+    margin-top: 20px;
 }
 
-.panel-box {
-    border: 1px solid #ddd; /* しっかりした外枠 */
-    padding: 5px; /* 外枠と内側の隙間 */
+.cmd-card {
+    border: 1px solid #eee;
+    padding: 5px;
+    cursor: pointer;
     transition: 0.3s;
 }
 
-.panel-inner {
-    background-color: #f8f9fa;
+.cmd-inner {
     padding: 30px 20px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    cursor: pointer;
+    display: flex; flex-direction: column; justify-content: center;
 }
 
-.panel-box:hover {
-    border-color: var(--accent);
-}
+.blue-bg .cmd-inner { background: var(--primary); color: #fff; }
+.light-bg .cmd-inner { background: var(--light-blue); color: var(--primary); }
 
-.panel-num {
-    font-size: 10px;
-    color: var(--accent);
-    font-weight: bold;
-    margin-bottom: 10px;
-}
+.cmd-card:hover { border-color: var(--accent); }
 
-.panel-inner h3 {
-    margin: 0;
-    font-size: 18px;
-    color: var(--primary);
-    letter-spacing: 1px;
-}
+.cmd-en { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 1px; margin-bottom: 5px; opacity: 0.7; }
+.cmd-inner h3 { margin: 0; font-size: 18px; letter-spacing: 1px; }
 
-/* スマホ対応 */
+/* サイドメニュー（全画面） */
+.sidenav {
+    height: 100%; width: 0; position: fixed; z-index: 2000; top: 0; left: 0;
+    background-color: var(--primary); overflow-x: hidden; transition: 0.5s;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.sidenav a { padding: 10px; font-size: 24px; color: #fff; text-decoration: none; font-family: 'Cinzel', serif; }
+.sidenav .closebtn { position: absolute; top: 20px; right: 40px; font-size: 40px; }
+
+.med-footer { text-align: center; padding: 40px; font-size: 10px; color: #999; }
+
+/* モバイル対応 */
 @media (max-width: 600px) {
-    .panel-grid { grid-template-columns: 1fr; }
-    .quick-banner { flex-wrap: wrap; }
-    .banner-item { flex: 50%; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .med-command-grid { grid-template-columns: 1fr; }
+    .med-hero-box { height: 200px; }
+    .med-overlay { padding-left: 20px; }
+    .med-title-wrap h1 { font-size: 24px; }
 }
