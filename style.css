@@ -75,7 +75,7 @@ body, html {
     height: 320px; /* ほどよい存在感 */
     max-width: 80%;
     object-fit: contain;
-    margin-bottom: 13px; /* 画像と文字の距離を詰め */
+    margin-bottom: 15px; /* 画像と文字の距離を詰め */
 }
 
 .hero-content {
@@ -111,7 +111,7 @@ body, html {
 
 /* --- アカデミックセクション：余白の引き締め --- */
 .info-grid {
-    padding: 20px 20px 60px; /* 上の余白を80pxから40pxに短縮 */
+    padding: 40px 40px 60px; /* 上の余白を80pxから40pxに短縮 */
     max-width: 900px;
     margin: 0 auto;
 }
