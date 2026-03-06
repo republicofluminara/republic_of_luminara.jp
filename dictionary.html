@@ -50,26 +50,28 @@
         h2 { color: var(--primary-navy); border-left: 3px solid var(--soft-gold); padding-left: 10px; font-size: 0.95rem; margin-bottom: 12px; }
         
         .dict-table { width: 100%; border-collapse: collapse; margin-top: 5px; font-size: 0.8rem; }
-        .dict-table td { padding: 5px 8px; border-bottom: 1px solid #f1f5f9; }
+        .dict-table td, .dict-table th { padding: 6px 8px; border-bottom: 1px solid #f1f5f9; text-align: left; }
+        .dict-table th { background: #f8fafc; color: var(--primary-navy); border-bottom: 2px solid var(--soft-gold); }
         .lum-word { font-weight: bold; color: var(--accent-blue); }
 
         .explanation-box { background: #fffaf0; padding: 12px; border: 1px solid #f0e4c3; margin: 10px 0; font-size: 0.8rem; border-radius: 4px; }
-        .example-sentence { font-style: italic; color: var(--primary-navy); margin-top: 5px; display: block; }
+        .kanji-root-tag { display: inline-block; background: #edf2f7; padding: 2px 8px; border-radius: 3px; font-weight: bold; color: var(--primary-navy); margin: 2px; }
+        .example-sentence { font-style: italic; color: #64748b; margin-top: 3px; display: block; }
     </style>
 </head>
 <body>
 
 <header>
-    <a href="luminaralang.html" class="back-link">Back</a>
+    <a href="#" class="back-link">← PORTAL</a>
     <h1>LUMINARIAN LEXICON</h1>
-    <div class="subtitle">Republic of Phosbalo Standard</div>
+    <div class="subtitle">Republic of Phosbalo Official Archive</div>
 </header>
 
 <main>
     <section class="section-card">
-        <h2>1. Pronouns (人称)</h2>
+        <h2>1. Pronouns (人称・指示)</h2>
         <table class="dict-table">
-            <tr><td width="100">一人称 (私)</td><td><span class="lum-word">Lili</span></td><td width="100">二人称 (あなた)</td><td><span class="lum-word">Olo</span></td></tr>
+            <tr><td>一人称 (私)</td><td><span class="lum-word">Lili</span></td><td>二人称 (あなた)</td><td><span class="lum-word">Olo</span></td></tr>
             <tr><td>三人称 (彼/女)</td><td><span class="lum-word">Maleko</span></td><td>指示 (これ/あれ)</td><td><span class="lum-word">Elo / Alo</span></td></tr>
         </table>
     </section>
@@ -77,12 +79,12 @@
     <section class="section-card">
         <h2>2. Temporal System (時制)</h2>
         <div class="explanation-box">
-            基点となる <b>Naende</b> (今日) に時制ルールを適用します。
-            <ul style="margin: 5px 0 0 15px; padding: 0;">
-                <li><b>Naende</b> (今日) : 基点</li>
-                <li><b>Naendena</b> (昨日) : 今日 + 過去(Na) = 過ぎ去った日</li>
-                <li><b>Wi-naende</b> (明日) : 未来(Wi) + 今日 = これから来る日</li>
-                <li>過去: 語尾に <b>Na</b> / 未来: 語前に <b>Wi</b></li>
+            基点となる <b>Naende</b> (今日) に接頭辞・接尾辞を適用します。
+            <ul style="margin: 8px 0 0 15px; padding: 0;">
+                <li><b>Naende</b> : 今日</li>
+                <li><b>Naendena</b> : 昨日 (今日 + 過去 <b>na</b>)</li>
+                <li><b>Wi-naende</b> : 明日 (未来 <b>wi</b> + 今日)</li>
+                <li><b>Nana</b> : 今</li>
             </ul>
         </div>
     </section>
@@ -98,42 +100,50 @@
     </section>
 
     <section class="section-card">
-        <h2>4. Kanji-Cognate System (漢字語解説)</h2>
+        <h2>4. Kanji-Cognate System & Vocabulary (漢字語と語彙)</h2>
         <div class="explanation-box">
-            漢字の概念を語根（Root）として採用しています。
-            <table class="dict-table" style="background: white; margin-top: 8px;">
-                <tr><td>共 (トノ)</td><td>和 (ム)</td><td>国 (ロノ)</td><td>法 (レグラ)</td></tr>
-                <tr><td>平 (パセ)</td><td>交 (クロサ)</td><td>通 (テラ)</td><td>券 (テ)</td></tr>
-                <tr><td>民 (ミン)</td><td>旅 (トラン)</td><td>住 (ソン)</td><td>公 (クロサ)</td></tr>
-            </table>
+            ルミナラ語は以下の<b>語根 (Roots)</b> をパズルのように組み合わせて単語を作ります。
+            <div style="margin-top: 10px;">
+                <span class="kanji-root-tag">共: Tono</span> <span class="kanji-root-tag">和: Mu</span> <span class="kanji-root-tag">国: Lono</span> 
+                <span class="kanji-root-tag">平: Pase</span> <span class="kanji-root-tag">交: Klosa</span> <span class="kanji-root-tag">通: Tela</span> 
+                <span class="kanji-root-tag">法: Legula</span> <span class="kanji-root-tag">券: Te</span> <span class="kanji-root-tag">旅: Tolan</span>
+                <span class="kanji-root-tag">民: Min</span> <span class="kanji-root-tag">住: Son</span> <span class="kanji-root-tag">公: Klosa</span> <span class="kanji-root-tag">務: Sabilu</span>
+            </div>
         </div>
-    </section>
 
-    <section class="section-card">
-        <h2>5. Vocabulary Database (語彙集)</h2>
-        <table class="dict-table">
-            <tr><th>Luminarian</th><th>Japanese</th><th>構成・備考</th></tr>
-            <tr><td><span class="lum-word">Tonomulono</span></td><td>共和国</td><td>共・和・国</td></tr>
-            <tr><td><span class="lum-word">Pasemu</span></td><td>平和</td><td>平・和</td></tr>
-            <tr><td><span class="lum-word">Lonolegula</span></td><td>法律</td><td>国・法</td></tr>
-            <tr><td><span class="lum-word">Klosatela</span></td><td>交通</td><td>交・通</td></tr>
-            <tr><td><span class="lum-word">Lonomin</span></td><td>国民</td><td>国・民</td></tr>
-            <tr><td><span class="lum-word">Sonminte</span></td><td>住民票</td><td>住・民・券(証)</td></tr>
-            <tr><td><span class="lum-word">Tolante</span></td><td>旅券</td><td>旅・券</td></tr>
-            <tr><td><span class="lum-word">Klosasabilu</span></td><td>公務</td><td>公・務</td></tr>
-            <tr><td><span class="lum-word">Klosasabilumin</span></td><td>公務員</td><td>公・務・人</td></tr>
+        <table class="dict-table" style="margin-top: 15px;">
+            <thead>
+                <tr><th>Luminarian</th><th>Japanese</th><th>Root Logic</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><span class="lum-word">Tonomulono</span></td><td>共和国</td><td>共 + 和 + 国</td></tr>
+                <tr><td><span class="lum-word">Pasemu</span></td><td>平和</td><td>平 + 和</td></tr>
+                <tr><td><span class="lum-word">Lonolegula</span></td><td>法律</td><td>国 + 法</td></tr>
+                <tr><td><span class="lum-word">Klosatela</span></td><td>交通</td><td>交 + 通</td></tr>
+                <tr><td><span class="lum-word">Lonomin</span></td><td>国民</td><td>国 + 民</td></tr>
+                <tr><td><span class="lum-word">Sonminte</span></td><td>住民票</td><td>住 + 民 + 券</td></tr>
+                <tr><td><span class="lum-word">Tolante</span></td><td>旅券</td><td>旅 + 券</td></tr>
+                <tr><td><span class="lum-word">Klosasabilumin</span></td><td>公務員</td><td>公 + 務 + 人(民)</td></tr>
+                <tr><td><span class="lum-word">Tonotela</span></td><td>共通</td><td>共 + 通</td></tr>
+            </tbody>
         </table>
     </section>
 
     <section class="section-card">
-        <h2>6. Examples (例文)</h2>
+        <h2>5. Sentence Examples (例文)</h2>
         <div class="explanation-box" style="background: white;">
-            <div><b>Lili wi-molanta lanaende.</b></div>
-            <span class="example-sentence">私は明日、食べるでしょう。</span>
-            <div style="margin-top: 10px;"><b>Olo wi-baloko naende lei?</b></div>
-            <span class="example-sentence">あなたは今日、行きますか？</span>
-            <div style="margin-top: 10px;"><b>Lili lulu tolante.</b></div>
-            <span class="example-sentence">私は旅券を持っています。</span>
+            <div style="margin-bottom: 12px;">
+                <b>Lili wi-molanta lanaende.</b>
+                <span class="example-sentence">私は明日、食べるでしょう。</span>
+            </div>
+            <div style="margin-bottom: 12px;">
+                <b>Olo wi-baloko naende lei?</b>
+                <span class="example-sentence">あなたは今日、行きますか？</span>
+            </div>
+            <div>
+                <b>Lili lulu tolante.</b>
+                <span class="example-sentence">私は旅券を持っています。</span>
+            </div>
         </div>
     </section>
 </main>
