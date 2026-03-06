@@ -1,0 +1,115 @@
+/* --- 医学部ページ専用デザイン --- */
+
+/* 1. クイックバナー（青いバー） */
+.quick-banner {
+    display: flex;
+    background-color: var(--primary); /* 紺色 */
+    padding-top: 60px; /* ナビの下から開始 */
+}
+
+.banner-item {
+    flex: 1;
+    text-align: center;
+    padding: 15px 0;
+    color: #fff;
+    font-size: 11px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.banner-item:hover {
+    background-color: var(--accent);
+}
+
+/* 2. 画像サイズの適正化（デカすぎないように） */
+.med-hero-section {
+    padding: 20px 40px;
+    background: #fff;
+}
+
+.med-hero-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    height: 350px; /* 高さを固定してデカすぎを防止 */
+    overflow: hidden;
+    border-radius: 8px; /* 少し角を丸めておしゃれに */
+}
+
+.med-main-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.med-hero-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to right, rgba(10,25,47,0.7), transparent);
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.med-hero-text {
+    color: #fff;
+}
+
+.med-hero-text .sub-lead { font-size: 13px; margin-bottom: 5px; }
+.med-hero-text h1 { font-family: 'Noto Serif JP', serif; font-size: 32px; margin: 0; }
+.med-hero-text .en-lead { font-family: 'Cinzel', serif; font-size: 18px; opacity: 0.8; }
+
+/* 3. 6つのパネル（しっかり枠で囲う） */
+.panel-section {
+    max-width: 1000px;
+    margin: 30px auto 80px;
+    padding: 0 40px;
+}
+
+.panel-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2列 */
+    gap: 10px;
+}
+
+.panel-box {
+    border: 1px solid #ddd; /* しっかりした外枠 */
+    padding: 5px; /* 外枠と内側の隙間 */
+    transition: 0.3s;
+}
+
+.panel-inner {
+    background-color: #f8f9fa;
+    padding: 30px 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.panel-box:hover {
+    border-color: var(--accent);
+}
+
+.panel-num {
+    font-size: 10px;
+    color: var(--accent);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.panel-inner h3 {
+    margin: 0;
+    font-size: 18px;
+    color: var(--primary);
+    letter-spacing: 1px;
+}
+
+/* スマホ対応 */
+@media (max-width: 600px) {
+    .panel-grid { grid-template-columns: 1fr; }
+    .quick-banner { flex-wrap: wrap; }
+    .banner-item { flex: 50%; border-bottom: 1px solid rgba(255,255,255,0.1); }
+}
