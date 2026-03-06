@@ -1,27 +1,88 @@
-// laws.html 内の lawDatabase を以下に差し替え
-const lawDatabase = [
-    { 
-        title: "フォスバロ共和国基本憲章", 
-        content: "第1条（国家の主権的価値）：本国は全存在の尊厳と、相互奉仕による美学を統治の基軸とする。\n第2条（意思決定）：最高倫理意思決定アルゴリズムの提示に基づき、有権者の7割の合意を形成する直接意志反映システムを運用する。" 
-    },
-    { 
-        title: "社会的貢献及び間接消費税に関する特例法", 
-        content: "第1条（税制の目的）：個人の生産活動への介入（所得課税）を最小化し、国内の総資産循環を最適化する。\n第2条（付加価値税）：国内における全ての最終消費行為に対し、社会資本維持費として一律30%の賦課を行う。" 
-    },
-    { 
-        title: "国防対策班(MPS)の組織及び権限に関する規則", 
-        content: "第1条：当国の領土的整合性および市民の私的聖域を保護するため、専門執行機関「MPS」を設置する。\n第2条：MPSは自律型航空機群を含む多層監視網を運用し、社会的秩序を攪乱する事象に対し即時介入の権限を有する。" 
-    },
-    { 
-        title: "グローバル・レジデンス寄託（GRP）規定", 
-        content: "第1条（資格取得）：当国への定住を希望する者は、国家安定基金へ100万ウォラルを5年間預託しなければならない。\n第2条：当該寄託金は、当国の高度インフラ維持の担保として機能し、一定期間経過後に返還資格が生じる。" 
-    },
-    { 
-        title: "都市環境維持及び動物共生管理令", 
-        content: "第1条：私的空間における動物の占有飼育は、公衆衛生および個体の権利保護の観点から制限される。\n第2条：市民は指定されたアカデミック・ガーデンにおいて、種を超えた交流の機会を享受できるものとする。" 
-    },
-    { 
-        title: "生命的価値の永続的承継に関するガイドライン", 
-        content: "第1条（ダイヤモンド葬）：個人の生命の記憶を炭素結晶として固定し、有形的価値として次世代へ継承することを推奨する。" 
-    }
-];
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>法令検索 - フォスバロ共和国 (GOV.LUMINARA)</title>
+    <style>
+        body, html { margin: 0; padding: 0; font-family: sans-serif; background-color: #fff; color: #333; }
+        header { display: flex; align-items: center; padding: 10px 15px; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 100; background: #fff; }
+        .menu-btn { font-size: 24px; background: none; border: none; color: #003366; cursor: pointer; margin-right: 15px; }
+        .gov-logo { font-weight: bold; color: #003366; font-size: 1.2rem; }
+        .main-content { padding: 15px; max-width: 600px; margin: 0 auto; }
+        .category-box { background-color: #f2f5f8; border: 1px solid #e0e0e0; padding: 12px; font-size: 0.85rem; margin-bottom: 15px; }
+        .search-bar { display: flex; height: 44px; margin-bottom: 25px; }
+        .search-bar input { flex: 1; border: 1px solid #ccc; padding: 0 10px; }
+        .search-bar button { background-color: #0000cd; color: white; border: none; width: 50px; cursor: pointer; }
+        .info-box { background-color: #eff5ff; padding: 15px; margin-bottom: 20px; border-left: 4px solid #4a90e2; }
+        #search-results { display: none; margin-top: 20px; }
+        .law-item { margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .law-title { font-weight: bold; color: #003366; margin-bottom: 5px; }
+        .law-content { font-size: 0.9rem; line-height: 1.6; white-space: pre-wrap; }
+        /* サイドメニュー */
+        .side-menu { height: 100%; width: 0; position: fixed; z-index: 200; top: 0; left: 0; background-color: #111; overflow-x: hidden; transition: 0.5s; padding-top: 60px; }
+        .side-menu a { padding: 15px 32px; text-decoration: none; font-size: 18px; color: #818181; display: block; }
+        .close-btn { position: absolute; top: 10px; right: 25px; font-size: 36px; color: white; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div id="mySideMenu" class="side-menu">
+        <span class="close-btn" onclick="closeNav()">&times;</span>
+        <a href="government.html">Republic of Luminara Portal</a>
+    </div>
+
+    <header>
+        <button class="menu-btn" onclick="openNav()">&#9776;</button>
+        <div class="gov-logo">e<span>-</span>LEX 法令検索</div>
+    </header>
+
+    <div class="main-content">
+        <div class="category-box">
+            <strong>法令種別:</strong> 法律, 政令, 勅令, 規則
+        </div>
+        <div class="search-bar">
+            <input type="text" id="lawSearch" placeholder="キーワード（消費税、寄託、MPS等）">
+            <button onclick="searchAction()">🔍</button>
+        </div>
+
+        <div id="default-view">
+            <div class="info-box">
+                <strong>2026-03-04 法令更新</strong>
+                <p>フォスバロ共和国憲法に基づき、最新の「グローバル・レジデンス寄託規定」が反映されました。</p>
+            </div>
+            <h3>主要法令</h3>
+            <p>・フォスバロ共和国基本憲章</p>
+            <p>・社会的貢献及び間接消費税に関する特例法</p>
+        </div>
+
+        <div id="search-results">
+            <div id="results-list"></div>
+        </div>
+    </div>
+
+    <script>
+        const lawDatabase = [
+            { title: "フォスバロ共和国基本憲章", content: "第1条：全存在の尊厳と、相互奉仕による美学を統治の基軸とする。\n第2条：最高倫理AIの提言に基づき、有権者の7割の合意形成を要する直接民主制を運用する。" },
+            { title: "社会的貢献及び間接消費税に関する特例法", content: "第1条：生産活動への介入（所得課税）を最小化し、国内の総資産循環を最適化する。\n第2条：国内の全消費行為に対し、社会資本維持費として一律30%の賦課を行う。" },
+            { title: "国防対策班(MPS)設置及び権限規則", content: "第1条：市民の私的聖域を保護するため、執行機関「MPS」を設置する。\n第2条：MPSは自律型監視網を用い、秩序攪乱事象に対し即時介入の権限を有する。" },
+            { title: "グローバル・レジデンス寄託（GRP）規定", content: "第1条：定住希望者は国家安定基金へ100万ウォラルを預託することを要する。\n第2条：当該寄託金は5年間の凍結期間を経て、返還資格が生じる。" }
+        ];
+
+        function openNav() { document.getElementById("mySideMenu").style.width = "250px"; }
+        function closeNav() { document.getElementById("mySideMenu").style.width = "0"; }
+        
+        function searchAction() {
+            const query = document.getElementById('lawSearch').value;
+            if(!query) return;
+            const results = lawDatabase.filter(l => l.title.includes(query) || l.content.includes(query));
+            document.getElementById('default-view').style.display = 'none';
+            document.getElementById('search-results').style.display = 'block';
+            const list = document.getElementById('results-list');
+            list.innerHTML = results.length ? '' : '該当なし';
+            results.forEach(r => {
+                list.innerHTML += `<div class="law-item"><div class="law-title">${r.title}</div><div class="law-content">${r.content}</div></div>`;
+            });
+        }
+    </script>
+</body>
+</html>
