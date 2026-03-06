@@ -19,7 +19,7 @@
             font-family: 'Optima', 'Didot', 'Hiragino Mincho ProN', serif;
             background-color: var(--bg-beige);
             color: var(--text-dark);
-            line-height: 1.4;
+            line-height: 1.5;
             font-size: 13px;
         }
 
@@ -38,34 +38,28 @@
             text-decoration: none;
             color: var(--primary-navy);
             font-weight: bold;
-            font-size: 0.7rem;
-            margin-bottom: 4px;
-            transition: transform 0.2s;
+            font-size: 0.75rem;
+            margin-bottom: 8px; /* Portalの高さを確保 */
         }
-        .back-link:hover { transform: translateX(-3px); }
 
         h1 { margin: 0; font-size: 1.15rem; letter-spacing: 0.4em; color: var(--primary-navy); }
         .subtitle { font-size: 0.6rem; color: var(--soft-gold); letter-spacing: 0.1em; text-transform: uppercase; }
 
         main { max-width: 850px; margin: 25px auto; padding: 0 5%; }
-        .section-card { background: var(--white); padding: 20px 30px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
-        h2 { color: var(--primary-navy); border-left: 3px solid var(--soft-gold); padding-left: 10px; font-size: 0.95rem; margin-bottom: 12px; text-transform: uppercase; }
+        .section-card { background: var(--white); padding: 20px 30px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; }
+        h2 { color: var(--primary-navy); border-left: 3px solid var(--soft-gold); padding-left: 10px; font-size: 0.95rem; margin-bottom: 12px; }
         
-        /* 漢字語解説 */
         .kanji-box { background: #f0f4f8; border: 1px solid #cbd5e0; padding: 12px; margin: 10px 0; border-radius: 4px; }
         .kanji-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; background: white; }
         .kanji-table td { padding: 6px; border: 1px solid #e2e8f0; }
         .kanji-key { background: #edf2f7; font-weight: bold; color: var(--primary-navy); width: 60px; text-align: center; }
 
         .dict-table { width: 100%; border-collapse: collapse; margin-top: 5px; font-size: 0.8rem; }
-        .dict-table th { background: #f1f5f9; padding: 6px; text-align: left; border-bottom: 1px solid var(--soft-gold); color: var(--primary-navy); }
-        .dict-table td { padding: 5px 8px; border-bottom: 1px solid #f1f5f9; vertical-align: top; }
+        .dict-table th { background: #f1f5f9; padding: 6px; text-align: left; border-bottom: 1px solid var(--soft-gold); }
+        .dict-table td { padding: 5px 8px; border-bottom: 1px solid #f1f5f9; }
         .lum-word { font-weight: bold; color: var(--accent-blue); }
 
-        .la-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 5px; font-size: 0.8rem; }
-        .la-item { padding: 6px; background: #fffaf0; border: 1px solid #f0e4c3; }
-
-        footer { text-align: center; padding: 20px; color: #94a3b8; font-size: 0.65rem; }
+        .time-explanation { background: #fffaf0; padding: 10px; border: 1px solid #f0e4c3; margin: 10px 0; font-size: 0.8rem; }
     </style>
 </head>
 <body>
@@ -73,78 +67,73 @@
 <header>
     <a href="#" class="back-link">← PORTAL</a>
     <h1>LUMINARIAN LEXICON</h1>
-    <div class="subtitle">Official Standard Repository</div>
+    <div class="subtitle">Official Repository of Phosbalo</div>
 </header>
 
 <main>
     <section class="section-card">
-        <h2>1. Principles & "La-" System</h2>
-        <p style="font-size: 0.75rem; margin-bottom: 8px;">接頭辞 <b>La-</b> は概念を反転・増幅させます。響きはフランス語・ロマンス諸語の流麗さを追求しています。</p>
-        <div class="la-grid">
-            <div class="la-item">パタカ (悲) → <b>ラパタカ</b> (喜)</div>
-            <div class="la-item">リロ (軽) → <b>ラリロ</b> (重)</div>
-            <div class="la-item">チッタ (父) → <b>ラチッタ</b> (祖父)</div>
-            <div class="la-item">コッタ (弟妹) → <b>ラコッタ</b> (兄姉)</div>
-            <div class="la-item">セノム (先輩) → <b>ラセノム</b> (先生)</div>
-            <div class="la-item">メテオロ (点としての天気) → <b>ラメテオ</b> (線としての気候)</div>
-        </div>
-    </section>
-
-    <section class="section-card">
-        <h2>2. Kanji-Cognate System (漢字語解説)</h2>
+        <h2>1. Kanji-Cognate System (漢字語・語根)</h2>
         <div class="kanji-box">
             <table class="kanji-table">
-                <tr><td class="kanji-key">平 (パセ)</td><td>Pase</td><td>和 (ム)</td><td>Mu</td><td>→ <b>パセム</b> (平和)</td></tr>
-                <tr><td class="kanji-key">交 (クロサ)</td><td>Klosa</td><td>通 (テラ)</td><td>Tela</td><td>→ <b>クロステラ</b> (交通)</td></tr>
-                <tr><td class="kanji-key">旅 (トラン)</td><td>Tolan</td><td>券 (テ)</td><td>Te</td><td>→ <b>トランテ</b> (旅券)</td></tr>
-                <tr><td class="kanji-key">共 (トノ)</td><td>Tono</td><td>住 (ソン)</td><td>Son</td><td>国 (ロノ) → Lono</td></tr>
+                <tr><td class="kanji-key">共</td><td>トノ (Tono)</td><td class="kanji-key">和</td><td>ム (Mu)</td><td class="kanji-key">国</td><td>ロノ (Lono)</td></tr>
+                <tr><td class="kanji-key">平</td><td>パセ (Pase)</td><td class="kanji-key">交</td><td>クロサ (Klosa)</td><td class="kanji-key">通</td><td>テラ (Tela)</td></tr>
+                <tr><td class="kanji-key">民</td><td>ミン (Min)</td><td class="kanji-key">旅</td><td>トラン (Tolan)</td><td class="kanji-key">券</td><td>テ (Te)</td></tr>
+                <tr><td class="kanji-key">住</td><td>ソン (Son)</td><td class="kanji-key">公</td><td>クロサ (Klosa)</td><td class="kanji-key">務</td><td>サビル (Sabilu)</td></tr>
             </table>
         </div>
         <p style="font-size: 0.75rem; color: #666;">
-            <b>トノムロノ</b> (共和国) = 共・和・国 / <b>トノテラ</b> (共通) = 共・通
+            <b>トノムロノ</b> (共和国) = 共・和・国 / <b>ロノミン</b> (国民) = 国・民 / <b>パセム</b> (平和) = 平・和
         </p>
     </section>
 
     <section class="section-card">
-        <h2>3. Grammar & Temporal (文法と時間)</h2>
-        <table class="dict-table">
-            <tr><th>Time</th><th>Luminarian</th><th>Grammar</th><th>Rule</th></tr>
-            <tr><td>今 (Now)</td><td><b>Nana</b></td><td>現在</td><td>変化なし</td></tr>
-            <tr><td>今日 (Today)</td><td><b>Naende</b></td><td>過去</td><td>語尾に <b>Na</b></td></tr>
-            <tr><td>明日 (Tomorrow)</td><td><b>Lanaende</b></td><td>未来</td><td>語前に <b>Wi</b></td></tr>
-            <tr><td>昨日 (Yesterday)</td><td><b>Naendena</b></td><td>疑問</td><td>文末に <b>Lei?</b></td></tr>
-        </table>
+        <h2>2. Temporal System (時間と時制)</h2>
+        <div class="time-explanation">
+            ルミナラ語の時間表現は、基点となる「今日 (Naende)」に時制ルールを適用するだけで完成します。
+            <ul>
+                <li><b>Naende</b> (今日) : 基点となる日</li>
+                <li><b>Naendena</b> (昨日) : 今日 + 過去(Na) = 過ぎ去った日</li>
+                <li><b>Wi-naende</b> (明日) : 未来(Wi) + 今日 = これから来る日</li>
+                <li><b>Nana</b> (今) : 瞬間</li>
+            </ul>
+        </div>
     </section>
 
     <section class="section-card">
-        <h2>4. Vocabulary Database (語彙集)</h2>
+        <h2>3. The "La-" Switch (反転・増幅)</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.8rem;">
+            <div style="padding: 6px; background: #fffaf0; border: 1px solid #f0e4c3;">パタカ (悲) → <b>ラパタカ</b> (喜)</div>
+            <div style="padding: 6px; background: #fffaf0; border: 1px solid #f0e4c3;">リロ (軽) → <b>ラリロ</b> (重)</div>
+            <div style="padding: 6px; background: #fffaf0; border: 1px solid #f0e4c3;">チッタ (父) → <b>ラチッタ</b> (祖父)</div>
+            <div style="padding: 6px; background: #fffaf0; border: 1px solid #f0e4c3;">コッタ (弟妹) → <b>ラコッタ</b> (兄姉)</div>
+        </div>
+    </section>
+
+    <section class="section-card">
+        <h2>4. Vocabulary Database (全語彙集)</h2>
         
-        <h3>【指示・代名・基本】</h3>
+        <h3>【国家・行政・交通】</h3>
         <table class="dict-table">
-            <tr><td><span class="lum-word">Lili / Olo / Maleko</span></td><td>私 / あなた / 彼(女)</td><td><span class="lum-word">Elo / Alo / Mina</span></td><td>これ / あれ / すべて</td></tr>
-            <tr><td><span class="lum-word">Kon / Ni</span></td><td>はい / いいえ</td><td><span class="lum-word">Lapataka Bizu</span></td><td>お会いできて光栄です</td></tr>
+            <tr><th>Luminarian</th><th>Japanese</th><th>構成</th></tr>
+            <tr><td><span class="lum-word">Tonomulono</span></td><td>共和国</td><td>共・和・国</td></tr>
+            <tr><td><span class="lum-word">Pasemu</span></td><td>平和</td><td>平・和</td></tr>
+            <tr><td><span class="lum-word">Klosatela</span></td><td>交通</td><td>交・通</td></tr>
+            <tr><td><span class="lum-word">Lonomin</span></td><td>国民</td><td>国・民</td></tr>
+            <tr><td><span class="lum-word">Sonmin</span></td><td>住民</td><td>住・民</td></tr>
+            <tr><td><span class="lum-word">Sonminte</span></td><td>住民票</td><td>住・民・券(証)</td></tr>
+            <tr><td><span class="lum-word">Tolante</span></td><td>旅券</td><td>旅・券</td></tr>
+            <tr><td><span class="lum-word">Klosasabilumin</span></td><td>公務員</td><td>公・務・人</td></tr>
+            <tr><td><span class="lum-word">Tonomulegula</span></td><td>社会主義</td><td>共・和・法(主義)</td></tr>
+            <tr><td><span class="lum-word">Lonolegula</span></td><td>法律</td><td>国・法</td></tr>
         </table>
 
-        <h3>【社会・行政・交通】</h3>
+        <h3>【生活・基本】</h3>
         <table class="dict-table">
             <tr><th>Luminarian</th><th>Japanese</th><th>Luminarian</th><th>Japanese</th></tr>
-            <tr><td><span class="lum-word">Kontamonarono</span></td><td>共和国(憲法称)</td><td><span class="lum-word">Pasemu</span></td><td>平和</td></tr>
-            <tr><td><span class="lum-word">Klosatela</span></td><td>交通</td><td><span class="lum-word">Lonmin</span></td><td>国民</td></tr>
-            <tr><td><span class="lum-word">Sonmin</span></td><td>住民</td><td><span class="lum-word">Sonmiinte</span></td><td>住民票(住・民・証)</td></tr>
-            <tr><td><span class="lum-word">Tolante</span></td><td>旅券 (パスポート)</td><td><span class="lum-word">Lonolegula</span></td><td>法律</td></tr>
-            <tr><td><span class="lum-word">Abokatemin</span></td><td>弁護士</td><td><span class="lum-word">Tonosabilu</span></td><td>公務員</td></tr>
-            <tr><td><span class="lum-word">Sonminka</span></td><td>区役所</td><td><span class="lum-word">Tonomuizimu</span></td><td>社会主義</td></tr>
-        </table>
-
-        <h3>【生活・自然・動作】</h3>
-        <table class="dict-table">
-            <tr><th>Luminarian</th><th>Japanese</th><th>Luminarian</th><th>Japanese</th></tr>
-            <tr><td><span class="lum-word">Molanta</span></td><td>食べる・飲む</td><td><span class="lum-word">Baloko</span></td><td>行く・歩く</td></tr>
-            <tr><td><span class="lum-word">Laisa / Bule</span></td><td>米 / パン</td><td><span class="lum-word">Dusemola</span></td><td>お菓子</td></tr>
-            <tr><td><span class="lum-word">Seiko / Lani</span></td><td>酒 / 水</td><td><span class="lum-word">Filonndo / Lolo</span></td><td>魚 / 肉</td></tr>
-            <tr><td><span class="lum-word">Kasadomo</span></td><td>家</td><td><span class="lum-word">Telalono</span></td><td>土地</td></tr>
-            <tr><td><span class="lum-word">Lulu / Seliko</span></td><td>持つ・ある / 書く</td><td><span class="lum-word">Sanalo / Pikani</span></td><td>寝る / 洗う</td></tr>
-            <tr><td><span class="lum-word">Meteolo / Tenpula</span></td><td>天気 / 気温</td><td><span class="lum-word">Amichika</span></td><td>友達</td></tr>
+            <tr><td><span class="lum-word">Molanta</span></td><td>食す・飲む</td><td><span class="lum-word">Baloko</span></td><td>行く・歩く</td></tr>
+            <tr><td><span class="lum-word">Laisa / Bule</span></td><td>米 / パン</td><td><span class="lum-word">Seiko / Lani</span></td><td>酒 / 水</td></tr>
+            <tr><td><span class="lum-word">Kasadomo</span></td><td>家</td><td><span class="lum-word">Amichika</span></td><td>友達</td></tr>
+            <tr><td><span class="lum-word">Elo / Alo / Mina</span></td><td>これ / あれ / 皆</td><td><span class="lum-word">Kon / Ni</span></td><td>はい / いいえ</td></tr>
         </table>
     </section>
 </main>
