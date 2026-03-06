@@ -10,7 +10,7 @@ body, html {
     font-family: 'Montserrat', 'Noto Serif JP', sans-serif;
     background-color: #fff;
     color: var(--primary);
-    line-height: 1.4;
+    line-height: 1.3; /* さらに行間をタイトに */
 }
 
 /* ナビゲーション */
@@ -21,7 +21,7 @@ body, html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 40px;
+    padding: 10px 40px; /* さらにスリムに */
     box-sizing: border-box;
     z-index: 100;
     background: rgba(255,255,255,0.98);
@@ -31,101 +31,109 @@ body, html {
 
 .brand-logo {
     font-family: 'Cinzel', serif;
-    font-size: 20px;
+    font-size: 18px;
     letter-spacing: 4px;
 }
 
-/* ヒーローエリア：高さを詰め、画像サイズを再調整 */
+/* ヒーローエリア：画像と文字を極限まで近づける */
 .hero-container {
     position: relative;
     width: 100%;
-    height: 70vh; /* 高さをさらに抑えて、下のコンテンツを繰り上げ */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background: #fff;
-    padding-top: 80px; /* ナビ分 */
+    padding-top: 60px; /* ナビ分 */
+    margin-bottom: -30px; /* 下のAcademicsを上に引っ張り上げる */
 }
 
 .hero-bg-img {
     width: auto;
-    height: 60%; /* 小さすぎたのを修正 */
+    height: 300px; /* 高さを固定してバランスを安定化 */
     max-width: 90%;
     object-fit: contain;
-    margin-bottom: 20px; /* 文字との距離 */
+    margin-bottom: 0; /* 下の文字との隙間をゼロに */
 }
 
 .hero-content {
     text-align: center;
     color: var(--primary);
+    margin-top: -10px; /* 画像に文字を少し食い込ませる */
+}
+
+/* 復活させた四角いラベル */
+.hero-labels {
+    margin-bottom: 8px;
+}
+
+.label {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    border: 1px solid var(--primary);
+    padding: 2px 8px;
+    margin: 0 3px;
+    display: inline-block;
+    font-weight: 600;
 }
 
 .hero-content h1 {
     font-family: 'Cinzel', serif;
-    font-size: 42px; /* 少しだけ小さくして知的に */
+    font-size: 38px;
     line-height: 1;
-    margin: 10px 0;
+    margin: 5px 0; /* 上下の余白を最小化 */
 }
 
-/* コンテンツエリア：ヒーローとの隙間を徹底的に詰める */
+.hero-subtext {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* アカデミックセクション：ヒーローとの隙間を消す */
 .info-grid {
-    padding: 20px 40px 60px; /* 上の余白を40pxから20pxに削減 */
-    max-width: 900px;
+    padding: 0 40px 40px; /* 上のパディングを完全に除去 */
+    max-width: 800px;
     margin: 0 auto;
 }
 
 .section-title-box {
     border-bottom: 2px solid var(--primary);
-    padding-bottom: 10px;
-    margin-bottom: 20px; /* 下のリストとの距離も詰める */
+    padding-bottom: 5px;
+    margin-bottom: 15px; /* リストとの距離をさらに詰める */
 }
 
 .section-title-box h2 {
     font-family: 'Cinzel', serif;
-    font-size: 28px;
+    font-size: 24px;
     margin: 0;
 }
 
-/* アコーディオン：行間を極限までタイトに */
+/* アコーディオン：極限までタイトに */
 .accordion-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 0; /* 15pxから12pxへ */
+    padding: 8px 0; /* 12pxから8pxへ */
     cursor: pointer;
     border-bottom: 1px solid #f0f0f0;
 }
 
 .header-left h3 {
     font-family: 'Cinzel', serif;
-    margin: 0 0 0 20px;
-    font-size: 16px;
+    margin: 0 0 0 15px;
+    font-size: 15px;
 }
 
 .accordion-content {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease-out;
-    padding-left: 45px;
-    background: #fcfcfc;
+    padding-left: 40px;
 }
 
 .active .accordion-content {
-    max-height: 250px;
-    padding: 15px 20px 20px 45px;
-}
-
-.faculty-main-p {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--accent);
-    margin-bottom: 5px;
-}
-
-.faculty-desc {
-    font-size: 12px;
-    color: #444;
+    max-height: 200px;
+    padding: 10px 20px 15px 40px;
 }
 
 /* サイドメニュー（変更なし） */
@@ -138,13 +146,12 @@ body, html {
     transition: 0.5s;
     display: flex; align-items: center; justify-content: center;
 }
-.sidenav a { padding: 8px; text-decoration: none; font-size: 28px; color: #fff; display: block; font-family: 'Cinzel', serif; }
-.sidenav .closebtn { position: absolute; top: 20px; right: 45px; font-size: 60px; }
+.sidenav a { padding: 8px; text-decoration: none; font-size: 26px; color: #fff; display: block; font-family: 'Cinzel', serif; }
 
 .main-footer {
-    padding: 30px;
-    font-size: 10px;
+    padding: 20px;
+    font-size: 9px;
     text-align: center;
     border-top: 1px solid #eee;
-    color: #aaa;
+    color: #ccc;
 }
