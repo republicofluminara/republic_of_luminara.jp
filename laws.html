@@ -4,29 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>法令検索 - フォスバロ共和国 (e-LEX)</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@700&display=swap" rel="stylesheet">
     <style>
         :root { --primary-blue: #003366; --accent-blue: #4a90e2; --bg-light: #f8f9fa; }
-        body { margin: 0; padding: 0; font-family: 'Noto Sans JP', sans-serif; background-color: var(--bg-light); color: #333; }
-        header { background: #fff; border-bottom: 3px solid var(--primary-blue); padding: 10px 20px; display: flex; align-items: center; position: sticky; top: 0; z-index: 100; }
-        .menu-btn { font-size: 24px; background: none; border: none; color: var(--primary-blue); cursor: pointer; margin-right: 15px; padding: 5px; }
-        .logo-area { display: flex; align-items: center; margin-right: auto; }
-        .logo-text { font-family: 'Noto Serif JP', serif; font-size: 1.3rem; font-weight: bold; color: var(--primary-blue); letter-spacing: 0.05em; }
+        body { margin: 0; padding: 0; font-family: sans-serif; background-color: var(--bg-light); color: #333; }
+        header { background: #fff; border-bottom: 3px solid var(--primary-blue); padding: 10px 15px; display: flex; align-items: center; position: sticky; top: 0; z-index: 100; }
+        .menu-btn { font-size: 24px; background: none; border: none; color: var(--primary-blue); cursor: pointer; margin-right: 10px; padding: 5px; flex-shrink: 0; }
+        .logo-area { display: flex; align-items: center; margin-right: auto; overflow: hidden; }
+        .logo-text { font-size: 1.1rem; font-weight: bold; color: var(--primary-blue); white-space: nowrap; }
 
         .container { max-width: 800px; margin: 20px auto; padding: 0 20px; background: #fff; min-height: 85vh; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
-        .breadcrumb { padding: 20px 0; font-size: 0.85rem; color: #666; }
+        .breadcrumb { padding: 20px 0; font-size: 0.8rem; color: #666; }
         .breadcrumb a { color: var(--primary-blue); text-decoration: none; }
-        h1 { font-family: 'Noto Serif JP', serif; font-size: 1.8rem; color: var(--primary-blue); border-bottom: 4px solid var(--accent-blue); padding-bottom: 10px; margin-bottom: 30px; }
+        h1 { font-size: 1.6rem; color: var(--primary-blue); border-bottom: 4px solid var(--accent-blue); padding-bottom: 10px; margin-bottom: 30px; }
 
-        .search-panel { background-color: #f2f5f8; padding: 25px; border-radius: 4px; margin-bottom: 30px; }
+        .search-panel { background-color: #f2f5f8; padding: 20px; border-radius: 4px; margin-bottom: 30px; }
         .search-bar { display: flex; height: 44px; margin-top: 15px; }
-        .search-bar input { flex: 1; border: 1px solid #ccc; padding: 0 10px; font-size: 1rem; outline: none; }
-        .search-bar button { background-color: var(--primary-blue); color: white; border: none; width: 60px; cursor: pointer; font-size: 1.2rem; }
+        .search-bar input { flex: 1; border: 1px solid #ccc; padding: 0 10px; font-size: 1rem; outline: none; min-width: 0; }
+        .search-bar button { background-color: var(--primary-blue); color: white; border: none; width: 50px; cursor: pointer; flex-shrink: 0; }
 
         #search-results { display: none; margin-top: 30px; }
-        .law-item { margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 25px; }
-        .law-title { font-family: 'Noto Serif JP', serif; font-size: 1.15rem; font-weight: bold; color: var(--primary-blue); margin-bottom: 12px; }
-        .law-content { font-size: 0.95rem; line-height: 1.8; white-space: pre-wrap; color: #444; }
+        .law-item { margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+        .law-title { font-weight: bold; color: var(--primary-blue); margin-bottom: 10px; }
+        .law-content { font-size: 0.9rem; line-height: 1.8; white-space: pre-wrap; }
         .highlight { background-color: #ffeb3b; font-weight: bold; }
 
         .side-menu { height: 100%; width: 0; position: fixed; z-index: 200; top: 0; left: 0; background-color: var(--primary-blue); overflow-x: hidden; transition: 0.4s; padding-top: 60px; }
@@ -41,19 +40,16 @@
         <a href="index.html">政府ホーム</a>
         <a href="laws.html">法令検索(e-LEX)</a>
     </div>
-
     <header>
         <button class="menu-btn" onclick="openNav()">&#9776;</button>
         <div class="logo-area"><div class="logo-text">e-LEX ルミナラ共和国法令検索</div></div>
     </header>
-
     <div class="container">
         <nav class="breadcrumb"><a href="index.html">政府ホーム</a> ＞ 法令検索</nav>
         <h1>法令検索</h1>
         <div class="search-panel">
-            <div style="font-weight: bold; color: var(--primary-blue);">キーワードから法令を探す</div>
             <div class="search-bar">
-                <input type="text" id="lawSearch" placeholder="例：消費税、MPS、寄託、ダイヤモンド葬">
+                <input type="text" id="lawSearch" placeholder="キーワードを入力">
                 <button onclick="searchAction()">🔍</button>
             </div>
         </div>
@@ -61,17 +57,13 @@
         <div id="search-results"><div id="results-count" style="margin-bottom:20px; font-weight:bold; color: var(--primary-blue);"></div><div id="results-list"></div></div>
     </div>
     <footer>&copy; 2026 Government of the Republic of Luminara.</footer>
-
     <script>
         const lawDatabase = [
-            { title: "フォスバロ共和国基本憲章", content: "第1条（国家の主権的価値）：全存在の尊厳と、相互奉仕による美学を統治の基軸とする。\n第2条（意思決定）：最高倫理AIの提言に基づき、有権者の7割の合意形成を要する直接民主制を運用する。" },
+            { title: "フォスバロ共和国基本憲章", content: "第1条：全存在の尊厳と、相互奉仕による美学を統治の基軸とする。\n第2条：最高倫理AIの提言に基づき、有権者の7割の合意形成を要する直接民主制を運用する。" },
             { title: "社会的貢献及び間接消費税に関する特例法", content: "第1条：生産活動への介入（所得課税）を最小化し、国内の総資産循環を最適化する。\n第2条：国内の全消費行為に対し、社会資本維持費として一律30%の賦課を行う。" },
             { title: "国防対策班(MPS)設置及び権限規則", content: "第1条：市民の私的聖域を保護するため、執行機関「MPS」を設置する。\n第2条：MPSは自律型監視網を用い、秩序攪乱事象に対し即時介入の権限を有する。" },
-            { title: "グローバル・レジデンス寄託（GRP）規定", content: "第1条：定住希望者は国家安定基金へ100万ウォラルを預託することを要する。\n第2条：当該寄託金は5年間の凍結期間を経て、返還資格が生じる。" },
-            { title: "都市美学的資源循環(SRM) 管理令", content: "第1条：分子レベルの資源循環による「廃棄物ゼロ」を義務付け、景観美を永久に保全する。" },
-            { title: "生命の承継（ダイヤモンド葬）ガイドライン", content: "第1条：故人の遺骨を炭素結晶として固定し、有形的価値として次世代へ継承することを推奨する。" }
+            { title: "グローバル・レジデンス寄託（GRP）規定", content: "第1条：定住希望者は国家安定基金へ100万ウォラルを預託することを要する。\n第2条：当該寄託金は5年間の凍結期間を経て、返還資格が生じる。" }
         ];
-
         function openNav() { document.getElementById("mySideMenu").style.width = "280px"; }
         function closeNav() { document.getElementById("mySideMenu").style.width = "0"; }
         function searchAction() {
