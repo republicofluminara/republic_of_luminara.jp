@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>組織・制度 | ルミナラ共和国政府ポータル</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-blue: #003366;
@@ -14,7 +13,8 @@
 
         body {
             margin: 0; padding: 0;
-            font-family: ' Noto Serif JP', sans-serif;
+            /* フォントを標準の角ゴシックに戻しました */
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
             background-color: var(--bg-light);
             color: #333;
         }
@@ -22,7 +22,7 @@
         header {
             background: #fff;
             border-bottom: 3px solid var(--primary-blue);
-            padding: 10px 20px;
+            padding: 10px 15px;
             display: flex;
             align-items: center;
             position: sticky; top: 0; z-index: 100;
@@ -31,99 +31,68 @@
         .menu-btn {
             font-size: 24px; background: none; border: none;
             color: var(--primary-blue); cursor: pointer;
-            margin-right: 15px; /* メニューとタイトルの隙間を最小限に */
+            margin-right: 10px;
             padding: 5px;
+            flex-shrink: 0;
         }
 
         .logo-area {
             display: flex;
             align-items: center;
             margin-right: auto;
+            overflow: hidden; /* はみ出し防止 */
         }
 
         .logo-text {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 1.3rem;
+            font-size: 1.2rem; /* 少しだけサイズ調整 */
             font-weight: bold;
             color: var(--primary-blue);
             letter-spacing: 0.05em;
+            white-space: nowrap; /* 途中で改行させない */
         }
 
-        /* 左サイドメニュー */
-        .side-menu {
-            height: 100%; width: 0; position: fixed; z-index: 200;
-            top: 0; left: 0; background-color: var(--primary-blue);
-            overflow-x: hidden; transition: 0.4s; padding-top: 60px;
-        }
-        .side-menu a {
-            padding: 15px 32px; text-decoration: none; font-size: 18px;
-            color: #fff; display: block; border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .side-menu a:hover { background-color: var(--accent-blue); }
+        /* サイドメニュー */
+        .side-menu { height: 100%; width: 0; position: fixed; z-index: 200; top: 0; left: 0; background-color: var(--primary-blue); overflow-x: hidden; transition: 0.4s; padding-top: 60px; }
+        .side-menu a { padding: 15px 32px; text-decoration: none; font-size: 18px; color: #fff; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .close-btn { position: absolute; top: 10px; right: 20px; font-size: 36px; color: white; cursor: pointer; }
 
         .container { max-width: 800px; margin: 20px auto; padding: 0 20px; background: #fff; min-height: 85vh; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
-
-        .breadcrumb { padding: 20px 0; font-size: 0.85rem; color: #666; }
+        .breadcrumb { padding: 20px 0; font-size: 0.8rem; color: #666; }
         .breadcrumb a { color: var(--primary-blue); text-decoration: none; }
-
-        h1 { font-family: 'Noto Serif JP', serif; font-size: 1.8rem; color: var(--primary-blue); border-bottom: 4px solid var(--accent-blue); padding-bottom: 10px; margin-bottom: 30px; }
-
+        h1 { font-size: 1.6rem; color: var(--primary-blue); border-bottom: 4px solid var(--accent-blue); padding-bottom: 10px; margin-bottom: 30px; }
         .link-list { list-style: none; padding: 0; }
         .link-list li { border-bottom: 1px solid #eee; }
-        .link-list a {
-            display: flex; align-items: center; padding: 18px 10px;
-            text-decoration: none; color: var(--primary-blue); font-weight: bold;
-            transition: 0.2s;
-        }
+        .link-list a { display: flex; align-items: center; padding: 18px 10px; text-decoration: none; color: var(--primary-blue); font-weight: bold; }
         .link-list a::before { content: "▶"; margin-right: 12px; font-size: 0.8rem; color: var(--accent-blue); }
-        .link-list a:hover { background: #f0f7ff; padding-left: 20px; }
-
-        .top-link { text-align: right; margin-top: 40px; padding-bottom: 30px; }
-        .top-link a { color: var(--primary-blue); font-size: 0.9rem; text-decoration: none; }
-
         footer { background: var(--primary-blue); color: #fff; text-align: center; padding: 30px; font-size: 0.8rem; }
+
+        /* スマホ向け調整 */
+        @media screen and (max-width: 480px) {
+            .logo-text { font-size: 1.05rem; }
+        }
     </style>
 </head>
 <body>
-
     <div id="mySideMenu" class="side-menu">
         <span class="close-btn" onclick="closeNav()">&times;</span>
-        <a href="index.html">Republic of Luminara</a>
-        <a href="laws.html">所管の法令検索(e-LEX)</a>
+        <a href="index.html">政府ホーム</a>
+        <a href="laws.html">法令検索(e-LEX)</a>
     </div>
-
     <header>
         <button class="menu-btn" onclick="openNav()">&#9776;</button>
-        <div class="logo-area">
-            <div class="logo-text">ルミナラ共和国政府</div>
-        </div>
-        <div style="font-size: 0.8rem; color: #666;">English | 🔍 Search</div>
+        <div class="logo-area"><div class="logo-text">ルミナラ共和国政府</div></div>
+        <div style="font-size: 0.7rem; color: #666; flex-shrink: 0; margin-left: 5px;">English</div>
     </header>
-
     <div class="container">
-        <nav class="breadcrumb">
-            <a href="index.html">政府ホーム</a> ＞ <a href="#">組織・制度</a> ＞ 所管の法令等
-        </nav>
-
+        <nav class="breadcrumb"><a href="index.html">政府ホーム</a> ＞ <a href="#">組織・制度</a> ＞ 所管の法令等</nav>
         <h1>所管の法令等</h1>
-
         <ul class="link-list">
-            <li><a href="laws.html">フォスバロ共和国基本憲章（憲法）</a></li>
+            <li><a href="laws.html">フォスバロ共和国基本憲章</a></li>
             <li><a href="laws.html">社会的貢献及び間接消費税法</a></li>
-            <li><a href="laws.html">グローバル・レジデンス寄託規定（GRP）</a></li>
-            <li><a href="laws.html">国防対策班(MPS) 設置及び権限規則</a></li>
-            <li><a href="laws.html">都市美学的資源循環(SRM) 管理令</a></li>
-            <li><a href="laws.html">生命の承継（ダイヤモンド葬）ガイドライン</a></li>
+            <li><a href="laws.html">グローバル・レジデンス寄託規定</a></li>
         </ul>
-
-        <div class="top-link">
-            <a href="#">このページの先頭へ ▲</a>
-        </div>
     </div>
-
-    <footer>&copy; 2026 Government of the Republic of Luminara (Phosbalo).</footer>
-
+    <footer>&copy; 2026 Government of the Republic of Luminara.</footer>
     <script>
         function openNav() { document.getElementById("mySideMenu").style.width = "280px"; }
         function closeNav() { document.getElementById("mySideMenu").style.width = "0"; }
