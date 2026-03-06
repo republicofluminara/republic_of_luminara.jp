@@ -1,169 +1,27 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>法令検索 - フォスバロ共和国 (GOV.LUMINARA)</title>
-    <style>
-        body, html {
-            margin: 0; padding: 0;
-            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-            background-color: #ffffff; color: #333;
-        }
-
-        /* ヘッダー：e-GOV風 */
-        header {
-            display: flex; align-items: center; padding: 10px 15px;
-            background-color: #fff; border-bottom: 1px solid #ddd;
-            position: sticky; top: 0; z-index: 100;
-        }
-
-        .menu-btn { font-size: 24px; background: none; border: none; color: #003366; cursor: pointer; margin-right: 15px; }
-        .gov-logo { display: flex; align-items: center; font-weight: bold; color: #003366; font-size: 1.2rem; }
-        .gov-logo span { color: #4a90e2; margin: 0 5px; }
-
-        .main-content { padding: 15px; max-width: 800px; margin: 0 auto; }
-
-        .search-panel { background-color: #fff; margin-bottom: 20px; }
-        .status-select { font-size: 0.9rem; margin-bottom: 15px; display: flex; align-items: center; gap: 5px; }
-        .radio-group { display: flex; gap: 15px; margin-bottom: 20px; font-size: 0.95rem; }
-        .radio-group label { display: flex; align-items: center; gap: 5px; }
-
-        .category-box { background-color: #f2f5f8; border: 1px solid #e0e0e0; padding: 12px; font-size: 0.85rem; margin-bottom: 15px; }
-        .category-title { font-weight: bold; margin-bottom: 8px; }
-        .checkbox-grid { display: flex; flex-wrap: wrap; gap: 10px; }
-
-        .search-bar { display: flex; height: 44px; margin-bottom: 25px; }
-        .search-bar input { flex: 1; border: 2px solid #003366; padding: 0 10px; font-size: 1rem; outline: none; }
-        .search-bar button { background-color: #003366; color: white; border: none; width: 60px; cursor: pointer; font-size: 1.2rem; }
-
-        /* 検索結果エリア */
-        #search-results { display: none; margin-top: 20px; border-top: 2px solid #003366; padding-top: 20px; }
-        .law-item { margin-bottom: 30px; padding: 20px; background: #fff; border: 1px solid #eee; box-shadow: 2px 2px 5px rgba(0,0,0,0.05); }
-        .law-title { font-size: 1.2rem; font-weight: bold; color: #003366; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-bottom: 10px; }
-        .law-content { line-height: 1.8; font-size: 0.95rem; white-space: pre-wrap; }
-        .highlight { background-color: #ffeb3b; font-weight: bold; }
-
-        .info-box { background-color: #eff5ff; border-radius: 4px; padding: 15px; margin-bottom: 20px; line-height: 1.6; border-left: 4px solid #4a90e2; }
-        .info-date { font-weight: bold; margin-bottom: 10px; display: block; }
-
-        .side-menu { height: 100%; width: 0; position: fixed; z-index: 200; top: 0; left: 0; background-color: #1a2a3a; overflow-x: hidden; transition: 0.5s; padding-top: 60px; }
-        .side-menu a { padding: 15px 32px; text-decoration: none; font-size: 18px; color: #fff; display: block; }
-        .close-btn { position: absolute; top: 10px; right: 25px; font-size: 36px; color: white; cursor: pointer; }
-    </style>
-</head>
-<body>
-
-    <div id="mySideMenu" class="side-menu">
-        <span class="close-btn" onclick="closeNav()">&times;</span>
-        <a href="government.html">政府ポータル</a>
-        <a href="#">法令検索 (Current)</a>
-        <a href="#">国防対策班(MPS)通報窓口</a>
-    </div>
-
-    <header>
-        <button class="menu-btn" onclick="openNav()">&#9776;</button>
-        <div class="gov-logo">e<span>-</span>LEX <span>フォスバロ共和国</span> 法令検索</div>
-    </header>
-
-    <div class="main-content">
-        <div class="search-panel">
-            <div class="status-select">現行法令（2026年施行分） ∨</div>
-
-            <div class="radio-group">
-                <label><input type="radio" name="stype" checked> 法令名・キーワード</label>
-                <label><input type="radio" name="stype"> 法令番号</label>
-            </div>
-
-            <div class="category-box">
-                <div class="category-title">法令種別フィルタ</div>
-                <div class="checkbox-grid">
-                    <label><input type="checkbox" checked> 憲法</label>
-                    <label><input type="checkbox" checked> 法律</label>
-                    <label><input type="checkbox" checked> 政令</label>
-                    <label><input type="checkbox" checked> 規則</label>
-                </div>
-            </div>
-
-            <div class="search-bar">
-                <input type="text" id="lawSearch" placeholder="例：憲法、消費税、MPS、ダイヤモンド葬">
-                <button onclick="searchAction()">🔍</button>
-            </div>
-        </div>
-
-        <div id="default-view">
-            <div class="info-box">
-                <span class="info-date">2026-03-04 法令データ更新</span>
-                <p>フォスバロ共和国憲法に基づき、最新の「全民公務員法」および「国防対策規定」が反映されました。</p>
-            </div>
-            <h3 style="border-left: 5px solid #003366; padding-left: 10px;">主要法令一覧</h3>
-            <p>・フォスバロ共和国基本憲章</p>
-            <p>・経済活動及び消費税法</p>
-            <p>・国防対策班(MPS)設置法</p>
-            <p>・共生動物保護管理規則</p>
-        </div>
-
-        <div id="search-results">
-            <div id="results-count" style="margin-bottom:15px; font-weight:bold;"></div>
-            <div id="results-list"></div>
-        </div>
-    </div>
-
-    <script>
-        // 法令データベース（これまでの設定を格納）
-        const lawDatabase = [
-            { title: "フォスバロ共和国基本憲章（憲法）", content: "第1条：万人の平等と利他精神を国家の根幹とする。\n第2条：最高倫理AIによる立法と国民投票（70%承認）による直接民主制を採用する。\n第3条：永世中立を堅持し、他国への先制攻撃を永久に放棄する。" },
-            { title: "経済活動及び消費税法", content: "第1条：国内の全就労者は国家公務員の地位を有する。自営業の兼業は自由である。\n第2条：所得税を撤廃し、国内の全ての消費活動に対して一律30%の消費税（ウォラル税）を課す。\n第3条：法定通貨はウォラル（Worral）とし、完全キャッシュレス決済を義務付ける。" },
-            { title: "国防対策班(MPS)設置法", content: "第1条：国内の治安維持、入国管理、資産保護を目的として『国防対策班（Moon-Phase Security）』を設置する。\n第2条：MPSは無人航空機およびAI監視網を用い、不法行為の抑止と排除を行う権限を有する。" },
-            { title: "移民及び居住に関する特別措置法", content: "第1条：入国には100万ウォラルの預託と無犯罪証明を必須とする。\n第2条：観光客の居住エリアへの立ち入りを禁止する。入国には専用ビザを要する。\n第3条：国民の子供は無条件で国民の権利を継承する。" },
-            { title: "共生動物保護管理規則", content: "第1条：家庭内での動物飼育を禁止する。\n第2条：動物との接触は公営飼育園においてのみ行われるものとする。\n第3条：年1回、指定日に『馬の解放デー』を実施し、動物との共生を再確認する。" },
-            { title: "葬儀及び死生観に関するガイドライン", content: "第1条：故人の遺骨は人工ダイヤモンドへ加工する『ダイヤモンド葬』を推奨する。\n第2条：加工されたダイヤモンドは、家宝として保持、または墓石への埋込を認める。" }
-        ];
-
-        function openNav() { document.getElementById("mySideMenu").style.width = "250px"; }
-        function closeNav() { document.getElementById("mySideMenu").style.width = "0"; }
-        
-        function searchAction() {
-            const query = document.getElementById('lawSearch').value.trim();
-            const resultsDiv = document.getElementById('search-results');
-            const defaultView = document.getElementById('default-view');
-            const listDiv = document.getElementById('results-list');
-            const countDiv = document.getElementById('results-count');
-
-            if(!query) {
-                alert("検索キーワードを入力してください。");
-                return;
-            }
-
-            // 検索ロジック
-            const filtered = lawDatabase.filter(law => 
-                law.title.includes(query) || law.content.includes(query)
-            );
-
-            // 表示切り替え
-            defaultView.style.display = 'none';
-            resultsDiv.style.display = 'block';
-            listDiv.innerHTML = '';
-            countDiv.innerText = `「${query}」の検索結果： ${filtered.length} 件`;
-
-            if(filtered.length === 0) {
-                listDiv.innerHTML = '<p>該当する法令は見つかりませんでした。</p>';
-            } else {
-                filtered.forEach(law => {
-                    const item = document.createElement('div');
-                    item.className = 'law-item';
-                    
-                    // キーワードをハイライト
-                    const highlightedContent = law.content.split(query).join(`<span class="highlight">${query}</span>`);
-                    
-                    item.innerHTML = `
-                        <div class="law-title">${law.title}</div>
-                        <div class="law-content">${highlightedContent}</div>
-                    `;
-                    listDiv.appendChild(item);
-                });
-            }
-        }
-    </script>
-</body>
-</html>
+// laws.html 内の lawDatabase を以下に差し替え
+const lawDatabase = [
+    { 
+        title: "フォスバロ共和国基本憲章", 
+        content: "第1条（国家の主権的価値）：本国は全存在の尊厳と、相互奉仕による美学を統治の基軸とする。\n第2条（意思決定）：最高倫理意思決定アルゴリズムの提示に基づき、有権者の7割の合意を形成する直接意志反映システムを運用する。" 
+    },
+    { 
+        title: "社会的貢献及び間接消費税に関する特例法", 
+        content: "第1条（税制の目的）：個人の生産活動への介入（所得課税）を最小化し、国内の総資産循環を最適化する。\n第2条（付加価値税）：国内における全ての最終消費行為に対し、社会資本維持費として一律30%の賦課を行う。" 
+    },
+    { 
+        title: "国防対策班(MPS)の組織及び権限に関する規則", 
+        content: "第1条：当国の領土的整合性および市民の私的聖域を保護するため、専門執行機関「MPS」を設置する。\n第2条：MPSは自律型航空機群を含む多層監視網を運用し、社会的秩序を攪乱する事象に対し即時介入の権限を有する。" 
+    },
+    { 
+        title: "グローバル・レジデンス寄託（GRP）規定", 
+        content: "第1条（資格取得）：当国への定住を希望する者は、国家安定基金へ100万ウォラルを5年間預託しなければならない。\n第2条：当該寄託金は、当国の高度インフラ維持の担保として機能し、一定期間経過後に返還資格が生じる。" 
+    },
+    { 
+        title: "都市環境維持及び動物共生管理令", 
+        content: "第1条：私的空間における動物の占有飼育は、公衆衛生および個体の権利保護の観点から制限される。\n第2条：市民は指定されたアカデミック・ガーデンにおいて、種を超えた交流の機会を享受できるものとする。" 
+    },
+    { 
+        title: "生命的価値の永続的承継に関するガイドライン", 
+        content: "第1条（ダイヤモンド葬）：個人の生命の記憶を炭素結晶として固定し、有形的価値として次世代へ継承することを推奨する。" 
+    }
+];
