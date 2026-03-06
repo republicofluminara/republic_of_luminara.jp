@@ -1,4 +1,3 @@
-
 :root {
     --gold: #d4af37;
     --dark-blue: #0a2342;
@@ -25,8 +24,15 @@ header {
 
 .nav-container {
     display: flex;
-    justify-content: space-between;
+    /* ロゴを左側に寄せるための設定 */
+    justify-content: flex-start;
     align-items: center;
+}
+
+.logo {
+    margin-left: 20px; /* ハンバーガーとの間隔 */
+    margin-right: auto; /* 以降の要素を右端へ */
+    text-align: left;
 }
 
 .logo h1 {
@@ -35,11 +41,12 @@ header {
     margin: 0;
     letter-spacing: 2px;
 }
+
 .logo p {
     font-size: 0.7rem;
     margin: 0;
-    text-align: center;
     color: var(--gold);
+    /* 親のleft指定により左に寄ります */
 }
 
 .hamburger {
@@ -47,12 +54,17 @@ header {
     width: 30px;
     z-index: 1001;
 }
+
 .hamburger span {
     display: block;
     height: 3px;
     background: var(--dark-blue);
     margin: 5px 0;
     transition: 0.3s;
+}
+
+.header-right {
+    margin-left: 20px;
 }
 
 #side-menu {
@@ -66,13 +78,16 @@ header {
     transition: 0.4s;
     z-index: 999;
 }
+
 #side-menu.active {
     left: 0;
 }
+
 #side-menu ul {
     list-style: none;
     padding: 0;
 }
+
 #side-menu ul li a {
     display: block;
     padding: 15px 25px;
@@ -81,15 +96,17 @@ header {
     border-bottom: 1px solid rgba(255,255,255,0.1);
     transition: 0.3s;
 }
+
 #side-menu ul li a:hover {
     background: rgba(255,255,255,0.1);
     color: var(--gold);
 }
 
+/* ヒーロー画像設定 */
 .hero {
     height: 80vh;
     background: linear-gradient(rgba(10,35,66,0.6), rgba(10,35,66,0.6)), 
-                url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2070') center/cover;
+                url('IMG_8490.jpeg') center/cover; /* 画像差し替え */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -99,6 +116,12 @@ header {
 }
 
 .hero h2 { font-size: 3rem; margin-bottom: 1rem; }
+
+/* 改行後の行間調整 */
+.hero p {
+    line-height: 1.8;
+    font-size: 1.2rem;
+}
 
 .login-btn {
     background: var(--gold);
@@ -111,6 +134,7 @@ header {
 }
 
 .promo { padding: 80px 5%; }
+
 .promo-card {
     background: white;
     display: flex;
@@ -119,17 +143,27 @@ header {
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
+
 .promo-text { padding: 40px; flex: 1; min-width: 300px; }
+
+/* プロモーションエリアにも画像を使用 */
 .promo-image { 
     flex: 1; 
     min-width: 300px;
-    background: var(--emerald); 
+    background: var(--emerald) url('IMG_8490.jpeg') center/cover; /* 画像差し替え */
     display: flex; 
     align-items: center; 
     justify-content: center;
     color: white;
+}
+
+.image-placeholder {
+    background: rgba(0,0,0,0.5);
+    padding: 10px 20px;
+    border-radius: 5px;
     font-weight: bold;
 }
+
 .badge {
     background: var(--gold);
     color: white;
@@ -139,12 +173,28 @@ header {
     display: inline-block;
     margin-bottom: 10px;
 }
-.btn-main, .btn-sub {
+
+/* ボタンの改行防止とレイアウト調整 */
+.hero-btns {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.hero-btns a {
+    display: inline-block;
     padding: 12px 30px;
     text-decoration: none;
     border-radius: 5px;
-    margin: 0 10px;
     font-weight: bold;
+    white-space: nowrap; /* 改行を絶対にさせない */
+    transition: 0.3s;
 }
+
 .btn-main { background: var(--gold); color: white; }
+.btn-main:hover { background: #b89a30; }
+
 .btn-sub { border: 2px solid white; color: white; }
+.btn-sub:hover { background: rgba(255,255,255,0.1); }
