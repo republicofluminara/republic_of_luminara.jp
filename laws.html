@@ -3,82 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>法令検索 - フォスバロ共和国 (e-LEX)</title>
+    <title>e-LEX | ルミナラ共和国法令検索</title>
     <style>
-        :root { --primary-blue: #003366; --accent-blue: #4a90e2; --bg-light: #f8f9fa; }
-        body { margin: 0; padding: 0; font-family: sans-serif; background-color: var(--bg-light); color: #333; }
-        header { background: #fff; border-bottom: 3px solid var(--primary-blue); padding: 10px 15px; display: flex; align-items: center; position: sticky; top: 0; z-index: 100; }
-        .menu-btn { font-size: 24px; background: none; border: none; color: var(--primary-blue); cursor: pointer; margin-right: 10px; padding: 5px; flex-shrink: 0; }
-        .logo-area { display: flex; align-items: center; margin-right: auto; overflow: hidden; }
-        .logo-text { font-size: 1.1rem; font-weight: bold; color: var(--primary-blue); white-space: nowrap; }
+        :root { --primary: #002B5B; --accent: #00A8CC; --bg: #F8FAFC; }
+        body { margin: 0; font-family: -apple-system, sans-serif; background: var(--bg); color: #1A202C; }
+        header { background: #fff; border-bottom: 2px solid var(--primary); padding: 12px 5%; display: flex; align-items: center; position: sticky; top: 0; z-index: 100; }
+        .menu-btn { font-size: 26px; background: none; border: none; color: var(--primary); cursor: pointer; margin-right: 15px; flex-shrink: 0; }
+        .logo-text { font-size: 1.3rem; font-weight: 800; color: var(--primary); white-space: nowrap; flex-grow: 1; letter-spacing: -0.03em; }
 
-        .container { max-width: 800px; margin: 20px auto; padding: 0 20px; background: #fff; min-height: 85vh; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
-        .breadcrumb { padding: 20px 0; font-size: 0.8rem; color: #666; }
-        .breadcrumb a { color: var(--primary-blue); text-decoration: none; }
-        h1 { font-size: 1.6rem; color: var(--primary-blue); border-bottom: 4px solid var(--accent-blue); padding-bottom: 10px; margin-bottom: 30px; }
+        .container { max-width: 900px; margin: 30px auto; padding: 40px; background: #fff; min-height: 80vh; }
+        h1 { font-size: 2rem; font-weight: 800; color: var(--primary); margin-bottom: 30px; }
 
-        .search-panel { background-color: #f2f5f8; padding: 20px; border-radius: 4px; margin-bottom: 30px; }
-        .search-bar { display: flex; height: 44px; margin-top: 15px; }
-        .search-bar input { flex: 1; border: 1px solid #ccc; padding: 0 10px; font-size: 1rem; outline: none; min-width: 0; }
-        .search-bar button { background-color: var(--primary-blue); color: white; border: none; width: 50px; cursor: pointer; flex-shrink: 0; }
+        .search-box { background: var(--primary); padding: 30px; border-radius: 12px; margin-bottom: 40px; box-shadow: 0 20px 40px rgba(0,43,91,0.2); }
+        .search-input-wrap { display: flex; background: #fff; border-radius: 6px; overflow: hidden; padding: 5px; }
+        .search-input-wrap input { flex: 1; border: none; padding: 12px 15px; font-size: 1rem; outline: none; }
+        .search-input-wrap button { background: var(--accent); color: white; border: none; padding: 0 25px; cursor: pointer; font-weight: bold; }
 
-        #search-results { display: none; margin-top: 30px; }
-        .law-item { margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
-        .law-title { font-weight: bold; color: var(--primary-blue); margin-bottom: 10px; }
-        .law-content { font-size: 0.9rem; line-height: 1.8; white-space: pre-wrap; }
-        .highlight { background-color: #ffeb3b; font-weight: bold; }
-
-        .side-menu { height: 100%; width: 0; position: fixed; z-index: 200; top: 0; left: 0; background-color: var(--primary-blue); overflow-x: hidden; transition: 0.4s; padding-top: 60px; }
-        .side-menu a { padding: 15px 32px; text-decoration: none; font-size: 18px; color: #fff; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .close-btn { position: absolute; top: 10px; right: 20px; font-size: 36px; color: white; cursor: pointer; }
-        footer { background: var(--primary-blue); color: #fff; text-align: center; padding: 30px; font-size: 0.8rem; }
+        .law-card { border-left: 5px solid var(--accent); background: #fff; padding: 25px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: 0.3s; }
+        .law-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.1); }
+        .law-title { font-size: 1.2rem; font-weight: 800; color: var(--primary); margin-bottom: 12px; }
+        .law-body { font-size: 0.95rem; line-height: 1.8; color: #4A5568; }
+        
+        .side-menu { height: 100%; width: 0; position: fixed; z-index: 200; top: 0; left: 0; background: var(--primary); overflow-x: hidden; transition: 0.4s; padding-top: 60px; }
+        .side-menu a { padding: 18px 30px; text-decoration: none; color: #fff; display: block; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .close-btn { position: absolute; top: 15px; right: 25px; font-size: 36px; color: white; cursor: pointer; }
+        footer { text-align: center; padding: 40px; color: #A0AEC0; font-size: 0.8rem; }
     </style>
 </head>
 <body>
     <div id="mySideMenu" class="side-menu">
         <span class="close-btn" onclick="closeNav()">&times;</span>
-        <a href="index.html">政府ホーム</a>
-        <a href="laws.html">法令検索(e-LEX)</a>
+        <a href="index.html">GOVERNMENT HOME</a>
+        <a href="laws.html">e-LEX DATABASE</a>
     </div>
     <header>
         <button class="menu-btn" onclick="openNav()">&#9776;</button>
-        <div class="logo-area"><div class="logo-text">e-LEX ルミナラ共和国法令検索</div></div>
+        <div class="logo-text">e-LEX ルミナラ共和国法令検索</div>
     </header>
     <div class="container">
-        <nav class="breadcrumb"><a href="index.html">政府ホーム</a> ＞ 法令検索</nav>
-        <h1>法令検索</h1>
-        <div class="search-panel">
-            <div class="search-bar">
-                <input type="text" id="lawSearch" placeholder="キーワードを入力">
-                <button onclick="searchAction()">🔍</button>
+        <h1>法令データベース</h1>
+        <div class="search-box">
+            <div class="search-input-wrap">
+                <input type="text" id="q" placeholder="検索ワードを入力してください...">
+                <button onclick="doSearch()">SEARCH</button>
             </div>
         </div>
-        <div id="default-view"><h3>主要法令</h3><p>・フォスバロ共和国基本憲章</p><p>・社会的貢献及び間接消費税に関する特例法</p></div>
-        <div id="search-results"><div id="results-count" style="margin-bottom:20px; font-weight:bold; color: var(--primary-blue);"></div><div id="results-list"></div></div>
+        <div id="res">
+            <div class="law-card"><div class="law-title">フォスバロ共和国基本憲章</div><div class="law-body">第1条：全存在の尊厳と、相互奉仕による美学を統治の基軸とする。</div></div>
+            <div class="law-card"><div class="law-title">社会的貢献及び間接消費税法</div><div class="law-body">第2条：国内の全消費行為に対し、社会資本維持費として一律30%の賦課を行う。</div></div>
+        </div>
     </div>
-    <footer>&copy; 2026 Government of the Republic of Luminara.</footer>
+    <footer>&copy; 2026 THE REPUBLIC OF LUMINARA</footer>
     <script>
-        const lawDatabase = [
-            { title: "フォスバロ共和国基本憲章", content: "第1条：全存在の尊厳と、相互奉仕による美学を統治の基軸とする。\n第2条：最高倫理AIの提言に基づき、有権者の7割の合意形成を要する直接民主制を運用する。" },
-            { title: "社会的貢献及び間接消費税に関する特例法", content: "第1条：生産活動への介入（所得課税）を最小化し、国内の総資産循環を最適化する。\n第2条：国内の全消費行為に対し、社会資本維持費として一律30%の賦課を行う。" },
-            { title: "国防対策班(MPS)設置及び権限規則", content: "第1条：市民の私的聖域を保護するため、執行機関「MPS」を設置する。\n第2条：MPSは自律型監視網を用い、秩序攪乱事象に対し即時介入の権限を有する。" },
-            { title: "グローバル・レジデンス寄託（GRP）規定", content: "第1条：定住希望者は国家安定基金へ100万ウォラルを預託することを要する。\n第2条：当該寄託金は5年間の凍結期間を経て、返還資格が生じる。" }
-        ];
-        function openNav() { document.getElementById("mySideMenu").style.width = "280px"; }
+        function openNav() { document.getElementById("mySideMenu").style.width = "300px"; }
         function closeNav() { document.getElementById("mySideMenu").style.width = "0"; }
-        function searchAction() {
-            const query = document.getElementById('lawSearch').value.trim();
-            if(!query) return;
-            const filtered = lawDatabase.filter(law => law.title.includes(query) || law.content.includes(query));
-            document.getElementById('default-view').style.display = 'none';
-            document.getElementById('search-results').style.display = 'block';
-            document.getElementById('results-count').innerText = `検索結果： ${filtered.length} 件`;
-            const list = document.getElementById('results-list');
-            list.innerHTML = '';
-            filtered.forEach(law => {
-                const highlightedContent = law.content.split(query).join(`<span class="highlight">${query}</span>`);
-                list.innerHTML += `<div class="law-item"><div class="law-title">${law.title}</div><div class="law-content">${highlightedContent}</div></div>`;
-            });
+        function doSearch() {
+            const val = document.getElementById('q').value;
+            alert(val + " に関する高度検索を実行します。");
         }
     </script>
 </body>
