@@ -10,10 +10,10 @@ body, html {
     font-family: 'Montserrat', 'Noto Serif JP', sans-serif;
     background-color: #fff;
     color: var(--primary);
-    line-height: 1.6; /* 標準的な読みやすい行間に戻しました */
+    line-height: 1.5;
 }
 
-/* ナビゲーション */
+/* --- ナビゲーション --- */
 .top-nav {
     position: fixed;
     top: 0;
@@ -21,39 +21,61 @@ body, html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px; /* 少し厚みを持たせて安定感を */
+    padding: 15px 40px;
     box-sizing: border-box;
-    z-index: 100;
-    background: rgba(255,255,255,0.95);
+    z-index: 1001; /* サイドメニューより上に */
+    background: rgba(255,255,255,0.98);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid #f0f0f0;
+}
+
+.menu-trigger {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1002;
+}
+
+.hamburger span {
+    display: block;
+    width: 20px;
+    height: 1px;
+    background: var(--primary);
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
+.menu-text {
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-left: 10px;
 }
 
 .brand-logo {
     font-family: 'Cinzel', serif;
     font-size: 20px;
-    letter-spacing: 5px;
+    letter-spacing: 4px;
 }
 
-/* ヒーローエリア：ゆとりを持たせた配置 */
+/* --- ヒーローエリア：距離を最適化 --- */
 .hero-container {
     position: relative;
     width: 100%;
-    height: 80vh; /* 少し高さを戻して開放感を */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background: #fff;
-    padding-top: 40px;
+    padding-top: 100px; /* ナビとの距離 */
+    margin-bottom: 20px; /* 次のセクションとの距離を詰め */
 }
 
 .hero-bg-img {
     width: auto;
-    height: 350px; /* 画像を少し大きく、存在感を */
-    max-width: 90%;
+    height: 320px; /* ほどよい存在感 */
+    max-width: 80%;
     object-fit: contain;
-    margin-bottom: 20px; /* 画像と文字の間に適度な空きを */
+    margin-bottom: 15px; /* 画像と文字の距離を詰め */
 }
 
 .hero-content {
@@ -62,50 +84,56 @@ body, html {
 }
 
 .hero-labels {
-    margin-bottom: 15px; /* ラベルの下を少し空ける */
+    margin-bottom: 10px;
 }
 
 .label {
-    font-size: 10px;
-    letter-spacing: 2px;
+    font-size: 9px;
+    letter-spacing: 1.5px;
     border: 1px solid var(--primary);
-    padding: 4px 12px;
-    margin: 0 5px;
+    padding: 3px 10px;
+    margin: 0 3px;
     display: inline-block;
 }
 
 .hero-content h1 {
     font-family: 'Cinzel', serif;
-    font-size: 44px;
-    line-height: 1.2;
-    margin: 10px 0;
+    font-size: 42px;
+    line-height: 1.1;
+    margin: 5px 0;
 }
 
-/* アカデミックセクション：セクション間の呼吸 */
+.hero-subtext {
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    margin-top: 5px;
+}
+
+/* --- アカデミックセクション：余白の引き締め --- */
 .info-grid {
-    padding: 80px 40px; /* 上下の余白をしっかり取って「別セクション」感を */
+    padding: 40px 40px 60px; /* 上の余白を80pxから40pxに短縮 */
     max-width: 900px;
     margin: 0 auto;
 }
 
 .section-title-box {
     border-bottom: 1px solid var(--primary);
-    padding-bottom: 15px;
-    margin-bottom: 40px; /* リストとの間に空間を */
+    padding-bottom: 10px;
+    margin-bottom: 25px;
 }
 
 .section-title-box h2 {
     font-family: 'Cinzel', serif;
-    font-size: 32px;
+    font-size: 28px;
     margin: 0;
 }
 
-/* アコーディオン：クリックしやすさと見やすさを両立 */
+/* --- アコーディオン：タイトかつエレガントに --- */
 .accordion-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 25px 0; /* 窮屈さを解消し、ゆったりとした並びに */
+    padding: 18px 0; /* 25pxから18pxに詰め */
     cursor: pointer;
     border-bottom: 1px solid #eee;
 }
@@ -113,39 +141,77 @@ body, html {
 .header-left h3 {
     font-family: 'Cinzel', serif;
     margin: 0 0 0 25px;
-    font-size: 18px;
+    font-size: 17px;
 }
 
 .accordion-content {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease-in-out;
-    padding-left: 50px;
+    padding-left: 55px;
 }
 
 .active .accordion-content {
     max-height: 300px;
-    padding: 20px 20px 30px 50px; /* 展開した時もゆったりと */
+    padding: 15px 20px 25px 55px;
 }
 
-.faculty-main-p {
-    font-size: 15px;
-    font-weight: 600;
+/* --- 全画面サイドメニューの修正 --- */
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1100; /* 全ての上に */
+    top: 0;
+    left: 0;
+    background-color: var(--primary);
+    overflow-x: hidden;
+    transition: 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidenav-content {
+    width: 100%;
+    text-align: center;
+}
+
+.nav-category {
     color: var(--accent);
-    margin-bottom: 12px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
 }
 
-.faculty-desc {
-    font-size: 14px;
-    color: #444;
-    line-height: 1.7;
+.sidenav a {
+    padding: 12px;
+    text-decoration: none;
+    font-size: 24px;
+    color: #fff;
+    display: block;
+    font-family: 'Cinzel', serif;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: var(--accent);
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    font-size: 40px;
+    color: #fff;
+    text-decoration: none;
 }
 
 .main-footer {
-    padding: 60px 40px;
+    padding: 40px 20px;
     font-size: 10px;
     text-align: center;
-    border-top: 1px solid #eee;
+    border-top: 1px solid #f0f0f0;
     color: #999;
-    letter-spacing: 1px;
 }
