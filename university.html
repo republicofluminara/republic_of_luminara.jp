@@ -3,150 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>国立フォスバロ大学 | FLAU</title>
+    <title>医学部 | 国立フォスバロ教養大学</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;600&family=Noto+Serif+JP:wght@200;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;600&family=Noto+Serif+JP:wght@300;600&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="med-page">
 
     <nav class="top-nav">
         <div class="menu-trigger" onclick="openNav()">
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <div class="hamburger"><span></span><span></span><span></span></div>
             <span class="menu-text">MENU</span>
         </div>
-        <div class="brand-logo">PHOSBALO</div>
+        <div class="brand-logo" onclick="location.href='index.html'">FOSVARO</div>
         <div class="apply-btn">APPLY</div>
     </nav>
 
     <div id="sideNav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <div class="sidenav-content">
-            <p class="nav-category">Republic of LUMINARA</p>
-            <a href="index.html"> Republic of Luminara</a>
-            <a href="medicine.html">Faculty of medicine</a>
-            <a href="facultyai.html">Faculty of AI</a>
-            <a href="faculaws.html">Faculty of laws</a>
-            <a href="facula.html">Falulty of Liberal Arts</a>
+            <p class="nav-category">FLAU MENU</p>
+            <a href="index.html">Index</a>
+            <a href="university.html">Faculty of Medicine</a>
         </div>
     </div>
 
-    <section class="hero-container">
-        <div class="hero-overlay"></div>
-        <img src="IMG_8429.jpeg" alt="Fosvaro Symbol" class="hero-bg-img">
-        <div class="hero-content">
-            <div class="hero-labels">
-                <span class="label">EST. 2025</span>
-                <span class="label">LUMINARA REPUBLIC</span>
-            </div>
-            <h1>KNOWLEDGE <br><span class="thin">THAT MATTERS</span></h1>
-            <p class="hero-subtext">知性は、国家の光。国立フォスバロ大学。</p>
-        </div>
+    <section class="quick-banner">
+        <div class="banner-item"><span>交通アクセス</span></div>
+        <div class="banner-item"><span>キャンパスマップ</span></div>
+        <div class="banner-item"><span>資料請求</span></div>
+        <div class="banner-item"><span>お問い合わせ</span></div>
     </section>
 
-    <section class="info-grid">
-            <section class="info-grid">
-        <div class="section-title-box">
-            <h2>ACADEMICS</h2>
-            <p>高度な専門性と、学際的教養。</p>
-        </div>
-
-        <div class="faculty-accordion">
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)">
-                    <div class="header-left">
-                        <span class="faculty-num">01</span>
-                        <h3>FACULTY OF MEDICINE</h3>
-                    </div>
-                    <span class="plus-icon">+</span>
-                </div>
-                <div class="accordion-content">
-                    <p class="faculty-main-p">医学科 / 創薬科 / 医学理工学科</p>
-                    <div class="faculty-desc">
-                        医師、創薬者、エンジニアが一体となり、看護を自動化、調剤薬剤師を不要にする次世代医療を構築します。
-                        国内病院でのフィールドワークを通じ、ロボティクスと生命科学の融合を実践的に学びます。
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)">
-                    <div class="header-left">
-                        <span class="faculty-num">02</span>
-                        <h3>DEPT. OF AI ETHICS</h3>
-                    </div>
-                    <span class="plus-icon">+</span>
-                </div>
-                <div class="accordion-content">
-                    <p class="faculty-main-p">人工知能部 倫理教育科</p>
-                    <div class="faculty-desc">
-                        機械に倫理を授ける「調律者」を育成。技術の進化を哲学的に制御する国家の要。
-                        政府機関のAIガバナンス部門へのインターンが必須となります。
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)">
-                    <div class="header-left">
-                        <span class="faculty-num">03</span>
-                        <h3>SCHOOL OF LAW & GOV</h3>
-                    </div>
-                    <span class="plus-icon">+</span>
-                </div>
-                <div class="accordion-content">
-                    <p class="faculty-main-p">法学部 法学科 / 政治科</p>
-                    <div class="faculty-desc">
-                        AI時代の新しい法体系と、超効率的な電子政府システムを設計・運用します。
-                        ルミナラ共和国の法改正プロジェクトに直接参加する実践的な学びを提供。
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)">
-                    <div class="header-left">
-                        <span class="faculty-num">04</span>
-                        <h3>LIBERAL ARTS</h3>
-                    </div>
-                    <span class="plus-icon">+</span>
-                </div>
-                <div class="accordion-content">
-                    <p class="faculty-main-p">教養学部</p>
-                    <div class="faculty-desc">
-                        専門の垣根を越え、個々の興味を軸にした専門研究期間、
-                        及びインターンシップへと橋渡しをするチューターを担います
-                    </div>
+    <section class="med-hero-section">
+        <div class="med-hero-container">
+            <img src="IMG_8481.jpeg" alt="Medicine" class="med-main-img">
+            <div class="med-hero-overlay">
+                <div class="med-hero-text">
+                    <p class="sub-lead">医療を通じてルミナラ共和国を牽引する</p>
+                    <h1>次世代医療の育成</h1>
+                    <p class="en-lead">School of Medicine</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <script>
-        function toggleAccordion(element) {
-            const content = element.nextElementSibling;
-            const parent = element.parentElement;
-            
-            // 他の開いているアイテムを閉じる（任意）
-            // document.querySelectorAll('.accordion-item').forEach(item => {
-            //     if(item !== parent) item.classList.remove('active');
-            // });
-
-            parent.classList.toggle('active');
-        }
-    </script>
-
+    <section class="panel-section">
+        <div class="panel-grid">
+            <div class="panel-box">
+                <div class="panel-inner">
+                    <span class="panel-num">01</span>
+                    <h3>医学科</h3>
+                </div>
+            </div>
+            <div class="panel-box">
+                <div class="panel-inner">
+                    <span class="panel-num">02</span>
+                    <h3>創薬科</h3>
+                </div>
+            </div>
+            <div class="panel-box">
+                <div class="panel-inner">
+                    <span class="panel-num">03</span>
+                    <h3>医学理工科</h3>
+                </div>
+            </div>
+            <div class="panel-box">
+                <div class="panel-inner">
+                    <span class="panel-num">04</span>
+                    <h3>入学案内</h3>
+                </div>
+            </div>
+            <div class="panel-box">
+                <div class="panel-inner">
+                    <span class="panel-num">05</span>
+                    <h3>研究施設</h3>
+                </div>
+            </div>
+            <div class="panel-box">
+                <div class="panel-inner">
+                    <span class="panel-num">06</span>
+                    <h3>国立附属病院</h3>
+                </div>
+            </div>
         </div>
     </section>
 
     <footer class="main-footer">
-        <div class="footer-inner">
-            <p>© 2026 FOSVARO LIBERAL ARTS UNIVERSITY</p>
-            <p>Republic of LUMINARA National University</p>
-        </div>
+        <p>© 2026 FOSVARO LIBERAL ARTS UNIVERSITY MEDICINE</p>
     </footer>
 
     <script>
