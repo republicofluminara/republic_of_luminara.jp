@@ -75,7 +75,7 @@ body, html {
     height: 320px; /* ほどよい存在感 */
     max-width: 80%;
     object-fit: contain;
-    margin-bottom: 15px; /* 画像と文字の距離を詰め */
+    margin-bottom: 13px; /* 画像と文字の距離を詰め */
 }
 
 .hero-content {
