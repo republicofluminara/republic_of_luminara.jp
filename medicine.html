@@ -1,1 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>医学部 | 国立フォスバロ教養大学</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;600&family=Noto+Serif+JP:wght@200;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="top-nav">
+        <div class="menu-trigger" onclick="openNav()">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <span class="menu-text">MENU</span>
+        </div>
+        <div class="brand-logo" onclick="location.href='index.html'" style="cursor:pointer;">FOSVARO</div>
+        <div class="apply-btn">CONTACT</div>
+    </nav>
+
+    <div id="sideNav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="sidenav-content">
+            <p class="nav-category">FLAU NAVIGATION</p>
+            <a href="index.html">TOP / HOME</a>
+            <a href="university.html">FACULTY OF MEDICINE</a>
+        </div>
+    </div>
+
+    <section class="med-hero">
+        <div class="med-hero-inner">
+            <img src="IMG_8481.jpeg" alt="School of Medicine" class="med-hero-img">
+            <div class="med-hero-text">
+                <span class="dept-label">School of Medicine</span>
+                <h1>次世代医療の、<br><span class="thin">設計者たち。</span></h1>
+                <p>医師、科学者、エンジニアが境界を越えて集う場所。</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="med-grid-container">
+        <div class="med-panel-grid">
+            <div class="med-panel-item" onclick="location.href='#'">
+                <div class="panel-icon">01</div>
+                <h3>医学科</h3>
+                <span class="panel-en">Department of Medicine</span>
+            </div>
+            <div class="med-panel-item" onclick="location.href='#'">
+                <div class="panel-icon">02</div>
+                <h3>創薬科</h3>
+                <span class="panel-en">Pharmacy Innovation</span>
+            </div>
+            <div class="med-panel-item" onclick="location.href='#'">
+                <div class="panel-icon">03</div>
+                <h3>医学理工科</h3>
+                <span class="panel-en">Medical Tech & Engineering</span>
+            </div>
+            <div class="med-panel-item" onclick="location.href='#'">
+                <div class="panel-icon">04</div>
+                <h3>入学案内</h3>
+                <span class="panel-en">Admissions</span>
+            </div>
+            <div class="med-panel-item" onclick="location.href='#'">
+                <div class="panel-icon">05</div>
+                <h3>研究施設</h3>
+                <span class="panel-en">Research Facilities</span>
+            </div>
+            <div class="med-panel-item" onclick="location.href='#'">
+                <div class="panel-icon">06</div>
+                <h3>国立附属病院</h3>
+                <span class="panel-en">National University Hospital</span>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-inner">
+            <p>© 2026 FOSVARO LIBERAL ARTS UNIVERSITY / SCHOOL OF MEDICINE</p>
+            <p>LUMINARA REPUBLIC</p>
+        </div>
+    </footer>
+
+    <script>
+        function openNav() { document.getElementById("sideNav").style.width = "100%"; }
+        function closeNav() { document.getElementById("sideNav").style.width = "0"; }
+    </script>
+</body>
+</html>
 
