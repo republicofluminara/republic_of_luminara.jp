@@ -3,85 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>法令検索 - フォスバロ共和国 (GOV.LUMINARA)</title>
+    <title>法令検索 - フォスバロ共和国 (e-LEX)</title>
     <style>
-        body, html { margin: 0; padding: 0; font-family: sans-serif; background-color: #fff; color: #333; }
-        header { display: flex; align-items: center; padding: 10px 15px; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 100; background: #fff; }
-        .menu-btn { font-size: 24px; background: none; border: none; color: #003366; cursor: pointer; margin-right: 15px; }
-        .gov-logo { font-weight: bold; color: #003366; font-size: 1.2rem; }
-        .main-content { padding: 15px; max-width: 600px; margin: 0 auto; }
-        .category-box { background-color: #f2f5f8; border: 1px solid #e0e0e0; padding: 12px; font-size: 0.85rem; margin-bottom: 15px; }
-        .search-bar { display: flex; height: 44px; margin-bottom: 25px; }
-        .search-bar input { flex: 1; border: 1px solid #ccc; padding: 0 10px; }
-        .search-bar button { background-color: #0000cd; color: white; border: none; width: 50px; cursor: pointer; }
-        .info-box { background-color: #eff5ff; padding: 15px; margin-bottom: 20px; border-left: 4px solid #4a90e2; }
-        #search-results { display: none; margin-top: 20px; }
-        .law-item { margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-        .law-title { font-weight: bold; color: #003366; margin-bottom: 5px; }
-        .law-content { font-size: 0.9rem; line-height: 1.6; white-space: pre-wrap; }
-        /* サイドメニュー */
-        .side-menu { height: 100%; width: 0; position: fixed; z-index: 200; top: 0; left: 0; background-color: #111; overflow-x: hidden; transition: 0.5s; padding-top: 60px; }
-        .side-menu a { padding: 15px 32px; text-decoration: none; font-size: 18px; color: #818181; display: block; }
-        .close-btn { position: absolute; top: 10px; right: 25px; font-size: 36px; color: white; cursor: pointer; }
+        :root {
+            --primary-blue: #003366;
+            --accent-blue: #4a90e2;
+            --bg-light: #f8f9fa;
+            --text-dark: #333;
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        /* ヘッダー */
+        header {
+            background: #fff;
+            border-bottom: 3px solid var(--primary-blue);
+            padding: 15px 5%;
+            display: flex;
+            align-items: center;
+            position: sticky; top: 0; z-index: 100;
+        }
+
+        .menu-btn {
+            font-size: 28px; background: none; border: none;
+            color: var(--primary-blue); cursor: pointer; margin-right: 20px;
+        }
+
+        .logo-text { font-size: 1.4rem; font-weight: bold; color: var(--primary-blue); letter-spacing: 1px; flex-grow: 1; }
+
+        /* 左サイドメニュー */
+        .side-menu {
+            height: 100%; width: 0; position: fixed; z-index: 200;
+            top: 0; left: 0; background-color: var(--primary-blue);
+            overflow-x: hidden; transition: 0.4s; padding-top: 60px;
+        }
+        .side-menu a {
+            padding: 15px 32px; text-decoration: none; font-size: 18px;
+            color: #fff; display: block; border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .side-menu a:hover { background-color: var(--accent-blue); }
+        .close-btn { position: absolute; top: 10px; right: 20px; font-size: 36px; color: white; cursor: pointer; }
+
+        /* メインコンテンツ */
+        .container { max-width: 800px; margin: 20px auto; padding: 0 20px; background: #fff; min-height: 85vh; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
+
+        /* パンくずリスト */
+        .breadcrumb { padding: 20px 0; font-size: 0.85rem; color: #666; }
+        .breadcrumb a { color: var(--primary-blue); text-decoration: none; }
+
+        h1 { font-size: 1.8rem; color: var(--primary-blue); border-bottom: 4px solid var(--accent-blue); padding-bottom: 10px; margin-bottom: 30px; }
+
+        /* 検索セクション */
+        .search-panel { background-color: #f2f5f8; padding: 20px; border-radius: 4px; margin-bottom: 30px; }
+        .search-bar { display: flex; height: 44px; margin-top: 15px; }
+        .search-bar input { flex: 1; border: 1px solid #ccc; padding: 0 10px; font-size: 1rem; outline: none; }
+        .search-bar button { background-color: var(--primary-blue); color: white; border: none; width: 60px; cursor: pointer; }
+
+        /* 検索結果 */
+        #search-results { display: none; margin-top: 30px; }
+        .law-item { margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+        .law-title { font-size: 1.1rem; font-weight: bold; color: var(--primary-blue); margin-bottom: 10px; }
+        .law-content { font-size: 0.95rem; line-height: 1.8; white-space: pre-wrap; }
+        .highlight { background-color: #ffeb3b; font-weight: bold; }
+
+        /* お知らせ・初期表示 */
+        .info-box { background-color: #eff5ff; border-radius: 4px; padding: 15px; margin-bottom: 20px; line-height: 1.6; border-left: 4px solid var(--accent-blue); }
+        
+        .top-link { text-align: right; margin-top: 40px; padding-bottom: 30px; }
+        .top-link a { color: var(--primary-blue); font-size: 0.9rem; text-decoration: none; }
+
+        footer { background: var(--primary-blue); color: #fff; text-align: center; padding: 30px; font-size: 0.8rem; }
     </style>
 </head>
 <body>
+
     <div id="mySideMenu" class="side-menu">
         <span class="close-btn" onclick="closeNav()">&times;</span>
-        <a href="government.html">Republic of Luminara Portal</a>
+        <a href="index.html">政府ホーム (index.html)</a>
+        <a href="laws.html">法令検索 (laws.html)</a>
+        <a href="#">組織・制度</a>
+        <a href="#">MPS 通報システム</a>
     </div>
 
     <header>
         <button class="menu-btn" onclick="openNav()">&#9776;</button>
-        <div class="gov-logo">e<span>-</span>LEX 法令検索</div>
+        <div class="logo-text">e-LEX フォスバロ共和国 法令検索</div>
     </header>
 
-    <div class="main-content">
-        <div class="category-box">
-            <strong>法令種別:</strong> 法律, 政令, 勅令, 規則
-        </div>
-        <div class="search-bar">
-            <input type="text" id="lawSearch" placeholder="キーワード（消費税、寄託、MPS等）">
-            <button onclick="searchAction()">🔍</button>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="index.html">政府ホーム</a> ＞ 法令検索
+        </nav>
+
+        <h1>法令検索</h1>
+
+        <div class="search-panel">
+            <div style="font-size: 0.9rem; font-weight: bold; color: var(--primary-blue);">法令名・キーワードから探す</div>
+            <div class="search-bar">
+                <input type="text" id="lawSearch" placeholder="例：消費税、寄託、MPS、ダイヤモンド葬">
+                <button onclick="searchAction()">🔍</button>
+            </div>
         </div>
 
         <div id="default-view">
             <div class="info-box">
-                <strong>2026-03-04 法令更新</strong>
-                <p>フォスバロ共和国憲法に基づき、最新の「グローバル・レジデンス寄託規定」が反映されました。</p>
+                <strong>2026-03-04 更新情報</strong>
+                <p>最新の「社会的貢献及び間接消費税に関する特例法」の改正内容がシステムに反映されました。デジタル居住空間内での全活動に適用されます。</p>
             </div>
-            <h3>主要法令</h3>
-            <p>・フォスバロ共和国基本憲章</p>
-            <p>・社会的貢献及び間接消費税に関する特例法</p>
+            <h3 style="color: var(--primary-blue); border-left: 5px solid var(--primary-blue); padding-left: 10px;">主要法令のクイックアクセス</h3>
+            <p style="padding-left: 15px;">・フォスバロ共和国基本憲章</p>
+            <p style="padding-left: 15px;">・社会的貢献及び間接消費税に関する特例法</p>
         </div>
 
         <div id="search-results">
+            <div id="results-count" style="margin-bottom:20px; font-weight:bold; color: var(--primary-blue);"></div>
             <div id="results-list"></div>
         </div>
+
+        <div class="top-link">
+            <a href="#">このページの先頭へ ▲</a>
+        </div>
     </div>
+
+    <footer>
+        &copy; 2026 Government of the Republic of Luminara.
+    </footer>
 
     <script>
         const lawDatabase = [
             { title: "フォスバロ共和国基本憲章", content: "第1条：全存在の尊厳と、相互奉仕による美学を統治の基軸とする。\n第2条：最高倫理AIの提言に基づき、有権者の7割の合意形成を要する直接民主制を運用する。" },
             { title: "社会的貢献及び間接消費税に関する特例法", content: "第1条：生産活動への介入（所得課税）を最小化し、国内の総資産循環を最適化する。\n第2条：国内の全消費行為に対し、社会資本維持費として一律30%の賦課を行う。" },
             { title: "国防対策班(MPS)設置及び権限規則", content: "第1条：市民の私的聖域を保護するため、執行機関「MPS」を設置する。\n第2条：MPSは自律型監視網を用い、秩序攪乱事象に対し即時介入の権限を有する。" },
-            { title: "グローバル・レジデンス寄託（GRP）規定", content: "第1条：定住希望者は国家安定基金へ100万ウォラルを預託することを要する。\n第2条：当該寄託金は5年間の凍結期間を経て、返還資格が生じる。" }
+            { title: "グローバル・レジデンス寄託（GRP）規定", content: "第1条：定住希望者は国家安定基金へ100万ウォラルを預託することを要する。\n第2条：当該寄託金は5年間の凍結期間を経て、返還資格が生じる。" },
+            { title: "都市環境維持及び動物共生管理令", content: "第1条：私的空間における動物の占有飼育は、公衆衛生の観点から制限される。\n第2条：市民は指定された公営飼育園において、種を超えた交流の機会を享受できる。" },
+            { title: "生命の承継（ダイヤモンド葬）ガイドライン", content: "第1条：故人の遺骨を炭素結晶として固定し、有形的価値として次世代へ継承することを推奨する。" }
         ];
 
-        function openNav() { document.getElementById("mySideMenu").style.width = "250px"; }
+        function openNav() { document.getElementById("mySideMenu").style.width = "280px"; }
         function closeNav() { document.getElementById("mySideMenu").style.width = "0"; }
         
         function searchAction() {
-            const query = document.getElementById('lawSearch').value;
-            if(!query) return;
-            const results = lawDatabase.filter(l => l.title.includes(query) || l.content.includes(query));
-            document.getElementById('default-view').style.display = 'none';
-            document.getElementById('search-results').style.display = 'block';
-            const list = document.getElementById('results-list');
-            list.innerHTML = results.length ? '' : '該当なし';
-            results.forEach(r => {
-                list.innerHTML += `<div class="law-item"><div class="law-title">${r.title}</div><div class="law-content">${r.content}</div></div>`;
-            });
+            const query = document.getElementById('lawSearch').value.trim();
+            const resultsDiv = document.getElementById('search-results');
+            const defaultView = document.getElementById('default-view');
+            const listDiv = document.getElementById('results-list');
+            const countDiv = document.getElementById('results-count');
+
+            if(!query) { alert("キーワードを入力してください。"); return; }
+
+            const filtered = lawDatabase.filter(law => law.title.includes(query) || law.content.includes(query));
+
+            defaultView.style.display = 'none';
+            resultsDiv.style.display = 'block';
+            listDiv.innerHTML = '';
+            countDiv.innerText = `「${query}」の検索結果： ${filtered.length} 件`;
+
+            if(filtered.length === 0) {
+                listDiv.innerHTML = '<p>該当する法令は見つかりませんでした。</p>';
+            } else {
+                filtered.forEach(law => {
+                    const item = document.createElement('div');
+                    item.className = 'law-item';
+                    const highlightedContent = law.content.split(query).join(`<span class="highlight">${query}</span>`);
+                    item.innerHTML = `<div class="law-title">${law.title}</div><div class="law-content">${highlightedContent}</div>`;
+                    listDiv.appendChild(item);
+                });
+            }
         }
     </script>
 </body>
