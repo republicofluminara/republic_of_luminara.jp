@@ -1,0 +1,222 @@
+:root {
+    --lctv-blue: #003366;
+    --lctv-gold: #c5a059;
+    --bg-light: #f8f9fa;
+    --text-dark: #333;
+    --white: #ffffff;
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+
+/* ヘッダー */
+header {
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    gap: 20px;
+}
+
+.menu-trigger {
+    width: 30px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.menu-trigger span {
+    display: block;
+    height: 2px;
+    background: var(--lctv-blue);
+    border-radius: 2px;
+}
+
+.logo {
+    flex-grow: 1;
+}
+
+.lctv-logo {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--lctv-blue);
+    letter-spacing: 1px;
+}
+
+.country-tag {
+    font-size: 12px;
+    margin-left: 8px;
+    color: var(--lctv-gold);
+    border-left: 1px solid #ccc;
+    padding-left: 8px;
+}
+
+.search-bar {
+    display: flex;
+    background: #eee;
+    border-radius: 20px;
+    padding: 5px 15px;
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    outline: none;
+    padding: 5px;
+}
+
+.search-bar button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--lctv-blue);
+}
+
+/* ナビゲーション */
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0 20px;
+    border-top: 1px solid #eee;
+}
+
+.main-nav li {
+    padding: 15px 20px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.main-nav li.active {
+    color: var(--lctv-blue);
+    border-bottom: 3px solid var(--lctv-blue);
+}
+
+/* 日付・チャンネル選択 */
+.date-selector {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: var(--white);
+    margin-top: 10px;
+}
+
+.date-item {
+    margin-right: 20px;
+    color: #666;
+}
+
+.date-item.active {
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+.channel-tabs {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px 20px;
+    gap: 10px;
+    background: var(--white);
+    border-bottom: 1px solid #eee;
+}
+
+.tab {
+    min-width: 100px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 12px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.tab span {
+    display: block;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.tab.active {
+    border-color: var(--lctv-blue);
+    background: var(--lctv-blue);
+    color: white;
+}
+
+/* タイムテーブル */
+.timetable {
+    padding: 20px;
+}
+
+.time-label {
+    display: block;
+    margin-bottom: 15px;
+    color: #666;
+    font-size: 14px;
+}
+
+.program-card {
+    display: flex;
+    background: var(--white);
+    margin-bottom: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+    align-items: center;
+    padding: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.prog-time {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    width: 60px;
+}
+
+.prog-info {
+    flex-grow: 1;
+    padding: 0 15px;
+}
+
+.prog-info h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #000;
+}
+
+.prog-meta {
+    margin: 5px 0 0;
+    font-size: 12px;
+    color: #888;
+}
+
+.prog-action {
+    background: #f0f0f0;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #d32f2f;
+    cursor: pointer;
+    border: 1px solid #d32f2f;
+}
+
+.prog-action:hover {
+    background: #d32f2f;
+    color: #fff;
+}
