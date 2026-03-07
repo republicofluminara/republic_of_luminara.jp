@@ -11,7 +11,6 @@
             background-color: #ffffff; color: #1c1c1c;
         }
 
-        /* ヘッダー */
         header {
             display: flex; align-items: center; justify-content: center;
             padding: 20px; background-color: #fff; position: relative;
@@ -19,7 +18,7 @@
         }
 
         .menu-btn {
-            position: absolute; left: 1px; font-size: 24px;
+            position: absolute; left: 20px; font-size: 24px;
             cursor: pointer; background: none; border: none; color: #1c1c1c;
         }
 
@@ -47,10 +46,7 @@
             z-index: 1;
         }
 
-        .slide.active {
-            opacity: 1;
-            z-index: 2;
-        }
+        .slide.active { opacity: 1; z-index: 2; }
 
         /* 検索コンテナ */
         .search-container {
@@ -66,14 +62,17 @@
             letter-spacing: 1.5px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;
         }
 
-        .search-input {
+        .search-input, .date-input {
             width: 100%; border: none; font-size: 1.1rem;
             font-family: 'Times New Roman', serif; outline: none; padding: 5px 0;
+            background: transparent;
         }
 
         .date-row { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid #e0e0e0; }
         .date-box { flex: 1; text-align: left; }
-        .date-value { font-size: 1.2rem; margin-top: 5px; }
+        
+        /* 実際の日付表示 */
+        .date-display { font-size: 1.2rem; margin-top: 5px; color: #333; }
 
         .search-button {
             background-color: #1c1c1c; color: white; width: 100%; padding: 18px;
@@ -99,8 +98,12 @@
 
     <div id="mySideMenu" class="side-menu">
         <span class="close-btn" onclick="closeNav()">&times;</span>
-        <a href="index.html">Republic of Luminara</a>
-        <a href="luceairways.html">Luce Airways</a>
+        <a href="index.html">Home</a>
+        <a href="luminaranwsa.html">Weather Security Agency</a>
+        <a href="laws.html">Laws of Luminara</a>
+        <a href="luminaralang.html">Luminarian Language</a>
+        <a href="hotels.html">Luminara State Hotels</a>
+        <a href="ruceairways.html">Luce Airways</a>
     </div>
 
     <header>
@@ -109,54 +112,65 @@
     </header>
 
     <div class="hero-slider">
-        <img src="IMG_8421.png" class="slide active">
-        <img src="IMG_8422.png" class="slide">
+        <img src="IMG_8421.jpg" class="slide active">
+        <img src="IMG_8422.jpg" class="slide">
     </div>
 
     <div class="search-container">
         <div class="search-item">
             <div class="search-label">📍 デスティネーション</div>
-            <input type="text" id="dest" class="search-input" placeholder="次はどちらへお出かけになりますか？">
+            <input type="text" class="search-input" placeholder="次はどちらへお出かけになりますか？">
         </div>
         
         <div class="date-row">
             <div class="date-box">
                 <div class="search-label">🗓 
-                    <select id="stayNights" onchange="updateDates()" style="border:none; background:none; color:inherit; font-family:inherit; cursor:pointer;">
+                    <select id="stayNights" onchange="calculateDates()" style="border:none; background:none; color:inherit; font-family:inherit; cursor:pointer; font-size:0.75rem;">
                         <option value="1">1 泊</option>
                         <option value="2">2 泊</option>
                         <option value="3">3 泊</option>
+                        <option value="4">4 泊</option>
+                        <option value="5">5 泊</option>
                     </select>
                 </div>
-                <div id="todayDate" class="date-value">--月--日(-)</div>
+                <input type="date" id="checkinDate" class="date-input" onchange="calculateDates()">
             </div>
-            <div style="padding: 0 15px;">-</div>
+            <div style="padding: 0 15px; font-size: 1.5rem; color: #ccc;">-</div>
             <div class="date-box">
-                <div class="search-label">&nbsp;</div>
-                <div id="tomorrowDate" class="date-value">--月--日(-)</div>
+                <div class="search-label">チェックアウト</div>
+                <div id="checkoutDisplay" class="date-display">--月--日(-)</div>
             </div>
         </div>
 
-        <button class="search-button" onclick="alert('検索中...')">ホテルを検索</button>
+        <button class="search-button" onclick="alert('空室を確認しています...')">ホテルを検索</button>
     </div>
 
     <script>
         function openNav() { document.getElementById("mySideMenu").style.width = "300px"; }
         function closeNav() { document.getElementById("mySideMenu").style.width = "0"; }
 
-        // 日付自動更新
-        function updateDates() {
-            const today = new Date();
-            const tomorrow = new Date();
+        // 日付と泊数の連動計算
+        function calculateDates() {
+            const checkinInput = document.getElementById('checkinDate');
+            const checkoutDisplay = document.getElementById('checkoutDisplay');
             const nights = parseInt(document.getElementById('stayNights').value);
-            tomorrow.setDate(today.getDate() + nights);
+            
+            if (!checkinInput.value) return;
+
+            const checkinDate = new Date(checkinInput.value);
+            const checkoutDate = new Date(checkinInput.value);
+            checkoutDate.setDate(checkinDate.getDate() + nights);
 
             const week = ["日", "月", "火", "水", "木", "金", "土"];
-            document.getElementById('todayDate').innerText = `${today.getMonth() + 1}月${today.getDate()}日(${week[today.getDay()]})`;
-            document.getElementById('tomorrowDate').innerText = `${tomorrow.getMonth() + 1}月${tomorrow.getDate()}日(${week[tomorrow.getDay()]})`;
+            
+            // チェックアウト日の表示を更新
+            const m = checkoutDate.getMonth() + 1;
+            const d = checkoutDate.getDate();
+            const w = week[checkoutDate.getDay()];
+            checkoutDisplay.innerText = `${m}月${d}日(${w})`;
         }
 
-        // スライドショー制御
+        // スライドショー
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         function nextSlide() {
@@ -166,8 +180,14 @@
         }
 
         window.onload = function() {
-            updateDates();
-            if(slides.length > 1) setInterval(nextSlide, 2500);
+            // 初期値を今日の日付にセット
+            const today = new Date().toISOString().split('T')[0];
+            const checkinInput = document.getElementById('checkinDate');
+            checkinInput.value = today;
+            
+            calculateDates(); // 初期表示を計算
+            
+            if(slides.length > 1) setInterval(nextSlide, 5000);
         };
     </script>
 
