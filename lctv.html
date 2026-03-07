@@ -15,11 +15,12 @@
             <h2 class="menu-title">Republic of Luminara</h2>
             <nav class="side-nav-list">
                 <ul>
-                    <li onclick="index.html">政府広報 (ニュース)</li>
-                    <li onclick="navigateTo('guide'); toggleMenu();">LCTV 番組表</li>
+                    <li onclick="navigateTo('guide'); toggleMenu();">LCTV 番組表 (メイン)</li>
+                    <li onclick="navigateTo('news'); toggleMenu();">政府広報 (ニュース)</li>
                     <li onclick="navigateTo('archive'); toggleMenu();">フォスバロ国立アーカイブ</li>
-                    <li onclick="navigateTo('live'); toggleMenu();">ライブ配信チャンネル</li>
-                    <li onclick="alert('緊急放送システム：正常稼働中'); toggleMenu();">緊急放送設定</li>
+                    <li onclick="navigateTo('live'); toggleMenu();">ライブストリーミング</li>
+                    <li onclick="navigateTo('ranking'); toggleMenu();">視聴率ランキング</li>
+                    <li onclick="alert('緊急放送システム：スタンバイ'); toggleMenu();">緊急放送設定</li>
                 </ul>
             </nav>
         </div>
@@ -65,7 +66,6 @@
             document.getElementById('sideMenu').classList.toggle('open');
         }
 
-        // ページごとのコンテンツ
         const pages = {
             guide: `
                 <div id="guideSection">
@@ -76,22 +76,28 @@
                         <button class="filter-btn" id="filter-pm" onclick="setTimeFilter('pm')">午後</button>
                     </div>
                     <section class="channel-tabs" id="channelTabs">
-                        <button class="ch-item active" onclick="switchChannel(1)"><strong>LCTV 1</strong><span>総合</span></button>
-                        <button class="ch-item" onclick="switchChannel(2)"><strong>LCTV 2</strong><span>スポーツ</span></button>
-                        <button class="ch-item" onclick="switchChannel(3)"><strong>LCTV 3</strong><span>国際</span></button>
+                        <button class="ch-item active" onclick="switchChannel(1, '総合')"><strong>LCTV 1</strong><span>総合</span></button>
+                        <button class="ch-item" onclick="switchChannel(2, 'スポーツ')"><strong>LCTV 2</strong><span>スポーツ</span></button>
+                        <button class="ch-item" onclick="switchChannel(3, '国際放送')"><strong>LCTV 3</strong><span>国際</span></button>
+                        <button class="ch-item" onclick="switchChannel(4, 'バラエティ')"><strong>LCTV 4</strong><span>バラエティ</span></button>
+                        <button class="ch-item" onclick="switchChannel(5, 'ドラマ')"><strong>LCTV 5</strong><span>ドラマ</span></button>
+                        <button class="ch-item" onclick="switchChannel(6, '映画')"><strong>LCTV 6</strong><span>映画</span></button>
+                        <button class="ch-item" onclick="switchChannel(7, '教育')"><strong>LCTV 7</strong><span>教育</span></button>
+                        <button class="ch-item" onclick="switchChannel(8)"><strong>LCTV 8</strong><span>子供</span></button>
+                        <button class="ch-item" onclick="switchChannel(9)"><strong>LCTV 9</strong><span>音楽</span></button>
                     </section>
                     <section class="program-container"><div id="programList"></div></section>
                 </div>`,
-            news: `<div class="content-view"><h3>LCTV ニュース</h3><div class="program-card"><h4>共和国経済特区の拡大計画</h4><p>政府はフォスバロ地区の再開発を決定しました。</p></div></div>`,
-            archive: `<div class="content-view"><h3>国立アーカイブ</h3><div class="program-card"><h4>建国50周年式典映像</h4><p>ルミナラ共和国の歩みを振り返る特集番組です。</p></div></div>`,
-            live: `<div class="content-view"><h3>ライブ配信</h3><div class="program-card"><h4>LCTV 24/7</h4><p>現在、臨時ニュースを全世界へ配信中です。</p></div></div>`,
-            ranking: `<div class="content-view"><h3>ランキング</h3><div class="program-card"><h4>1位: ルミナラ・ドラマ・ナイト</h4><p>今週のトップ視聴率番組です。</p></div></div>`
+            news: `<div class="content-view"><h3>LCTV ニュース</h3><div class="program-card"><h4>共和国経済特区の拡大計画</h4><p>ルミナラ政府は本日、新たな開発案を承認しました。</p></div></div>`,
+            archive: `<div class="content-view"><h3>国立アーカイブ</h3><div class="program-card"><h4>建国50周年ドキュメンタリー</h4><p>フォスバロの歴史を辿る特別編。</p></div></div>`,
+            live: `<div class="content-view"><h3>ライブ配信</h3><div class="program-card"><h4>LCTV 24/7 Global</h4><p>リアルタイムで最新情報を配信中。</p></div></div>`,
+            ranking: `<div class="content-view"><h3>視聴率ランキング</h3><div class="program-card"><h4>1位: ルミナラ・ドラマ・ナイト</h4><p>最新エピソードが大ヒット中。</p></div></div>`
         };
 
         function navigateTo(page) {
             document.getElementById('mainContent').innerHTML = pages[page];
             document.querySelectorAll('.sub-nav li').forEach(li => li.classList.remove('active'));
-            const activeNav = document.getElementById(`nav-${page}`);
+            const activeNav = document.getElementById(\`nav-\${page}\`);
             if(activeNav) activeNav.classList.add('active');
 
             if(page === 'guide') {
@@ -108,11 +114,11 @@
             for (let i = -1; i <= 1; i++) {
                 const d = new Date();
                 d.setDate(d.getDate() + i);
-                const monthDay = `${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+                const monthDay = \`\${String(d.getMonth() + 1).padStart(2, '0')}-\${String(d.getDate()).padStart(2, '0')}\`;
                 const dateItem = document.createElement('div');
-                dateItem.className = `date-item ${i === currentDayOffset ? 'active' : ''}`;
+                dateItem.className = \`date-item \${i === currentDayOffset ? 'active' : ''}\`;
                 dateItem.onclick = () => { currentDayOffset = i; initDateBar(); updateProgramList(); };
-                dateItem.innerHTML = `<span class="d-label">${dayNames[d.getDay()]}曜日</span><span class="d-value">${monthDay}</span>`;
+                dateItem.innerHTML = \`<span class="d-label">\${dayNames[d.getDay()]}曜日</span><span class="d-value">\${monthDay}</span>\`;
                 dateList.appendChild(dateItem);
             }
         }
@@ -120,7 +126,7 @@
         function setTimeFilter(filter) {
             currentTimeFilter = filter;
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(`filter-${filter}`).classList.add('active');
+            document.getElementById(\`filter-\${filter}\`).classList.add('active');
             updateProgramList();
         }
 
@@ -134,7 +140,7 @@
         function updateProgramList() {
             const list = document.getElementById('programList');
             if(!list) return;
-            list.innerHTML = `<div class="program-card"><div class="p-time">09:00</div><div class="p-detail"><h4>LCTV ${currentChannel} スペシャルコンテンツ</h4><p>ルミナラ中央放送による公式配信</p></div><button class="p-play">視聴</button></div>`;
+            list.innerHTML = \`<div class="program-card"><div class="p-time">09:00</div><div class="p-detail"><h4>LCTV \${currentChannel} 特別編成</h4><p>Luminara Central Television Official</p></div><button class="p-play">視聴</button></div>\`;
         }
 
         window.onload = () => { navigateTo('guide'); };
