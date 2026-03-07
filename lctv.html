@@ -78,8 +78,8 @@
                 <button class="ch-item" onclick="switchChannel(5, 'ドラマ')"><strong>LCTV 5</strong><span>ドラマ</span></button>
                 <button class="ch-item" onclick="switchChannel(6, '映画')"><strong>LCTV 6</strong><span>映画</span></button>
                 <button class="ch-item" onclick="switchChannel(7, '教育')"><strong>LCTV 7</strong><span>教育</span></button>
-                <button class="ch-item" onclick="switchChannel(8)"><strong>LCTV 8</strong><span>子供</span></button>
-                <button class="ch-item" onclick="switchChannel(9)"><strong>LCTV 9</strong><span>音楽</span></button>
+                <button class="ch-item" onclick="switchChannel(8, '子供')"><strong>LCTV 8</strong><span>子供</span></button>
+                <button class="ch-item" onclick="switchChannel(9, '音楽')"><strong>LCTV 9</strong><span>音楽</span></button>
             </section>
 
             <section class="program-container">
@@ -109,17 +109,14 @@
             const dateList = document.getElementById('dateList');
             dateList.innerHTML = '';
             const dayNames = ['日', '月', '火', '水', '木', '金', '土'];
-            
             for (let i = -1; i <= 1; i++) {
                 const d = new Date();
                 d.setDate(d.getDate() + i);
                 const monthDay = `${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-                const dayName = dayNames[d.getDay()];
-
                 const dateItem = document.createElement('div');
                 dateItem.className = `date-item ${i === currentDayOffset ? 'active' : ''}`;
                 dateItem.onclick = () => { currentDayOffset = i; initDateBar(); updateProgramList(); };
-                dateItem.innerHTML = `<span class="d-label">${dayName}曜日</span><span class="d-value">${monthDay}</span>`;
+                dateItem.innerHTML = `<span class="d-label">${dayNames[d.getDay()]}曜日</span><span class="d-value">${monthDay}</span>`;
                 dateList.appendChild(dateItem);
             }
         }
@@ -152,15 +149,8 @@
                 </div>`).join('');
         }
 
-        function selectCustomDate(val) {
-            alert("日付変更: " + val);
-            updateProgramList();
-        }
-
-        function navigateTo(dest) {
-            // ここに各タブへの遷移ロジック（またはalertなど）を記述
-            console.log("Navigating to: " + dest);
-        }
+        function selectCustomDate(val) { updateProgramList(); }
+        function navigateTo(dest) { console.log("Nav: " + dest); }
 
         window.onload = () => { initDateBar(); updateProgramList(); };
     </script>
