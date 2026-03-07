@@ -12,7 +12,7 @@
     <header>
         <div class="header-main">
             <div class="header-left">
-                <button class="hamburger-menu" aria-label="メニュー">
+                <button class="hamburger-menu" onclick="alert('Republic of Luminara')" aria-label="メニュー">
                     <span></span><span></span><span></span>
                 </button>
                 <div class="logo-box">
@@ -42,116 +42,108 @@
     <main id="mainContent">
         <div id="guideSection">
             <section class="date-bar">
-                <div class="date-list" id="dateList">
-                    </div>
-                <div class="calendar-trigger">📅</div>
+                <div class="date-list" id="dateList"></div>
+                <div class="calendar-wrapper">
+                    <label for="datePicker" class="calendar-trigger">📅</label>
+                    <input type="date" id="datePicker" onchange="selectCustomDate(this.value)">
+                </div>
             </section>
 
             <div class="time-filter">
-                <button class="filter-btn">現在</button>
-                <button class="filter-btn active">午前</button>
-                <button class="filter-btn">午後</button>
+                <button class="filter-btn" id="filter-now" onclick="setTimeFilter('now')">現在</button>
+                <button class="filter-btn active" id="filter-am" onclick="setTimeFilter('am')">午前</button>
+                <button class="filter-btn" id="filter-pm" onclick="setTimeFilter('pm')">午後</button>
             </div>
 
             <section class="channel-tabs" id="channelTabs">
-                <button class="ch-item active" onclick="switchChannel(1)"><strong>LCTV 1</strong><span>総合</span></button>
-                <button class="ch-item" onclick="switchChannel(2)"><strong>LCTV 2</strong><span>スポーツ</span></button>
-                <button class="ch-item" onclick="switchChannel(3)"><strong>LCTV 3</strong><span>国際放送</span></button>
-                <button class="ch-item" onclick="switchChannel(4)"><strong>LCTV 4</strong><span>バラエティ</span></button>
-                <button class="ch-item" onclick="switchChannel(5)"><strong>LCTV 5</strong><span>ドラマ</span></button>
-                <button class="ch-item" onclick="switchChannel(6)"><strong>LCTV 6</strong><span>映画</span></button>
-                <button class="ch-item" onclick="switchChannel(7)"><strong>LCTV 7</strong><span>教育</span></button>
-                <button class="ch-item" onclick="switchChannel(8)"><strong>LCTV 8</strong><span>子供</span></button>
+                <button class="ch-item active" onclick="switchChannel(1, '総合')"><strong>LCTV 1</strong><span>総合</span></button>
+                <button class="ch-item" onclick="switchChannel(2, 'スポーツ')"><strong>LCTV 2</strong><span>スポーツ</span></button>
+                <button class="ch-item" onclick="switchChannel(3, '国際放送')"><strong>LCTV 3</strong><span>国際放送</span></button>
+                <button class="ch-item" onclick="switchChannel(4, 'バラエティ')"><strong>LCTV 4</strong><span>バラエティ</span></button>
+                <button class="ch-item" onclick="switchChannel(5, 'ドラマ')"><strong>LCTV 5</strong><span>ドラマ</span></button>
+                <button class="ch-item" onclick="switchChannel(6, '映画')"><strong>LCTV 6</strong><span>映画</span></button>
+                <button class="ch-item" onclick="switchChannel(7, '教育')"><strong>LCTV 7</strong><span>教育</span></button>
+                <button class="ch-item" onclick="switchChannel(8) "><strong>LCTV 8</strong><span>子供</span></button>
                 <button class="ch-item" onclick="switchChannel(9)"><strong>LCTV 9</strong><span>音楽</span></button>
             </section>
 
             <section class="program-container">
-                <div class="time-header" id="listHeader">● 本日の番組表 (午前)</div>
-                <div id="programList">
-                    </div>
+                <div class="time-header" id="listHeader">● 番組表を表示中</div>
+                <div id="programList"></div>
             </section>
         </div>
     </main>
 
     <script>
-        let currentDayOffset = 0; // 0=今日, 1=明日, -1=昨日
+        let currentDayOffset = 0; 
+        let currentChannel = 1;
+        let currentGenre = "総合";
+        let currentTimeFilter = 'am';
 
-        // 日付の生成 (昨日・今日・明日の3つに固定)
+        // チャンネルごとのダミーデータ
+        const programData = {
+            1: { am: ["ルミナラ・ニュースモーニング", "おはようフォスバロ"], pm: ["お昼の総合ワイド", "LCTVプレミアムドラマ"], now: ["LIVE: 総合ニュース"] },
+            2: { am: ["朝のストレッチ", "世界スポーツアーカイブ"], pm: ["ルミナラ・リーグ中継", "テニス特番"], now: ["LIVE: サッカー中継"] },
+            3: { am: ["Global News Morning", "World Report"], pm: ["International Insight", "Asia Today"], now: ["LIVE: CNN連携番組"] },
+            default: { am: ["特別番組 A", "セレクション"], pm: ["特別番組 B", "名作アーカイブ"], now: ["放送休止中または臨時ニュース"] }
+        };
+
         function initDateBar() {
             const dateList = document.getElementById('dateList');
             dateList.innerHTML = '';
             const labels = ['昨日', '今日', '明日'];
-            
             for (let i = -1; i <= 1; i++) {
                 const d = new Date();
                 d.setDate(d.getDate() + i);
-                const dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-
+                const dateStr = d.toISOString().split('T')[0];
                 const dateItem = document.createElement('div');
                 dateItem.className = `date-item ${i === currentDayOffset ? 'active' : ''}`;
-                dateItem.onclick = () => {
-                    currentDayOffset = i;
-                    initDateBar();
-                    updateProgramList();
-                };
-                dateItem.innerHTML = `
-                    <span class="d-label">${labels[i+1]}</span>
-                    <span class="d-value">${dateStr}</span>
-                `;
+                dateItem.onclick = () => { currentDayOffset = i; initDateBar(); updateProgramList(); };
+                dateItem.innerHTML = `<span class="d-label">${labels[i+1]}</span><span class="d-value">${dateStr}</span>`;
                 dateList.appendChild(dateItem);
             }
         }
 
-        // チャンネル・日付に基づいたリスト更新
-        function updateProgramList() {
-            const list = document.getElementById('programList');
-            const dayText = currentDayOffset === 0 ? '本日' : (currentDayOffset === 1 ? '明日' : '昨日');
-            document.getElementById('listHeader').innerText = `● ${dayText}の番組表`;
-            
-            list.innerHTML = `
-                <div class="program-card">
-                    <div class="p-time">07:00</div>
-                    <div class="p-detail">
-                        <h4>LCTVニュース・プレミアム</h4>
-                        <p>${dayText}の最新ニュースをお届けします</p>
-                    </div>
-                    <button class="p-play">詳細</button>
-                </div>
-                <div class="program-card">
-                    <div class="p-time">09:30</div>
-                    <div class="p-detail">
-                        <h4>ルミナラ・ドキュメンタリー</h4>
-                        <p>知られざる共和国の自然と文化</p>
-                    </div>
-                    <button class="p-play">予約</button>
-                </div>
-            `;
+        function setTimeFilter(filter) {
+            currentTimeFilter = filter;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`filter-${filter}`).classList.add('active');
+            updateProgramList();
         }
 
-        function switchChannel(num) {
+        function switchChannel(num, genre) {
+            currentChannel = num;
+            currentGenre = genre || "番組";
             document.querySelectorAll('.ch-item').forEach(el => el.classList.remove('active'));
             event.currentTarget.classList.add('active');
             updateProgramList();
         }
 
-        // ページ移動シミュレーション
-        function navigateTo(page) {
-            const items = document.querySelectorAll('#mainNav li');
-            items.forEach(li => li.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-
-            const main = document.getElementById('mainContent');
-            if(page === 'guide') {
-                location.reload(); // 番組表に戻る
-            } else {
-                main.innerHTML = `<div style="padding:50px; text-align:center;"><h2>${page.toUpperCase()} ページ</h2><p>ルミナラ中央放送の${page}コンテンツを準備中です。</p></div>`;
-            }
+        function selectCustomDate(val) {
+            alert("日付を選択しました: " + val);
+            updateProgramList();
         }
 
-        window.onload = () => {
-            initDateBar();
-            updateProgramList();
-        };
+        function updateProgramList() {
+            const list = document.getElementById('programList');
+            const data = programData[currentChannel] || programData.default;
+            const programs = data[currentTimeFilter] || ["放送予定はありません"];
+            
+            document.getElementById('listHeader').innerText = `● LCTV ${currentChannel} [${currentGenre}] - ${currentTimeFilter.toUpperCase()}番組表`;
+            
+            list.innerHTML = programs.map((p, i) => `
+                <div class="program-card">
+                    <div class="p-time">${i === 0 ? "08:00" : "10:30"}</div>
+                    <div class="p-detail">
+                        <h4>${p}</h4>
+                        <p>ルミナラ中央放送がお送りする高品質なコンテンツ</p>
+                    </div>
+                    <button class="p-play">${currentTimeFilter === 'now' ? '視聴' : '詳細'}</button>
+                </div>
+            `).join('');
+        }
+
+        window.onload = () => { initDateBar(); updateProgramList(); };
     </script>
 </body>
 </html>
