@@ -94,31 +94,33 @@
         let currentGenre = "総合";
         let currentTimeFilter = 'am';
 
-        // メニューの開閉
         function toggleMenu() {
-            const menu = document.getElementById('sideMenu');
-            menu.classList.toggle('open');
+            document.getElementById('sideMenu').classList.toggle('open');
         }
 
         const programData = {
             1: { am: ["ルミナラ・ニュースモーニング", "おはようフォスバロ"], pm: ["お昼の総合ワイド", "LCTVプレミアムドラマ"], now: ["LIVE: 総合ニュース"] },
             2: { am: ["朝のストレッチ", "世界スポーツアーカイブ"], pm: ["ルミナラ・リーグ中継", "テニス特番"], now: ["LIVE: サッカー中継"] },
-            3: { am: ["Global News Morning", "World Report"], pm: ["International Insight", "Asia Today"], now: ["LIVE: 世界の今"] },
-            default: { am: ["特別番組", "セレクション"], pm: ["名作アーカイブ", "アンコール放送"], now: ["現在放送中"] }
+            default: { am: ["特別番組", "セレクション"], pm: ["名作アーカイブ", "アンコール放送"], now: ["放送中"] }
         };
 
         function initDateBar() {
             const dateList = document.getElementById('dateList');
             dateList.innerHTML = '';
-            const labels = ['昨日', '今日', '明日'];
+            const dayNames = ['日', '月', '火', '水', '木', '金', '土'];
+            
             for (let i = -1; i <= 1; i++) {
                 const d = new Date();
                 d.setDate(d.getDate() + i);
-                const dateStr = d.toISOString().split('T')[0];
+                
+                // 月-日 と 曜日名を取得
+                const monthDay = `${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+                const dayName = dayNames[d.getDay()];
+
                 const dateItem = document.createElement('div');
                 dateItem.className = `date-item ${i === currentDayOffset ? 'active' : ''}`;
                 dateItem.onclick = () => { currentDayOffset = i; initDateBar(); updateProgramList(); };
-                dateItem.innerHTML = `<span class="d-label">${labels[i+1]}</span><span class="d-value">${dateStr}</span>`;
+                dateItem.innerHTML = `<span class="d-label">${dayName}曜日</span><span class="d-value">${monthDay}</span>`;
                 dateList.appendChild(dateItem);
             }
         }
@@ -142,12 +144,12 @@
             const list = document.getElementById('programList');
             const data = programData[currentChannel] || programData.default;
             const programs = data[currentTimeFilter] || ["放送予定はありません"];
-            document.getElementById('listHeader').innerText = `● LCTV ${currentChannel} [${currentGenre}] - ${currentTimeFilter.toUpperCase()}`;
+            document.getElementById('listHeader').innerText = `● LCTV ${currentChannel} [${currentGenre}]`;
             list.innerHTML = programs.map((p, i) => `
                 <div class="program-card">
                     <div class="p-time">${i === 0 ? "08:00" : "10:30"}</div>
-                    <div class="p-detail"><h4>${p}</h4><p>ルミナラ中央放送 公式コンテンツ</p></div>
-                    <button class="p-play">${currentTimeFilter === 'now' ? '視聴' : '詳細'}</button>
+                    <div class="p-detail"><h4>${p}</h4><p>LCTV Official Content</p></div>
+                    <button class="p-play">視聴</button>
                 </div>`).join('');
         }
 
