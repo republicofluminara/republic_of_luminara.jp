@@ -12,10 +12,8 @@ body {
     margin: 0;
     background-color: var(--bg-gray);
     color: var(--text-main);
-    overflow-x: hidden;
 }
 
-/* ヘッダー */
 header {
     background: var(--white);
     border-bottom: 1px solid var(--border-color);
@@ -26,15 +24,22 @@ header {
 
 .header-main {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start; /* 左寄せに変更 */
     align-items: center;
     padding: 10px 15px;
+    gap: 20px; /* 要素間の隙間 */
 }
 
 .header-left {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
+}
+
+/* ロゴ画像のサイズを2.5倍程度に拡大 */
+.lctv-logo-img {
+    height: 65px; /* 前回の40pxから約2.5倍へ */
+    display: block;
 }
 
 .hamburger-menu {
@@ -43,67 +48,54 @@ header {
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 6px;
 }
 
 .hamburger-menu span {
     display: block;
-    width: 24px;
-    height: 2px;
+    width: 28px;
+    height: 3px;
     background: var(--text-main);
 }
 
-.lctv-logo-img {
-    height: 40px;
-    display: block;
-}
-
-/* 検索 */
+/* 検索コンテナを左寄りに配置 */
 .search-container {
     display: flex;
     background: #e9ecef;
     border-radius: 20px;
-    padding: 5px 12px;
+    padding: 6px 15px;
+    margin-right: auto; /* 右側を空けることで左に寄せる */
 }
 
 .search-container input {
     border: none;
     background: transparent;
     outline: none;
-    width: 120px;
-    font-size: 13px;
+    width: 180px; /* 少し幅を広げて使いやすく */
 }
 
-/* ナビゲーション（改行防止） */
-.sub-nav {
-    overflow-x: auto; /* はみ出してもスクロール可能に */
-    -webkit-overflow-scrolling: touch;
-}
-
+/* ナビゲーション */
+.sub-nav { overflow-x: auto; border-top: 1px solid #eee; }
 .sub-nav ul {
     display: flex;
     list-style: none;
     margin: 0;
-    padding: 5px 15px;
+    padding: 0 15px;
     gap: 25px;
-    white-space: nowrap; /* これで絶対に改行されない */
+    white-space: nowrap;
 }
-
 .sub-nav li {
+    padding: 12px 0;
     font-weight: bold;
-    font-size: 14px;
     color: #666;
     cursor: pointer;
-    padding: 8px 0;
-    transition: 0.2s;
 }
-
 .sub-nav li.active {
     color: var(--lctv-blue);
     border-bottom: 3px solid var(--lctv-blue);
 }
 
-/* 日付エリア */
+/* 日付とカレンダー */
 .date-bar {
     display: flex;
     align-items: center;
@@ -111,109 +103,46 @@ header {
     padding: 10px 15px;
     border-bottom: 1px solid var(--border-color);
 }
-
-.date-list {
-    flex-grow: 1;
-    display: flex;
-    justify-content: space-between;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-.date-item {
-    cursor: pointer;
-    text-align: center;
-    opacity: 0.6;
-}
-
-.date-item.active {
-    opacity: 1;
-}
-
-.date-item.active .d-label {
-    color: var(--accent-red);
-    font-weight: bold;
-}
-
-.d-label { display: block; font-size: 14px; margin-bottom: 2px; }
+.date-list { flex-grow: 1; display: flex; justify-content: space-around; }
+.date-item { text-align: center; cursor: pointer; opacity: 0.5; }
+.date-item.active { opacity: 1; color: var(--accent-red); font-weight: bold; }
+.d-label { display: block; font-size: 14px; }
 .d-value { display: block; font-size: 10px; color: #888; }
 
-/* フィルタ */
-.time-filter {
-    padding: 15px;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
+.calendar-wrapper { margin-left: 15px; position: relative; }
+.calendar-trigger { font-size: 20px; cursor: pointer; }
+#datePicker {
+    position: absolute;
+    opacity: 0;
+    width: 30px;
+    left: 0;
+    cursor: pointer;
 }
 
+/* フィルタ */
+.time-filter { padding: 15px; display: flex; justify-content: center; gap: 10px; }
 .filter-btn {
     border: 1px solid var(--border-color);
     background: var(--white);
     padding: 6px 20px;
     border-radius: 20px;
     cursor: pointer;
-    font-size: 13px;
 }
-
-.filter-btn.active {
-    background: var(--accent-red);
-    color: white;
-    border-color: var(--accent-red);
-}
+.filter-btn.active { background: var(--accent-red); color: white; border-color: var(--accent-red); }
 
 /* チャンネルタブ（保持） */
-.channel-tabs {
-    display: flex;
-    overflow-x: auto;
-    gap: 10px;
-    padding: 10px 15px;
-    background: var(--white);
-}
-
-.ch-item {
-    min-width: 90px;
-    border: 1px solid var(--border-color);
-    background: var(--white);
-    padding: 8px;
-    border-radius: 4px;
-    text-align: left;
-    flex-shrink: 0;
-}
-
-.ch-item.active {
-    border: 2px solid var(--lctv-blue);
-    background: #f0f7ff;
-}
-
+.channel-tabs { display: flex; overflow-x: auto; gap: 10px; padding: 10px 15px; background: var(--white); }
+.ch-item { min-width: 95px; border: 1px solid var(--border-color); background: var(--white); padding: 10px; border-radius: 4px; text-align: left; flex-shrink: 0; cursor: pointer; }
+.ch-item.active { border: 2px solid var(--lctv-blue); background: #f0f7ff; }
 .ch-item strong { display: block; color: var(--lctv-blue); font-size: 13px; }
 .ch-item span { font-size: 11px; color: #666; }
 
 /* 番組カード */
 .program-container { padding: 15px; max-width: 800px; margin: 0 auto; }
-.time-header { color: #888; font-size: 12px; margin-bottom: 12px; font-weight: bold; }
-
-.program-card {
-    display: flex;
-    background: var(--white);
-    padding: 15px;
-    border-radius: 8px;
-    align-items: center;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.p-time { width: 65px; font-weight: bold; font-size: 18px; color: var(--lctv-blue); }
-.p-detail { flex-grow: 1; border-left: 1px solid #eee; padding-left: 15px; }
-.p-detail h4 { margin: 0; font-size: 15px; color: #000; }
-.p-detail p { margin: 4px 0 0; font-size: 12px; color: #777; }
-
-.p-play {
-    border: 1px solid var(--accent-red);
-    color: var(--accent-red);
-    background: none;
-    padding: 5px 12px;
-    border-radius: 4px;
-    font-size: 11px;
-    cursor: pointer;
-    font-weight: bold;
-}
+.time-header { color: #888; font-size: 12px; margin-bottom: 15px; font-weight: bold; }
+.program-card { display: flex; background: var(--white); padding: 20px; border-radius: 12px; align-items: center; margin-bottom: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+.p-time { width: 70px; font-weight: bold; font-size: 20px; color: var(--lctv-blue); }
+.p-detail { flex-grow: 1; border-left: 1px solid #eee; padding-left: 20px; }
+.p-detail h4 { margin: 0; font-size: 16px; }
+.p-detail p { margin: 5px 0 0; font-size: 12px; color: #777; }
+.p-play { border: 1px solid var(--accent-red); color: var(--accent-red); background: none; padding: 6px 15px; border-radius: 6px; cursor: pointer; }
