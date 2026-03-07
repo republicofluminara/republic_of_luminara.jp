@@ -26,7 +26,7 @@ header {
     justify-content: flex-start;
     align-items: center;
     padding: 10px 0;
-    margin-left: -23px; /* 6mm程度左にずらす */
+    margin-left: -18px; /* 6mm程度左にずらす */
     gap: 12px;
 }
 
