@@ -1,222 +1,200 @@
 :root {
-    --lctv-blue: #003366;
-    --lctv-gold: #c5a059;
-    --bg-light: #f8f9fa;
-    --text-dark: #333;
-    --white: #ffffff;
+    --luminara-navy: #001f3f;
+    --luminara-silver: #e0e0e0;
+    --accent-blue: #0074D9;
+    --text-main: #222;
+    --bg-soft: #f4f7f9;
 }
 
 body {
-    font-family: 'Noto Sans JP', sans-serif;
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
     margin: 0;
-    padding: 0;
-    background-color: var(--bg-light);
-    color: var(--text-dark);
+    background-color: var(--bg-soft);
+    color: var(--text-main);
 }
 
-/* ヘッダー */
+/* ヘッダー周りの修正 */
 header {
-    background-color: var(--white);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    background: var(--luminara-navy);
+    color: white;
+    padding: 15px 5%;
 }
 
-.header-top {
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header-left {
     display: flex;
     align-items: center;
-    padding: 10px 20px;
-    gap: 20px;
+    gap: 25px;
 }
 
-.menu-trigger {
-    width: 30px;
-    height: 20px;
+.logo-area {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    cursor: pointer;
 }
 
-.menu-trigger span {
-    display: block;
-    height: 2px;
-    background: var(--lctv-blue);
-    border-radius: 2px;
+.lctv-main-logo {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    line-height: 1;
 }
 
-.logo {
-    flex-grow: 1;
-}
-
-.lctv-logo {
-    font-size: 24px;
-    font-weight: 900;
-    color: var(--lctv-blue);
+.lctv-sub-text {
+    font-size: 11px;
+    color: var(--luminara-silver);
     letter-spacing: 1px;
+    margin-top: 4px;
+    white-space: nowrap; /* 改行を防ぐ */
 }
 
-.country-tag {
-    font-size: 12px;
-    margin-left: 8px;
-    color: var(--lctv-gold);
-    border-left: 1px solid #ccc;
-    padding-left: 8px;
-}
-
-.search-bar {
-    display: flex;
-    background: #eee;
-    border-radius: 20px;
-    padding: 5px 15px;
-}
-
-.search-bar input {
-    border: none;
-    background: transparent;
-    outline: none;
-    padding: 5px;
-}
-
-.search-bar button {
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-weight: bold;
-    color: var(--lctv-blue);
-}
-
-/* ナビゲーション */
-.main-nav ul {
+/* ナビゲーションの横並びを保証 */
+.global-nav ul {
     display: flex;
     list-style: none;
+    gap: 30px;
     margin: 0;
-    padding: 0 20px;
-    border-top: 1px solid #eee;
+    padding: 0;
 }
 
-.main-nav li {
-    padding: 15px 20px;
+.global-nav li {
     font-weight: 500;
     cursor: pointer;
+    white-space: nowrap; /* 縦にならないように固定 */
+    opacity: 0.8;
+    transition: 0.3s;
 }
 
-.main-nav li.active {
-    color: var(--lctv-blue);
-    border-bottom: 3px solid var(--lctv-blue);
+.global-nav li:hover, .global-nav li.active {
+    opacity: 1;
+    color: #fff;
+    border-bottom: 2px solid white;
 }
 
-/* 日付・チャンネル選択 */
-.date-selector {
+/* 検索ボックス */
+.search-box {
+    background: rgba(255,255,255,0.1);
+    padding: 5px 15px;
+    border-radius: 20px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background: var(--white);
-    margin-top: 10px;
+}
+
+.search-box input {
+    background: transparent;
+    border: none;
+    color: white;
+    outline: none;
+}
+
+/* 日付エリア */
+.date-nav {
+    display: flex;
+    justify-content: center;
+    background: white;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
 }
 
 .date-item {
-    margin-right: 20px;
+    padding: 10px 20px;
+    text-align: center;
+    cursor: pointer;
     color: #666;
 }
 
 .date-item.active {
-    color: #d32f2f;
+    color: var(--luminara-navy);
     font-weight: bold;
+    border-bottom: 3px solid var(--luminara-navy);
 }
 
-.channel-tabs {
-    display: flex;
-    overflow-x: auto;
-    padding: 10px 20px;
+/* チャンネルボタン */
+.channel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
     gap: 10px;
-    background: var(--white);
-    border-bottom: 1px solid #eee;
+    padding: 20px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.tab {
-    min-width: 100px;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    text-align: center;
-    font-size: 12px;
-    background: #fff;
-    cursor: pointer;
-}
-
-.tab span {
-    display: block;
-    font-weight: bold;
-    font-size: 14px;
-}
-
-.tab.active {
-    border-color: var(--lctv-blue);
-    background: var(--lctv-blue);
-    color: white;
-}
-
-/* タイムテーブル */
-.timetable {
-    padding: 20px;
-}
-
-.time-label {
-    display: block;
-    margin-bottom: 15px;
-    color: #666;
-    font-size: 14px;
-}
-
-.program-card {
-    display: flex;
-    background: var(--white);
-    margin-bottom: 10px;
+.ch-btn {
+    background: white;
+    border: 1px solid #ccc;
+    padding: 12px;
     border-radius: 8px;
-    overflow: hidden;
-    align-items: center;
-    padding: 15px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
-.prog-time {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    width: 60px;
-}
-
-.prog-info {
-    flex-grow: 1;
-    padding: 0 15px;
-}
-
-.prog-info h3 {
-    margin: 0;
-    font-size: 16px;
-    color: #000;
-}
-
-.prog-meta {
-    margin: 5px 0 0;
-    font-size: 12px;
+.ch-btn span {
+    display: block;
+    font-size: 11px;
     color: #888;
 }
 
-.prog-action {
-    background: #f0f0f0;
-    padding: 8px 15px;
-    border-radius: 4px;
-    font-size: 12px;
-    color: #d32f2f;
-    cursor: pointer;
-    border: 1px solid #d32f2f;
+.ch-btn.active {
+    background: var(--luminara-navy);
+    color: white;
+    border-color: var(--luminara-navy);
 }
 
-.prog-action:hover {
-    background: #d32f2f;
-    color: #fff;
+.ch-btn.active span {
+    color: var(--luminara-silver);
+}
+
+/* 番組リスト */
+.program-list {
+    max-width: 800px;
+    margin: 0 auto 50px;
+    padding: 0 20px;
+}
+
+.time-divider {
+    font-size: 13px;
+    color: #777;
+    margin: 20px 0 10px;
+}
+
+.program-item {
+    display: flex;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.time {
+    font-size: 20px;
+    font-weight: 700;
+    width: 80px;
+}
+
+.content h4 { margin: 0; font-size: 16px; }
+.content p { margin: 5px 0 0; font-size: 13px; color: #666; }
+
+.badge {
+    margin-left: auto;
+    background: var(--accent-blue);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+}
+
+/* ハンバーガーメニュー */
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: white;
+    margin-bottom: 5px;
 }
