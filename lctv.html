@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LCTV | ルミナラ中央放送 公式サイト</title>
+    <link rel="stylesheet" href="style4.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="header-top">
+            <div class="menu-trigger">
+                <span></span><span></span><span></span>
+            </div>
+            <div class="logo">
+                <span class="lctv-logo">LCTV</span>
+                <span class="country-tag">ルミナラ中央放送</span>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="番組・ニュースを検索">
+                <button type="button">検索</button>
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <ul>
+                <li class="active">番組表</li>
+                <li>ニュース</li>
+                <li>ライブ配信</li>
+                <li>アーカイブ</li>
+                <li>ランキング</li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="date-selector">
+            <div class="date-scroll">
+                <span class="date-item" id="yesterday">昨日</span>
+                <span class="date-item active" id="today-display">本日 03-07</span>
+                <span class="date-item" id="tomorrow">明日</span>
+            </div>
+            <div class="calendar-icon">📅</div>
+        </section>
+
+        <section class="channel-tabs">
+            <div class="tab active">LCTV-1<span>総合</span></div>
+            <div class="tab">LCTV-2<span>スポーツ</span></div>
+            <div class="tab">LCTV-3<span>国際</span></div>
+            <div class="tab">LCTV-4<span>バラエティ</span></div>
+            <div class="tab">LCTV-5<span>ドラマ</span></div>
+            <div class="tab">LCTV-6<span>映画</span></div>
+            <div class="tab">LCTV-7<span>教育</span></div>
+            <div class="tab">LCTV-8<span>子供</span></div>
+            <div class="tab">LCTV-9<span>音楽</span></div>
+        </section>
+
+        <section class="timetable">
+            <div class="time-slot morning">
+                <span class="time-label">午前 (00:00 - 12:00)</span>
+            </div>
+
+            <div class="program-card">
+                <div class="prog-time">01:49</div>
+                <div class="prog-info">
+                    <h3>ルミナラ・モーニング・エッセンス</h3>
+                    <p class="prog-meta">01:49 - 02:33 | 特別番組</p>
+                </div>
+                <div class="prog-action">視聴する</div>
+            </div>
+
+            <div class="program-card">
+                <div class="prog-time">02:33</div>
+                <div class="prog-info">
+                    <h3>ミッドナイト・ニュース</h3>
+                    <p class="prog-meta">02:33 - 03:03</p>
+                </div>
+                <div class="prog-action">視聴する</div>
+            </div>
+
+            <div class="program-card">
+                <div class="prog-time">03:03</div>
+                <div class="prog-info">
+                    <h3>今日のフォスバロ法規</h3>
+                    <p class="prog-meta">03:03 - 03:34 | 解説番組</p>
+                </div>
+                <div class="prog-action">視聴する</div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // 日付を自動更新する簡易スクリプト
+        const today = new Date();
+        const options = { month: '2-digit', day: '2-digit' };
+        document.getElementById('today-display').innerText = '本日 ' + today.toLocaleDateString('ja-JP', options);
+    </script>
+</body>
+</html>
