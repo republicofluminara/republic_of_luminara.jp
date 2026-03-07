@@ -1,200 +1,197 @@
 :root {
-    --luminara-navy: #001f3f;
-    --luminara-silver: #e0e0e0;
-    --accent-blue: #0074D9;
-    --text-main: #222;
-    --bg-soft: #f4f7f9;
+    --lctv-blue: #004275;
+    --bg-gray: #f2f4f6;
+    --border-color: #d1d9e0;
+    --text-main: #333;
+    --white: #ffffff;
 }
 
 body {
     font-family: 'Inter', 'Noto Sans JP', sans-serif;
     margin: 0;
-    background-color: var(--bg-soft);
+    background-color: var(--bg-gray);
     color: var(--text-main);
 }
 
-/* ヘッダー周りの修正 */
+/* ヘッダー */
 header {
-    background: var(--luminara-navy);
-    color: white;
-    padding: 15px 5%;
+    background: var(--white);
+    border-bottom: 1px solid var(--border-color);
 }
 
-.header-inner {
+.header-main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
+    padding: 10px 15px;
 }
 
 .header-left {
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 15px;
 }
 
-.logo-area {
+.hamburger-menu {
+    background: none;
+    border: none;
+    cursor: pointer;
     display: flex;
     flex-direction: column;
+    gap: 5px;
 }
 
-.lctv-main-logo {
-    font-size: 28px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    line-height: 1;
+.hamburger-menu span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text-main);
 }
 
-.lctv-sub-text {
-    font-size: 11px;
-    color: var(--luminara-silver);
-    letter-spacing: 1px;
-    margin-top: 4px;
-    white-space: nowrap; /* 改行を防ぐ */
+.lctv-logo-img {
+    height: 45px; /* ロゴサイズ調整 */
+    display: block;
 }
 
-/* ナビゲーションの横並びを保証 */
-.global-nav ul {
+.search-container {
+    display: flex;
+    background: #e9ecef;
+    border-radius: 6px;
+    padding: 5px 10px;
+}
+
+.search-container input {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 150px;
+}
+
+.sub-nav ul {
     display: flex;
     list-style: none;
-    gap: 30px;
     margin: 0;
-    padding: 0;
+    padding: 10px 15px;
+    gap: 20px;
 }
 
-.global-nav li {
-    font-weight: 500;
+.sub-nav li {
+    font-weight: bold;
+    font-size: 15px;
+    color: #666;
     cursor: pointer;
-    white-space: nowrap; /* 縦にならないように固定 */
-    opacity: 0.8;
-    transition: 0.3s;
 }
 
-.global-nav li:hover, .global-nav li.active {
-    opacity: 1;
-    color: #fff;
-    border-bottom: 2px solid white;
-}
-
-/* 検索ボックス */
-.search-box {
-    background: rgba(255,255,255,0.1);
-    padding: 5px 15px;
-    border-radius: 20px;
-    display: flex;
-}
-
-.search-box input {
-    background: transparent;
-    border: none;
-    color: white;
-    outline: none;
+.sub-nav li.active {
+    color: var(--lctv-blue);
+    border-bottom: 3px solid var(--lctv-blue);
 }
 
 /* 日付エリア */
-.date-nav {
+.date-bar {
     display: flex;
-    justify-content: center;
-    background: white;
+    align-items: center;
+    background: var(--white);
     padding: 10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.date-list {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
 }
 
 .date-item {
-    padding: 10px 20px;
-    text-align: center;
     cursor: pointer;
-    color: #666;
 }
 
-.date-item.active {
-    color: var(--luminara-navy);
+.date-item.active .d-label {
+    color: var(--lctv-blue);
     font-weight: bold;
-    border-bottom: 3px solid var(--luminara-navy);
 }
 
-/* チャンネルボタン */
-.channel-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-    gap: 10px;
-    padding: 20px 5%;
-    max-width: 1200px;
-    margin: 0 auto;
+.date-item.active .d-value {
+    color: var(--lctv-blue);
+    font-weight: bold;
 }
 
-.ch-btn {
-    background: white;
-    border: 1px solid #ccc;
-    padding: 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
+.d-label { display: block; font-size: 14px; color: #333; }
+.d-value { display: block; font-size: 11px; color: #888; }
 
-.ch-btn span {
-    display: block;
-    font-size: 11px;
-    color: #888;
-}
-
-.ch-btn.active {
-    background: var(--luminara-navy);
-    color: white;
-    border-color: var(--luminara-navy);
-}
-
-.ch-btn.active span {
-    color: var(--luminara-silver);
-}
-
-/* 番組リスト */
-.program-list {
-    max-width: 800px;
-    margin: 0 auto 50px;
-    padding: 0 20px;
-}
-
-.time-divider {
-    font-size: 13px;
-    color: #777;
-    margin: 20px 0 10px;
-}
-
-.program-item {
+/* フィルタ */
+.time-filter {
+    padding: 15px;
     display: flex;
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 10px;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    justify-content: center;
+    gap: 10px;
 }
 
-.time {
-    font-size: 20px;
-    font-weight: 700;
-    width: 80px;
+.filter-btn {
+    border: 1px solid var(--border-color);
+    background: var(--white);
+    padding: 5px 20px;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-.content h4 { margin: 0; font-size: 16px; }
-.content p { margin: 5px 0 0; font-size: 13px; color: #666; }
-
-.badge {
-    margin-left: auto;
-    background: var(--accent-blue);
+.filter-btn.active {
+    background: #e74c3c; /* ここだけアクセント（画像に合わせた赤） */
     color: white;
+    border-color: #e74c3c;
+}
+
+/* チャンネルタブ */
+.channel-tabs {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 10px;
+    background: var(--white);
+}
+
+.ch-item {
+    min-width: 90px;
+    border: 1px solid var(--border-color);
+    background: var(--white);
+    padding: 8px;
+    border-radius: 4px;
+    text-align: left;
+}
+
+.ch-item.active {
+    border: 2px solid var(--lctv-blue);
+}
+
+.ch-item strong { display: block; color: var(--lctv-blue); font-size: 14px; }
+.ch-item span { font-size: 11px; color: #666; }
+
+/* 番組カード */
+.program-container { padding: 15px; }
+.time-header { color: #666; font-size: 13px; margin-bottom: 10px; }
+
+.program-card {
+    display: flex;
+    background: var(--white);
+    padding: 15px;
+    border-radius: 8px;
+    align-items: center;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.p-time { width: 60px; font-weight: bold; font-size: 18px; }
+.p-detail { flex-grow: 1; border-left: 1px solid #eee; padding-left: 15px; }
+.p-detail h4 { margin: 0; font-size: 15px; }
+.p-detail p { margin: 5px 0 0; font-size: 12px; color: #888; }
+
+.p-play {
+    border: 1px solid #e74c3c;
+    color: #e74c3c;
+    background: none;
     padding: 4px 10px;
     border-radius: 4px;
-    font-size: 11px;
-}
-
-/* ハンバーガーメニュー */
-.hamburger span {
-    display: block;
-    width: 25px;
-    height: 2px;
-    background: white;
-    margin-bottom: 5px;
+    font-size: 12px;
+    cursor: pointer;
 }
