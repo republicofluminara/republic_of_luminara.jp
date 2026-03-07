@@ -10,11 +10,10 @@ body {
     font-family: 'Inter', 'Noto Sans JP', sans-serif;
     margin: 0;
     background-color: var(--bg-gray);
-    color: var(--text-main);
 }
 
 header {
-    background: #ffffff; /* 最上部カラー */
+    background: #ffffff;
     border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
@@ -25,21 +24,14 @@ header {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 10px 15px; /* 左端の余白を少し戻して位置調整 */
+    padding: 10px 15px;
     gap: 15px;
-}
-
-.header-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
 }
 
 .lctv-logo-img {
     height: 55px;
     display: block;
-    /* margin-leftを調整して少し右へ戻す */
-    margin-left: 5px; 
+    margin-left: 5px;
 }
 
 .search-container {
@@ -49,14 +41,9 @@ header {
     padding: 6px 15px;
 }
 
-.search-container input {
-    border: none;
-    background: transparent;
-    outline: none;
-    width: 130px;
-}
+.search-container input { border: none; background: transparent; outline: none; width: 130px; font-size: 13px; }
 
-/* ハンバーガーメニュー： Republic of Luminara 表示部分 */
+/* ハンバーガーメニュー */
 .side-menu-overlay {
     position: fixed;
     top: 0;
@@ -71,60 +58,66 @@ header {
     justify-content: center;
     align-items: center;
 }
+.side-menu-overlay.open { left: 0; }
+.menu-title { font-size: 24px; border-bottom: 2px solid white; padding-bottom: 10px; margin-bottom: 30px; }
+.side-nav-list ul { list-style: none; padding: 0; text-align: center; }
+.side-nav-list li { font-size: 18px; margin: 20px 0; cursor: pointer; }
+.close-btn { position: absolute; top: 20px; right: 25px; font-size: 40px; color: white; background: none; border: none; cursor: pointer; }
 
-.side-menu-overlay.open {
-    left: 0;
+.hamburger-menu { background: none; border: none; cursor: pointer; display: flex; flex-direction: column; gap: 5px; }
+.hamburger-menu span { width: 24px; height: 2px; background: var(--text-main); display: block; }
+
+/* チャンネルタブ：以前の並びスタイル */
+.channel-tabs {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 10px 15px;
+    background: white;
+    -webkit-overflow-scrolling: touch;
 }
 
-.side-menu-content {
-    text-align: center;
-}
+.channel-tabs::-webkit-scrollbar { display: none; } /* スクロールバーを隠す */
 
-.menu-title {
-    font-size: 24px;
-    border-bottom: 2px solid white;
-    padding-bottom: 10px;
-    margin-bottom: 30px;
-}
-
-.side-nav-list ul {
-    list-style: none;
-    padding: 0;
-}
-
-.side-nav-list li {
-    font-size: 18px;
-    margin: 20px 0;
+.ch-item {
+    min-width: 95px; /* 前のゆったりした幅を再現 */
+    border: 1px solid var(--border-color);
+    background: var(--white);
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-align: left;
+    flex-shrink: 0;
     cursor: pointer;
 }
 
-.close-btn {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    font-size: 40px;
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
+.ch-item.active {
+    border: 2px solid var(--lctv-blue);
+    background: #f0f7ff;
 }
 
-/* チャンネルタブと番組表のデザイン維持 */
+.ch-item strong {
+    display: block;
+    font-size: 13px;
+    color: var(--lctv-blue);
+}
+
+.ch-item span {
+    font-size: 11px;
+    color: #666;
+}
+
+/* その他パーツ */
 .sub-nav { overflow-x: auto; background: white; border-top: 1px solid #f0f0f0; }
 .sub-nav ul { display: flex; list-style: none; margin: 0; padding: 0 15px; gap: 20px; white-space: nowrap; }
-.sub-nav li { padding: 12px 5px; font-weight: bold; color: #777; cursor: pointer; }
+.sub-nav li { padding: 12px 5px; font-weight: bold; color: #777; font-size: 14px; cursor: pointer; }
 .sub-nav li.active { color: var(--lctv-blue); border-bottom: 3px solid var(--lctv-blue); }
 
 .date-bar { display: flex; background: white; padding: 12px; border-bottom: 1px solid var(--border-color); }
 .date-list { flex-grow: 1; display: flex; justify-content: space-around; }
 .date-item { text-align: center; cursor: pointer; opacity: 0.4; }
 .date-item.active { opacity: 1; color: var(--lctv-blue); font-weight: bold; }
-.d-label { display: block; font-size: 12px; }
+.d-label { display: block; font-size: 11px; }
 .d-value { display: block; font-size: 15px; font-weight: bold; }
-
-.channel-tabs { display: flex; overflow-x: auto; gap: 10px; padding: 12px 15px; background: white; }
-.ch-item { min-width: 90px; border: 1px solid var(--border-color); background: white; padding: 10px; border-radius: 6px; flex-shrink: 0; cursor: pointer; }
-.ch-item.active { border: 2px solid var(--lctv-blue); background: #f4f9ff; }
 
 .program-card { display: flex; background: white; padding: 18px; border-radius: 12px; align-items: center; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
 .p-time { width: 65px; font-weight: bold; font-size: 19px; color: var(--lctv-blue); }
